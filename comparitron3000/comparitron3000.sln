@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "comparitron", "comparitron\comparitron.csproj", "{B4E04034-EC6C-47EF-8ED1-1D616B02406F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "comparitron.ui", "comparitron.ui\comparitron.ui.csproj", "{88E787CE-4D83-466F-9864-2C9CC405939E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B4E04034-EC6C-47EF-8ED1-1D616B02406F} = {B4E04034-EC6C-47EF-8ED1-1D616B02406F}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4E04034-EC6C-47EF-8ED1-1D616B02406F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4E04034-EC6C-47EF-8ED1-1D616B02406F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4E04034-EC6C-47EF-8ED1-1D616B02406F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4E04034-EC6C-47EF-8ED1-1D616B02406F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E787CE-4D83-466F-9864-2C9CC405939E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E787CE-4D83-466F-9864-2C9CC405939E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E787CE-4D83-466F-9864-2C9CC405939E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E787CE-4D83-466F-9864-2C9CC405939E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
