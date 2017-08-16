@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace comparitron.ui
 {
-    public partial class FormMain : Form
+    public partial class FormSettings : Form
     {
-        comparitronCore comparitron;
-
-        public FormMain()
+        comparitronCore comparitron = null;
+        public FormSettings(comparitronCore comparitron)
         {
             InitializeComponent();
+            this.comparitron = comparitron;
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void FormSettings_Load(object sender, EventArgs e)
         {
 
         }

@@ -1,6 +1,6 @@
 ﻿namespace comparitron.ui
 {
-    partial class FormMain
+    partial class FormSettings
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // FormMain
+            // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(945, 606);
-            this.Name = "FormMain";
-            this.Text = "Comparitron 3000";
-            this.Load += new System.EventHandler(this.FormMain_Load);
+            this.ClientSize = new System.Drawing.Size(484, 332);
+            this.Name = "FormSettings";
+            this.Text = "FormSettings";
+            this.Load += new System.EventHandler(this.FormSettings_Load);
             this.ResumeLayout(false);
 
         }
@@ -45,4 +45,3 @@
         #endregion
     }
 }
-

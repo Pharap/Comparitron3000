@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
+using System.Windows.Forms;
 
-namespace comparitron
+namespace comparitron.ui
 {
-    public class comparitronCore
+    class ComparisonViewer : PictureBox
     {
-        //BindingList<>
+
     }
 }
