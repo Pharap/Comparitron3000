@@ -15,12 +15,15 @@ namespace comparitron.ui
         [STAThread]
         static void Main()
         {
-            comparitronCore comparitron = new comparitronCore();
-
+            //gunk
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FormMain(comparitron));
+            //fun
+            SettingsCore settings = new SettingsCore();
+            ComparitronCore comparitron = new ComparitronCore(settings);
+            
+            Application.Run(new FormMain(comparitron,settings));
         }
     }
 }

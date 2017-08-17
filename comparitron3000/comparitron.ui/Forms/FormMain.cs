@@ -12,12 +12,17 @@ namespace comparitron.ui
 {
     public partial class FormMain : Form
     {
-        comparitronCore comparitron = null;
-        FormSettings formSettings = null;
-        public FormMain(comparitronCore comparitron)
+        ComparitronCore comparitron = null;
+        SettingsCore settings = null;
+
+        public FormMain(ComparitronCore comparitron, SettingsCore settings)
         {
             InitializeComponent();
+            this.settings = settings;
             this.comparitron = comparitron;
+
+            /// Configure UI gizmos.
+            comboBoxViewMode.DataSource = Enum.GetValues(typeof(DisplayType));
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -27,11 +32,10 @@ namespace comparitron.ui
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (formSettings == null || formSettings.IsDisposed)
+            using(FormSettings formSettings = new FormSettings(settings))
             {
-                formSettings = new FormSettings(comparitron);
+                formSettings.ShowDialog();
             }
-            formSettings.ShowDialog();
         }
     }
 }

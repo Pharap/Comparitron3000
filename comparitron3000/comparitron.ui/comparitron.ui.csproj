@@ -49,6 +49,7 @@
     <Compile Include="Components\ComparisonViewer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Components\uiTypes.cs" />
     <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

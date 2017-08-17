@@ -12,16 +12,29 @@ namespace comparitron.ui
 {
     public partial class FormSettings : Form
     {
-        comparitronCore comparitron = null;
-        public FormSettings(comparitronCore comparitron)
+        SettingsCore settings = null;
+
+        public FormSettings(SettingsCore settings)
         {
             InitializeComponent();
-            this.comparitron = comparitron;
+            this.settings = settings;
         }
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void btnOkay_Click(object sender, EventArgs e)
+        {
+            //Save goes here
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
