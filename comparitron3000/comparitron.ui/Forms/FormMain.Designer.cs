@@ -28,33 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.engageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.tableLayoutLeft = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxViewMode = new System.Windows.Forms.ComboBox();
-            this.trackbarFade = new System.Windows.Forms.TrackBar();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.trackbarFrame = new System.Windows.Forms.TrackBar();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnTrackLeftFar = new System.Windows.Forms.Button();
             this.btnTrackLeft = new System.Windows.Forms.Button();
             this.btnJumpFrame = new System.Windows.Forms.Button();
             this.btnTrackRight = new System.Windows.Forms.Button();
             this.btnTrackRightFar = new System.Windows.Forms.Button();
+            this.trackbarFrame = new System.Windows.Forms.TrackBar();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comparisonViewer = new comparitron.ui.ComparisonViewer();
-            this.engageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.tableLayoutLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackbarFade)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackbarFrame)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,9 +86,31 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadToolStripMenuItem,
+            this.loadToolStripMenuItem1,
+            this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.loadToolStripMenuItem.Text = "New";
+            // 
+            // loadToolStripMenuItem1
+            // 
+            this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
+            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.loadToolStripMenuItem1.Text = "Load";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.saveToolStripMenuItem.Text = "Save";
             // 
             // settingsToolStripMenuItem
             // 
@@ -83,6 +118,13 @@
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // engageToolStripMenuItem
+            // 
+            this.engageToolStripMenuItem.Name = "engageToolStripMenuItem";
+            this.engageToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.engageToolStripMenuItem.Text = "Engage!";
+            this.engageToolStripMenuItem.Click += new System.EventHandler(this.engageToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -112,13 +154,13 @@
             // 
             // tableLayoutLeft
             // 
+            this.tableLayoutLeft.AutoSize = true;
             this.tableLayoutLeft.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutLeft.ColumnCount = 2;
             this.tableLayoutLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutLeft.Controls.Add(this.comparisonViewer, 0, 1);
             this.tableLayoutLeft.Controls.Add(this.comboBoxViewMode, 0, 0);
-            this.tableLayoutLeft.Controls.Add(this.trackbarFade, 1, 0);
             this.tableLayoutLeft.Controls.Add(this.flowLayoutPanel1, 0, 2);
             this.tableLayoutLeft.Controls.Add(this.trackbarFrame, 0, 3);
             this.tableLayoutLeft.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -127,8 +169,9 @@
             this.tableLayoutLeft.RowCount = 4;
             this.tableLayoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutLeft.Size = new System.Drawing.Size(737, 695);
             this.tableLayoutLeft.TabIndex = 0;
             // 
@@ -142,15 +185,6 @@
             this.comboBoxViewMode.Size = new System.Drawing.Size(121, 21);
             this.comboBoxViewMode.TabIndex = 1;
             // 
-            // trackbarFade
-            // 
-            this.trackbarFade.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackbarFade.Location = new System.Drawing.Point(130, 3);
-            this.trackbarFade.MaximumSize = new System.Drawing.Size(0, 25);
-            this.trackbarFade.Name = "trackbarFade";
-            this.trackbarFade.Size = new System.Drawing.Size(606, 24);
-            this.trackbarFade.TabIndex = 2;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -162,34 +196,11 @@
             this.flowLayoutPanel1.Controls.Add(this.btnJumpFrame);
             this.flowLayoutPanel1.Controls.Add(this.btnTrackRight);
             this.flowLayoutPanel1.Controls.Add(this.btnTrackRightFar);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(167, 636);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(167, 635);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(405, 26);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(405, 29);
             this.flowLayoutPanel1.TabIndex = 3;
-            // 
-            // trackbarFrame
-            // 
-            this.tableLayoutLeft.SetColumnSpan(this.trackbarFrame, 2);
-            this.trackbarFrame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackbarFrame.Location = new System.Drawing.Point(3, 668);
-            this.trackbarFrame.Name = "trackbarFrame";
-            this.trackbarFrame.Size = new System.Drawing.Size(733, 24);
-            this.trackbarFrame.TabIndex = 4;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(787, 695);
-            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnTrackLeftFar
             // 
@@ -236,6 +247,83 @@
             this.btnTrackRightFar.Text = "-->";
             this.btnTrackRightFar.UseVisualStyleBackColor = true;
             // 
+            // trackbarFrame
+            // 
+            this.tableLayoutLeft.SetColumnSpan(this.trackbarFrame, 2);
+            this.trackbarFrame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trackbarFrame.Location = new System.Drawing.Point(3, 668);
+            this.trackbarFrame.Name = "trackbarFrame";
+            this.trackbarFrame.Size = new System.Drawing.Size(733, 24);
+            this.trackbarFrame.TabIndex = 4;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(787, 695);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.button1);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 635);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(787, 30);
+            this.flowLayoutPanel2.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.button2);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 665);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(787, 30);
+            this.flowLayoutPanel3.TabIndex = 2;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(3, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(781, 629);
+            this.dataGridView.TabIndex = 3;
+            // 
+            // comparitronCoreBindingSource
+            // 
+            this.comparitronCoreBindingSource.DataSource = typeof(comparitron.ComparitronCore);
+            // 
             // comparisonViewer
             // 
             this.comparisonViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -243,15 +331,9 @@
             this.comparisonViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comparisonViewer.Location = new System.Drawing.Point(3, 33);
             this.comparisonViewer.Name = "comparisonViewer";
-            this.comparisonViewer.Size = new System.Drawing.Size(733, 597);
+            this.comparisonViewer.Size = new System.Drawing.Size(733, 599);
             this.comparisonViewer.TabIndex = 0;
             this.comparisonViewer.TabStop = false;
-            // 
-            // engageToolStripMenuItem
-            // 
-            this.engageToolStripMenuItem.Name = "engageToolStripMenuItem";
-            this.engageToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.engageToolStripMenuItem.Text = "Engage!";
             // 
             // FormMain
             // 
@@ -263,20 +345,26 @@
             this.Controls.Add(this.menuStripMain);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStripMain;
+            this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "FormMain";
             this.Text = "Comparitron 3000";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.splitContainerMain.Panel1.ResumeLayout(false);
+            this.splitContainerMain.Panel1.PerformLayout();
             this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
             this.tableLayoutLeft.ResumeLayout(false);
             this.tableLayoutLeft.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackbarFade)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackbarFrame)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -293,7 +381,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutLeft;
         private ComparisonViewer comparisonViewer;
         private System.Windows.Forms.ComboBox comboBoxViewMode;
-        private System.Windows.Forms.TrackBar trackbarFade;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TrackBar trackbarFrame;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -303,6 +390,15 @@
         private System.Windows.Forms.Button btnTrackRight;
         private System.Windows.Forms.Button btnTrackRightFar;
         private System.Windows.Forms.ToolStripMenuItem engageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.BindingSource comparitronCoreBindingSource;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }
 

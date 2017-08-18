@@ -9,11 +9,17 @@ namespace comparitron
 {
     public class ComparitronCore
     {
-        public SettingsCore settings { get; } = null;
+        private SettingsCore settings = null;
+        public BindingList<ComparitronItem> itemList = new BindingList<ComparitronItem>();
 
         public ComparitronCore(SettingsCore settings)
         {
             this.settings = settings;
+
+            /// Testing;
+            itemList.Add(new ComparitronItem { type = ItemType.Image, frame = 4143 });
         }
+
+
     }
 }

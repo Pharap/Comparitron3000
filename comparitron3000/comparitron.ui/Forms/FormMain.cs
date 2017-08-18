@@ -23,19 +23,29 @@ namespace comparitron.ui
 
             /// Configure UI gizmos.
             comboBoxViewMode.DataSource = Enum.GetValues(typeof(DisplayType));
+            dataGridView.DataSource = comparitron.itemList;
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        /// Top menu
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using(FormSettings formSettings = new FormSettings(settings))
             {
                 formSettings.ShowDialog();
             }
+        }
+
+        private void engageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FormExport formExport = new FormExport(comparitron,settings))
+            {
+                formExport.ShowDialog();
+            }
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

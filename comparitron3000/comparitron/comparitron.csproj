@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="comparitronCore.cs" />
+    <Compile Include="Components\ComparitronItem.cs" />
+    <Compile Include="Components\Types.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="settingsCore.cs" />
   </ItemGroup>
