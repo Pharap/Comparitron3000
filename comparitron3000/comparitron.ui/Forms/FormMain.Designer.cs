@@ -212,7 +212,7 @@
             this.tableLayoutLeft.SetColumnSpan(this.comparisonViewer, 2);
             this.comparisonViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comparisonViewer.Location = new System.Drawing.Point(3, 33);
-            this.comparisonViewer.Mode = comparitron.ui.DisplayType.Split;
+            this.comparisonViewer.Mode = DisplayType.Split;
             this.comparisonViewer.Name = "comparisonViewer";
             this.comparisonViewer.Size = new System.Drawing.Size(911, 600);
             this.comparisonViewer.TabIndex = 0;

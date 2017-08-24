@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.IO;
 
 namespace comparitron.ui
 {
@@ -46,12 +47,17 @@ namespace comparitron.ui
             var digits = 6;
             string frameIndex = Frame.ToString("D" + digits);
 
-            pathTV = basepath + "TV-" + frameIndex + ".jpg";
-            imageTV = Image.FromFile(pathTV);
-            pathBD = basepath + "BD-" + frameIndex + ".jpg";
-            imageBD = Image.FromFile(pathBD);
-            pathMX = basepath + "MX-" + frameIndex + ".jpg";
-            imageMX = Image.FromFile(pathMX);
+            pathTV = basepath + "OLD/TV-" + frameIndex + ".jpg";
+            if(File.Exists(pathTV))
+                imageTV = Image.FromFile(pathTV);
+
+            pathBD = basepath + "NEW/BD-" + frameIndex + ".jpg";
+            if(File.Exists(pathBD))
+                imageBD = Image.FromFile(pathBD);
+
+            pathMX = basepath + "MIX/MX-" + frameIndex + ".jpg";
+            if(File.Exists(pathMX))
+                imageMX = Image.FromFile(pathMX);
         }
         
         protected override void OnPaint(PaintEventArgs pe)
