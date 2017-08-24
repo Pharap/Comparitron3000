@@ -13,6 +13,5 @@ namespace comparitron
         Image,
         Video,
         Divider,
-        List,
     }
 }
