@@ -34,6 +34,7 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.engageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -53,20 +54,21 @@
             this.btnAddCompare = new System.Windows.Forms.Button();
             this.btnAddText = new System.Windows.Forms.Button();
             this.btnAddImage = new System.Windows.Forms.Button();
+            this.btnAddVideo = new System.Windows.Forms.Button();
             this.btnAddDivide = new System.Windows.Forms.Button();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnMoveUp = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.textBoxInput = new System.Windows.Forms.TextBox();
-            this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnAddVideo = new System.Windows.Forms.Button();
             this.btnMoveDown = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnGoto = new System.Windows.Forms.Button();
             this.btnSetFrame = new System.Windows.Forms.Button();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.textBoxInput = new System.Windows.Forms.TextBox();
+            this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.comparisonViewer = new comparitron.ui.ComparisonViewer();
             this.menuStripMain.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -110,21 +112,28 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.loadToolStripMenuItem.Text = "Load";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -142,6 +151,8 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 721);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1532, 22);
@@ -343,6 +354,16 @@
             this.btnAddImage.UseVisualStyleBackColor = true;
             this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
             // 
+            // btnAddVideo
+            // 
+            this.btnAddVideo.Location = new System.Drawing.Point(246, 3);
+            this.btnAddVideo.Name = "btnAddVideo";
+            this.btnAddVideo.Size = new System.Drawing.Size(75, 23);
+            this.btnAddVideo.TabIndex = 4;
+            this.btnAddVideo.Text = "Add Video";
+            this.btnAddVideo.UseVisualStyleBackColor = true;
+            this.btnAddVideo.Click += new System.EventHandler(this.btnAddVideo_Click);
+            // 
             // btnAddDivide
             // 
             this.btnAddDivide.Location = new System.Drawing.Point(327, 3);
@@ -378,37 +399,6 @@
             this.btnMoveUp.Text = "Move Up";
             this.btnMoveUp.UseVisualStyleBackColor = true;
             this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(601, 605);
-            this.dataGridView.TabIndex = 3;
-            // 
-            // textBoxInput
-            // 
-            this.textBoxInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxInput.Location = new System.Drawing.Point(3, 614);
-            this.textBoxInput.Name = "textBoxInput";
-            this.textBoxInput.Size = new System.Drawing.Size(601, 20);
-            this.textBoxInput.TabIndex = 4;
-            // 
-            // comparitronCoreBindingSource
-            // 
-            this.comparitronCoreBindingSource.DataSource = typeof(comparitron.ComparitronCore);
-            // 
-            // btnAddVideo
-            // 
-            this.btnAddVideo.Location = new System.Drawing.Point(246, 3);
-            this.btnAddVideo.Name = "btnAddVideo";
-            this.btnAddVideo.Size = new System.Drawing.Size(75, 23);
-            this.btnAddVideo.TabIndex = 4;
-            this.btnAddVideo.Text = "Add Video";
-            this.btnAddVideo.UseVisualStyleBackColor = true;
-            this.btnAddVideo.Click += new System.EventHandler(this.btnAddVideo_Click);
             // 
             // btnMoveDown
             // 
@@ -450,12 +440,32 @@
             this.btnSetFrame.UseVisualStyleBackColor = true;
             this.btnSetFrame.Click += new System.EventHandler(this.btnSetFrame_Click);
             // 
-            // exitToolStripMenuItem
+            // dataGridView
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(601, 605);
+            this.dataGridView.TabIndex = 3;
+            // 
+            // textBoxInput
+            // 
+            this.textBoxInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxInput.Location = new System.Drawing.Point(3, 614);
+            this.textBoxInput.Name = "textBoxInput";
+            this.textBoxInput.Size = new System.Drawing.Size(601, 20);
+            this.textBoxInput.TabIndex = 4;
+            // 
+            // comparitronCoreBindingSource
+            // 
+            this.comparitronCoreBindingSource.DataSource = typeof(comparitron.ComparitronCore);
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(118, 17);
+            this.statusLabel.Text = "toolStripStatusLabel1";
             // 
             // comparisonViewer
             // 
@@ -481,9 +491,10 @@
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "FormMain";
             this.Text = "Comparitron 3000";
-            this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.splitContainerMain.Panel1.ResumeLayout(false);
             this.splitContainerMain.Panel1.PerformLayout();
             this.splitContainerMain.Panel2.ResumeLayout(false);
@@ -545,6 +556,7 @@
         private System.Windows.Forms.Button btnGoto;
         private System.Windows.Forms.Button btnSetFrame;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     }
 }
 
