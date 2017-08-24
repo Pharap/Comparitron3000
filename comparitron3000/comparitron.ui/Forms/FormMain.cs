@@ -24,7 +24,16 @@ namespace comparitron.ui
             /// Configure UI gizmos.
             comboBoxViewMode.DataSource = Enum.GetValues(typeof(DisplayType));
             dataGridView.DataSource = comparitron.itemList;
+
+            updateUI();
         }
+
+        private void updateUI()
+        {
+            trackbarFrame.Value = comparitron.currentFrame;
+            trackbarFrame.Maximum = comparitron.lastFrame;
+        }
+
 
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -106,6 +115,25 @@ namespace comparitron.ui
         private void btnSetFrame_Click(object sender, EventArgs e)
         {
 
+        }
+
+        //Track
+        private void btnTrackRight_Click(object sender, EventArgs e)
+        {
+            comparitron.currentFrame++;
+            updateUI();
+        }
+
+        private void btnTrackLeft_Click(object sender, EventArgs e)
+        {
+            comparitron.currentFrame--;
+            updateUI();
+        }
+
+        private void trackbarFrame_Scroll(object sender, EventArgs e)
+        {
+            comparitron.currentFrame = trackbarFrame.Value;
+            updateUI();
         }
     }
 }

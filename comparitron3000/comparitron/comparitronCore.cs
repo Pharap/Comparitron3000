@@ -12,6 +12,10 @@ namespace comparitron
         private SettingsCore settings = null;
         public BindingList<ComparitronItem> itemList = new BindingList<ComparitronItem>();
 
+        //public int currentFrame { get; set; }
+        public int currentFrame = 0;
+        public int lastFrame = 34000;
+
         public ComparitronCore(SettingsCore settings)
         {
             this.settings = settings;
@@ -20,7 +24,6 @@ namespace comparitron
             itemList.Add(new ComparitronItem { Type = ItemType.Image, Frame = 4143 });
         }
 
-        public int currentFrame { get; set; }
 
         public void AddItem(ItemType type, int frame, string text, string image, string video)
         {
