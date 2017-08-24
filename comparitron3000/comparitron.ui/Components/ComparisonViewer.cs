@@ -10,7 +10,10 @@ namespace comparitron.ui
 {
     class ComparisonViewer : PictureBox
     {
-        Image imageTV, imageBD, imageMX;
+        private Image imageTV, imageBD, imageMX;
+        private string pathTV, pathBD, pathMX;
+
+        public int Frame = 0;
 
         private DisplayType mode = DisplayType.Split;
         private float transition = 50;
@@ -21,6 +24,7 @@ namespace comparitron.ui
             set
             {
                 this.mode = value;
+                this.Reload();
                 this.Invalidate();
             }
         }
@@ -37,6 +41,18 @@ namespace comparitron.ui
 
         public string basepath = @"";
 
+        private void Reload()
+        {
+            var digits = 6;
+            string frameIndex = Frame.ToString("D" + digits);
+
+            pathTV = basepath + "TV-" + frameIndex + ".jpg";
+            imageTV = Image.FromFile(pathTV);
+            pathBD = basepath + "BD-" + frameIndex + ".jpg";
+            imageBD = Image.FromFile(pathBD);
+            pathMX = basepath + "MX-" + frameIndex + ".jpg";
+            imageMX = Image.FromFile(pathMX);
+        }
         
         protected override void OnPaint(PaintEventArgs pe)
         {
