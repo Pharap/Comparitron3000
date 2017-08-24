@@ -34,12 +34,6 @@ namespace comparitron.ui
             trackbarFrame.Maximum = comparitron.lastFrame;
         }
 
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-
-        }
-
         ///Toolstrip.
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
