@@ -26,7 +26,12 @@ namespace comparitron.ui
             dataGridView.DataSource = comparitron.itemList;
         }
 
-        /// Top menu
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        ///Toolstrip.
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using(FormSettings formSettings = new FormSettings(settings))
@@ -34,7 +39,6 @@ namespace comparitron.ui
                 formSettings.ShowDialog();
             }
         }
-
         private void engageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (FormExport formExport = new FormExport(comparitron,settings))
@@ -42,8 +46,64 @@ namespace comparitron.ui
                 formExport.ShowDialog();
             }
         }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Save
+            this.Close();
+        }
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
-        private void FormMain_Load(object sender, EventArgs e)
+        }
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Inputty things
+        private void btnAddCompare_Click(object sender, EventArgs e)
+        {
+            comparitron.AddFrame(comparitron.currentFrame, textBoxInput.Text);
+        }
+        private void btnAddText_Click(object sender, EventArgs e)
+        {
+            comparitron.AddItem(ItemType.Text, 0 , textBoxInput.Text, null, null);
+        }
+        private void btnAddImage_Click(object sender, EventArgs e)
+        {
+            comparitron.AddItem(ItemType.Text, 0, null, textBoxInput.Text, null);
+        }
+        private void btnAddVideo_Click(object sender, EventArgs e)
+        {
+            comparitron.AddItem(ItemType.Text, 0, null, null, textBoxInput.Text);
+        }
+        private void btnAddDivide_Click(object sender, EventArgs e)
+        {
+            comparitron.AddItem(ItemType.Text, 0, "<hr/>", null, null);
+        }
+        
+        //Interaction buttons.
+        private void btnMoveUp_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnMoveDown_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnGoto_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnSetFrame_Click(object sender, EventArgs e)
         {
 
         }

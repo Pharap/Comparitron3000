@@ -8,10 +8,10 @@ namespace comparitron
 {
     public class ComparitronItem
     {
-        public ItemType type { get; set;  }
-        public int frame { get; set; }
-        public string text { get; set; }
-        public string image { get; set; }
-        public string video { get; set; }
+        public ItemType Type { get; set;  }
+        public int Frame { get; set; }
+        public string Text { get; set; }
+        public string Image { get; set; }
+        public string Video { get; set; }
     }
 }
