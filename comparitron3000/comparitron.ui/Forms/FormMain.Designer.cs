@@ -65,6 +65,7 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.textBoxInput = new System.Windows.Forms.TextBox();
             this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
+          
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.comparisonViewer = new comparitron.ui.ComparisonViewer();
             this.menuStripMain.SuspendLayout();
@@ -244,6 +245,7 @@
             this.btnTrackLeft.TabIndex = 1;
             this.btnTrackLeft.Text = "<";
             this.btnTrackLeft.UseVisualStyleBackColor = true;
+            this.btnTrackLeft.Click += new System.EventHandler(this.btnTrackLeft_Click);
             // 
             // btnJumpFrame
             // 
@@ -262,6 +264,7 @@
             this.btnTrackRight.TabIndex = 3;
             this.btnTrackRight.Text = ">";
             this.btnTrackRight.UseVisualStyleBackColor = true;
+            this.btnTrackRight.Click += new System.EventHandler(this.btnTrackRight_Click);
             // 
             // btnTrackRightFar
             // 
@@ -280,6 +283,7 @@
             this.trackbarFrame.Name = "trackbarFrame";
             this.trackbarFrame.Size = new System.Drawing.Size(911, 24);
             this.trackbarFrame.TabIndex = 4;
+            this.trackbarFrame.Scroll += new System.EventHandler(this.trackbarFrame_Scroll);
             // 
             // trackBar1
             // 
@@ -466,6 +470,7 @@
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(118, 17);
             this.statusLabel.Text = "toolStripStatusLabel1";
+          
             // 
             // comparisonViewer
             // 
