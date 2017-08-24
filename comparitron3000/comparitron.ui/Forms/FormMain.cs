@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace comparitron.ui
@@ -30,11 +31,13 @@ namespace comparitron.ui
 
         private void updateUI()
         {
+            trackbarFrame.Minimum = 1;
             trackbarFrame.Maximum = comparitron.LastFrame;
             trackbarFrame.Value = comparitron.CurrentFrame;
 
             var digits = comparitron.LastFrame.ToString().Length;
-            statusLabel.Text = "Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
+            statusLabel.Text = comparitron.BasePath;
+            statusLabel.Text += " Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
         }
 
         ///Toolstrip.
@@ -63,7 +66,15 @@ namespace comparitron.ui
         }
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (openProjectBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                var Path = openProjectBrowserDialog.SelectedPath;
+                if (Directory.Exists(Path))
+                {
+                    comparitron.LoadProject(Path);
+                }
+            }
+            updateUI();
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -149,5 +160,7 @@ namespace comparitron.ui
             Enum.TryParse<DisplayType>(comboBoxViewMode.SelectedValue.ToString(), out mode);
             comparisonViewer.Mode = mode;
         }
+
+
     }
 }

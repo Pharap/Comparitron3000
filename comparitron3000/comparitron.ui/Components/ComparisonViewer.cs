@@ -40,22 +40,23 @@ namespace comparitron.ui
             }
         }
 
-        public string basepath = @"";
+        public string BasePath { get; set; } = @"";
 
         private void Reload()
         {
+            //Unmagick these strings at some point;
             var digits = 6;
             string frameIndex = Frame.ToString("D" + digits);
 
-            pathTV = basepath + "OLD/TV-" + frameIndex + ".jpg";
+            pathTV = BasePath + "OLD/TV-" + frameIndex + ".jpg";
             if(File.Exists(pathTV))
                 imageTV = Image.FromFile(pathTV);
 
-            pathBD = basepath + "NEW/BD-" + frameIndex + ".jpg";
+            pathBD = BasePath + "NEW/BD-" + frameIndex + ".jpg";
             if(File.Exists(pathBD))
                 imageBD = Image.FromFile(pathBD);
 
-            pathMX = basepath + "MIX/MX-" + frameIndex + ".jpg";
+            pathMX = BasePath + "MIX/MX-" + frameIndex + ".jpg";
             if(File.Exists(pathMX))
                 imageMX = Image.FromFile(pathMX);
         }

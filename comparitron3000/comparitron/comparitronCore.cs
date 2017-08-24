@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.IO;
 
 namespace comparitron
 {
@@ -11,24 +12,39 @@ namespace comparitron
     {
         private SettingsCore settings = null;
 
+        //Directories
+        public string BasePath { get; set; } = null;
+
+        //List of things;
         public BindingList<ComparitronItem> itemList = new BindingList<ComparitronItem>();
+
+        //Frame tracking
         private int currentFrame { get; set; } = 1;
         public int LastFrame { get; set; } = 34000;
 
         //Things
         public int CurrentFrame {
             get { return currentFrame; }
-            set { this.currentFrame = Math.Min(Math.Max(value,0), LastFrame); }
+            set { this.currentFrame = Math.Min(Math.Max(value,1), LastFrame); }
         }
 
         public ComparitronCore(SettingsCore settings)
         {
             this.settings = settings;
-
-            /// Testing;
-            itemList.Add(new ComparitronItem { Type = ItemType.Image, Frame = 4143 });
         }
         
+        // IO
+        public void LoadProject(string Path)
+        {
+            BasePath = Path;
+
+            //EXPAND ON THIS-
+            if(!File.Exists(BasePath+"Project.xml"))
+            {
+                File.Create(BasePath + "Project.xml");
+            }
+        }
+
         //Thing list
         public void AddItem(ItemType type, int frame, string text, string image, string video)
         {
