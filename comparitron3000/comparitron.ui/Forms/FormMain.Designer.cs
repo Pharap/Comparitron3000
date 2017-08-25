@@ -36,11 +36,13 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.engageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.tableLayoutLeft = new System.Windows.Forms.TableLayoutPanel();
+            this.comparisonViewer = new comparitron.ui.ComparisonViewer();
             this.comboBoxViewMode = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnTrackLeftFar = new System.Windows.Forms.Button();
@@ -66,7 +68,6 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.textBoxInput = new System.Windows.Forms.TextBox();
             this.openProjectBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.comparisonViewer = new comparitron.ui.ComparisonViewer();
             this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStripMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -75,6 +76,7 @@
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.tableLayoutLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackbarFrame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarFade)).BeginInit();
@@ -82,7 +84,6 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,6 +92,7 @@
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.settingsToolStripMenuItem,
+            this.projectToolStripMenuItem,
             this.engageToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
@@ -113,28 +115,28 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -144,6 +146,13 @@
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // projectToolStripMenuItem
+            // 
+            this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.projectToolStripMenuItem.Text = "Project";
+            this.projectToolStripMenuItem.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
             // 
             // engageToolStripMenuItem
             // 
@@ -208,6 +217,24 @@
             this.tableLayoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutLeft.Size = new System.Drawing.Size(815, 693);
             this.tableLayoutLeft.TabIndex = 0;
+            // 
+            // comparisonViewer
+            // 
+            this.comparisonViewer.BasePath = "";
+            this.comparisonViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tableLayoutLeft.SetColumnSpan(this.comparisonViewer, 2);
+            this.comparisonViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comparisonViewer.Frame = 1;
+            this.comparisonViewer.Location = new System.Drawing.Point(3, 33);
+            this.comparisonViewer.Mode = DisplayType.Split;
+            this.comparisonViewer.Name = "comparisonViewer";
+            this.comparisonViewer.pathBD = "NEW/BD-000001.jpg";
+            this.comparisonViewer.pathMX = null;
+            this.comparisonViewer.pathTV = "OLD/TV-000001.jpg";
+            this.comparisonViewer.Size = new System.Drawing.Size(809, 598);
+            this.comparisonViewer.TabIndex = 0;
+            this.comparisonViewer.TabStop = false;
+            this.comparisonViewer.Transition = 50F;
             // 
             // comboBoxViewMode
             // 
@@ -304,6 +331,7 @@
             this.trackBarFade.Size = new System.Drawing.Size(681, 24);
             this.trackBarFade.TabIndex = 5;
             this.trackBarFade.TickFrequency = 10;
+            this.trackBarFade.Value = 50;
             this.trackBarFade.Scroll += new System.EventHandler(this.trackBarFade_Scroll);
             // 
             // tableLayoutPanel1
@@ -475,20 +503,6 @@
             this.textBoxInput.Size = new System.Drawing.Size(533, 20);
             this.textBoxInput.TabIndex = 4;
             // 
-            // comparisonViewer
-            // 
-            this.comparisonViewer.BasePath = "";
-            this.comparisonViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableLayoutLeft.SetColumnSpan(this.comparisonViewer, 2);
-            this.comparisonViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comparisonViewer.Location = new System.Drawing.Point(3, 33);
-            this.comparisonViewer.Mode = ui.DisplayType.Split;
-            this.comparisonViewer.Name = "comparisonViewer";
-            this.comparisonViewer.Size = new System.Drawing.Size(809, 598);
-            this.comparisonViewer.TabIndex = 0;
-            this.comparisonViewer.TabStop = false;
-            this.comparisonViewer.Transition = 50F;
-            // 
             // comparitronCoreBindingSource
             // 
             this.comparitronCoreBindingSource.DataSource = typeof(comparitron.ComparitronCore);
@@ -506,6 +520,7 @@
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "FormMain";
             this.Text = "Comparitron 3000";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -517,6 +532,7 @@
             this.splitContainerMain.ResumeLayout(false);
             this.tableLayoutLeft.ResumeLayout(false);
             this.tableLayoutLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackbarFrame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarFade)).EndInit();
@@ -525,7 +541,6 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -573,6 +588,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.FolderBrowserDialog openProjectBrowserDialog;
+        private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
     }
 }
 

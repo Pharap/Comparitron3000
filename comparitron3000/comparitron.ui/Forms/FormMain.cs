@@ -27,9 +27,11 @@ namespace comparitron.ui
 
         private void reloadUI()
         {
-            //Used for big changes (opening a new file, startup, etc)
-            comboBoxViewMode.DataSource = Enum.GetValues(typeof(DisplayType));
+            //Used for big changes (opening a new file, settings changes, startup, etc)
+            comparisonViewer.BasePath = comparitron.BasePath;
 
+            comboBoxViewMode.DataSource = Enum.GetValues(typeof(DisplayType));
+            
             dataGridView.DataSource = comparitron.itemList;
 
             trackbarFrame.Minimum = 1;
@@ -41,10 +43,12 @@ namespace comparitron.ui
         {
             //For small changes (changing frame, viewmode)
             trackbarFrame.Value = comparitron.CurrentFrame;
+            comparisonViewer.Frame = comparitron.CurrentFrame;
 
             var digits = comparitron.LastFrame.ToString().Length;
-            statusLabel.Text = comparitron.BasePath;
-            statusLabel.Text += " Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
+            statusLabel.Text = "Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
+            statusLabel.Text += " | " + comparitron.ProjectID;
+            statusLabel.Text += " | " + comparitron.BasePath;
         }
 
         ///Toolstrip.
@@ -54,6 +58,7 @@ namespace comparitron.ui
             {
                 formSettings.ShowDialog();
             }
+            updateUI();
         }
         private void engageToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -62,9 +67,22 @@ namespace comparitron.ui
                 formExport.ShowDialog();
             }
         }
+
+        private void projectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FormProject formProject = new FormProject(comparitron))
+            {
+                formProject.ShowDialog();
+            }
+            updateUI();
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Save
+            if(MessageBox.Show("Save current project?", "Save you fool!", MessageBoxButtons.YesNo) ==  DialogResult.Yes)
+            {
+                comparitron.SaveProject();
+            }
             this.Close();
         }
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,6 +106,8 @@ namespace comparitron.ui
             comparitron.SaveProject();
             Console.WriteLine("Saveas : " + comparitron.ProjectPath);
         }
+
+
 
         //Inputty things
         private void clearText()
@@ -168,5 +188,11 @@ namespace comparitron.ui
             Enum.TryParse<DisplayType>(comboBoxViewMode.SelectedValue.ToString(), out mode);
             comparisonViewer.Mode = mode;
         }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

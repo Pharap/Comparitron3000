@@ -17,13 +17,14 @@ namespace comparitron
         //Directories & Paths
         public string BasePath { get; set; } = null;
         public string ProjectPath { get; set; } = null;
+        public string ProjectID { get; set; } = null;       // "SW209" "BW01" and such
 
         //List of things;
         public BindingList<ComparitronItem> itemList = new BindingList<ComparitronItem>();
 
         //Frame tracking
         private int currentFrame { get; set; } = 1;
-        public int LastFrame { get; set; } = 34000;
+        public int LastFrame { get; set; } = 1;
 
         //Things
         public int CurrentFrame {
@@ -42,16 +43,24 @@ namespace comparitron
             BasePath = Path;
             ProjectPath = BasePath + @"\project.xml";
 
-            XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
-            using (var myFileStream = new FileStream(ProjectPath, FileMode.Open))
+            //Load item list
+            if (File.Exists(ProjectPath))
             {
-                itemList = (BindingList<ComparitronItem>)serializer.Deserialize(myFileStream);
+                XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
+                using (var myFileStream = new FileStream(ProjectPath, FileMode.Open))
+                {
+                    itemList = (BindingList<ComparitronItem>)serializer.Deserialize(myFileStream);
+                }
             }
+
+            //Debug 
+            Console.WriteLine(ProjectPath);
             Console.WriteLine(itemList == null);
             Console.WriteLine(itemList.Count);
 
-            Console.Write(@"Oh shi-!");
-            Console.WriteLine(ProjectPath);
+            //Count frames
+            string mixDir = BasePath + @"\mix";
+            LastFrame = Directory.GetFiles(mixDir, "*.jpg", SearchOption.TopDirectoryOnly).Length;
         }
 
         public void SaveProject()

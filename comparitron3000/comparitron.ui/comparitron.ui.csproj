@@ -63,6 +63,12 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="comparitronUI.cs" />
+    <Compile Include="Forms\FormProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormProject.Designer.cs">
+      <DependentUpon>FormProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormProject.resx">
+      <DependentUpon>FormProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
