@@ -24,7 +24,7 @@ namespace comparitron
 
         //Frame tracking
         private int currentFrame { get; set; } = 1;
-        public int LastFrame { get; set; } = 34000;
+        public int LastFrame { get; set; } = 1;
 
         //Things
         public int CurrentFrame {

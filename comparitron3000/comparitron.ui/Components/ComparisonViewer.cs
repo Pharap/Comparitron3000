@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
+using System.Drawing.Text;
 
 namespace comparitron.ui
 {
@@ -64,23 +65,23 @@ namespace comparitron.ui
         private void Reload()
         {
             //Unmagick these all these things at some point;
-            var digits = 6;
+            var digits = 5;
             string frameIndex = Frame.ToString("D" + digits);
 
             //Only load needed images
             if (mode == DisplayType.Difference)
             {
-                pathMX = BasePath + "mix/MX-" + frameIndex + ".jpg";
+                pathMX = BasePath + @"\mix\MX-" + frameIndex + ".jpg";
                 if (File.Exists(pathMX))
                     imageMX = Image.FromFile(pathMX);
             }
             else
             {
-                pathTV = BasePath + "old/TV-" + frameIndex + ".jpg";
+                pathTV = BasePath + @"\old\TV-" + frameIndex + ".jpg";
                 if (File.Exists(pathTV))
                     imageTV = Image.FromFile(pathTV);
 
-                pathBD = BasePath + "new/BD-" + frameIndex + ".jpg";
+                pathBD = BasePath + @"\new\BD-" + frameIndex + ".jpg";
                 if (File.Exists(pathBD))
                     imageBD = Image.FromFile(pathBD);
             }
@@ -88,21 +89,47 @@ namespace comparitron.ui
         
         protected override void OnPaint(PaintEventArgs pe)
         {
-            switch(mode)
+            Graphics graphics = pe.Graphics;
+            
+            switch (mode)
             {
                 case DisplayType.Difference:
                     {
-                        
+                        if (imageMX != null)
+                            graphics.DrawImage(imageMX, 0, 0);
+
                     };break;
                 case DisplayType.Crossfade:
                     {
+                        if (imageTV != null)
+                            graphics.DrawImage(imageTV, 0, 0);
+
+                        if(imageBD != null)
+                        {
+
+                        }
 
                     };break;
                 case DisplayType.Split:
                     {
+                        int mid = (int)(imageBD.Width * (transition / 100));
+                        if (imageTV != null)
+                        {
+                            graphics.DrawImage(imageTV, 0, 0);
+                        }
+                        if(imageBD != null)
+                        {
+                            graphics.DrawImage(imageBD,
+                                new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
+                                new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
+                                GraphicsUnit.Pixel);
+                        }
+
+                        graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(mid - 3, 0, 6, imageBD.Height));
 
                     }; break;
             }
+
             base.OnPaint(pe);
         }
     }
