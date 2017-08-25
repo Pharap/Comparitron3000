@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace comparitron.ui
@@ -20,18 +21,30 @@ namespace comparitron.ui
             InitializeComponent();
             this.settings = settings;
             this.comparitron = comparitron;
+            
+            reloadUI();
+        }
 
-            /// Configure UI gizmos.
+        private void reloadUI()
+        {
+            //Used for big changes (opening a new file, startup, etc)
             comboBoxViewMode.DataSource = Enum.GetValues(typeof(DisplayType));
+
             dataGridView.DataSource = comparitron.itemList;
+
+            trackbarFrame.Minimum = 1;
+            trackbarFrame.Maximum = comparitron.LastFrame;
 
             updateUI();
         }
-
         private void updateUI()
         {
-            trackbarFrame.Value = comparitron.currentFrame;
-            trackbarFrame.Maximum = comparitron.lastFrame;
+            //For small changes (changing frame, viewmode)
+            trackbarFrame.Value = comparitron.CurrentFrame;
+
+            var digits = comparitron.LastFrame.ToString().Length;
+            statusLabel.Text = comparitron.BasePath;
+            statusLabel.Text += " Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
         }
 
         ///Toolstrip.
@@ -60,17 +73,31 @@ namespace comparitron.ui
         }
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (openProjectBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                var Path = openProjectBrowserDialog.SelectedPath;
+                if (Directory.Exists(Path))
+                {
+                    comparitron.LoadProject(Path);
+                }
+            }
+            reloadUI();
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            comparitron.SaveProject();
+            Console.WriteLine("Saveas : " + comparitron.ProjectPath);
         }
 
         //Inputty things
+        private void clearText()
+        {
+            textBoxInput.Text = "";
+        }
+
         private void btnAddCompare_Click(object sender, EventArgs e)
         {
-            comparitron.AddFrame(comparitron.currentFrame, textBoxInput.Text);
+            comparitron.AddFrame(comparitron.CurrentFrame, textBoxInput.Text);
         }
         private void btnAddText_Click(object sender, EventArgs e)
         {
@@ -78,15 +105,15 @@ namespace comparitron.ui
         }
         private void btnAddImage_Click(object sender, EventArgs e)
         {
-            comparitron.AddItem(ItemType.Text, 0, null, textBoxInput.Text, null);
+            comparitron.AddItem(ItemType.Image, 0, null, textBoxInput.Text, null);
         }
         private void btnAddVideo_Click(object sender, EventArgs e)
         {
-            comparitron.AddItem(ItemType.Text, 0, null, null, textBoxInput.Text);
+            comparitron.AddItem(ItemType.Video, 0, null, null, textBoxInput.Text);
         }
         private void btnAddDivide_Click(object sender, EventArgs e)
         {
-            comparitron.AddItem(ItemType.Text, 0, "<hr/>", null, null);
+            comparitron.AddItem(ItemType.Divider, 0, null, null, null);
         }
         
         //Interaction buttons.
@@ -114,20 +141,32 @@ namespace comparitron.ui
         //Track
         private void btnTrackRight_Click(object sender, EventArgs e)
         {
-            comparitron.currentFrame++;
+            comparitron.CurrentFrame++;
             updateUI();
         }
-
         private void btnTrackLeft_Click(object sender, EventArgs e)
         {
-            comparitron.currentFrame--;
+            comparitron.CurrentFrame--;
+            updateUI();
+        }
+        private void trackbarFrame_Scroll(object sender, EventArgs e)
+        {
+            comparitron.CurrentFrame = trackbarFrame.Value;
             updateUI();
         }
 
-        private void trackbarFrame_Scroll(object sender, EventArgs e)
+
+        //View settings;
+        private void trackBarFade_Scroll(object sender, EventArgs e)
         {
-            comparitron.currentFrame = trackbarFrame.Value;
-            updateUI();
+            comparisonViewer.Transition = trackBarFade.Value;
+        }
+
+        private void comboBoxViewMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DisplayType mode;
+            Enum.TryParse<DisplayType>(comboBoxViewMode.SelectedValue.ToString(), out mode);
+            comparisonViewer.Mode = mode;
         }
     }
 }
