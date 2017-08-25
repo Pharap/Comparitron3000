@@ -78,7 +78,8 @@ namespace comparitron.ui
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            comparitron.SaveProject();
+            Console.WriteLine("Saveas : " + comparitron.ProjectPath);
         }
 
         //Inputty things
@@ -160,7 +161,5 @@ namespace comparitron.ui
             Enum.TryParse<DisplayType>(comboBoxViewMode.SelectedValue.ToString(), out mode);
             comparisonViewer.Mode = mode;
         }
-
-
     }
 }

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace comparitron
 {
@@ -12,8 +14,9 @@ namespace comparitron
     {
         private SettingsCore settings = null;
 
-        //Directories
+        //Directories & Paths
         public string BasePath { get; set; } = null;
+        public string ProjectPath { get; set; } = null;
 
         //List of things;
         public BindingList<ComparitronItem> itemList = new BindingList<ComparitronItem>();
@@ -37,12 +40,31 @@ namespace comparitron
         public void LoadProject(string Path)
         {
             BasePath = Path;
+            ProjectPath = BasePath + @"\Project.xml";
 
-            //EXPAND ON THIS-
-            if(!File.Exists(BasePath+"Project.xml"))
+            XmlSerializer serializer = new XmlSerializer(typeof(List<ComparitronItem>));
+            List<ComparitronItem> itemList = new List<ComparitronItem>();
+            using (var myFileStream = new FileStream(ProjectPath, FileMode.Open))
             {
-                File.Create(BasePath + "Project.xml");
+                itemList = (List<ComparitronItem>)serializer.Deserialize(myFileStream);
             }
+
+            Console.Write(@"Oh shi-!");
+            Console.WriteLine(ProjectPath);
+        }
+
+        public void SaveProject()
+        {
+            SaveProject(BasePath);
+        }
+        public void SaveProject(string Path)
+        { 
+            //this just assumes the path is valid, because that's definately safe.
+            ProjectPath = BasePath + @"\Project.xml";
+            XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
+            TextWriter writer = new StreamWriter(ProjectPath);
+            //Header stuff
+            serializer.Serialize(writer, itemList);
         }
 
         //Thing list
