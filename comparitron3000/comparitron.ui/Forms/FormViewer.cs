@@ -28,7 +28,7 @@ namespace comparitron.ui
             {
                 this.WindowState = FormWindowState.Normal;
                 this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                this.Bounds = Screen.PrimaryScreen.Bounds;
+                this.Bounds = Screen.FromControl(this).Bounds;
             }
             else
             {
