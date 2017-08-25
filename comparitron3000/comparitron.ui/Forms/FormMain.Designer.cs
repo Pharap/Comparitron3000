@@ -41,6 +41,7 @@
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.tableLayoutLeft = new System.Windows.Forms.TableLayoutPanel();
+            this.comparisonViewer = new comparitron.ui.ComparisonViewer();
             this.comboBoxViewMode = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnTrackLeftFar = new System.Windows.Forms.Button();
@@ -66,7 +67,6 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.textBoxInput = new System.Windows.Forms.TextBox();
             this.openProjectBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.comparisonViewer = new comparitron.ui.ComparisonViewer();
             this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStripMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -75,6 +75,7 @@
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.tableLayoutLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackbarFrame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarFade)).BeginInit();
@@ -82,7 +83,6 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -208,6 +208,24 @@
             this.tableLayoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutLeft.Size = new System.Drawing.Size(815, 693);
             this.tableLayoutLeft.TabIndex = 0;
+            // 
+            // comparisonViewer
+            // 
+            this.comparisonViewer.BasePath = "";
+            this.comparisonViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tableLayoutLeft.SetColumnSpan(this.comparisonViewer, 2);
+            this.comparisonViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comparisonViewer.Frame = 1;
+            this.comparisonViewer.Location = new System.Drawing.Point(3, 33);
+            this.comparisonViewer.Mode = DisplayType.Split;
+            this.comparisonViewer.Name = "comparisonViewer";
+            this.comparisonViewer.pathBD = "NEW/BD-000001.jpg";
+            this.comparisonViewer.pathMX = null;
+            this.comparisonViewer.pathTV = "OLD/TV-000001.jpg";
+            this.comparisonViewer.Size = new System.Drawing.Size(809, 598);
+            this.comparisonViewer.TabIndex = 0;
+            this.comparisonViewer.TabStop = false;
+            this.comparisonViewer.Transition = 50F;
             // 
             // comboBoxViewMode
             // 
@@ -475,20 +493,6 @@
             this.textBoxInput.Size = new System.Drawing.Size(533, 20);
             this.textBoxInput.TabIndex = 4;
             // 
-            // comparisonViewer
-            // 
-            this.comparisonViewer.BasePath = "";
-            this.comparisonViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableLayoutLeft.SetColumnSpan(this.comparisonViewer, 2);
-            this.comparisonViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comparisonViewer.Location = new System.Drawing.Point(3, 33);
-            this.comparisonViewer.Mode = ui.DisplayType.Split;
-            this.comparisonViewer.Name = "comparisonViewer";
-            this.comparisonViewer.Size = new System.Drawing.Size(809, 598);
-            this.comparisonViewer.TabIndex = 0;
-            this.comparisonViewer.TabStop = false;
-            this.comparisonViewer.Transition = 50F;
-            // 
             // comparitronCoreBindingSource
             // 
             this.comparitronCoreBindingSource.DataSource = typeof(comparitron.ComparitronCore);
@@ -517,6 +521,7 @@
             this.splitContainerMain.ResumeLayout(false);
             this.tableLayoutLeft.ResumeLayout(false);
             this.tableLayoutLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackbarFrame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarFade)).EndInit();
@@ -525,7 +530,6 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

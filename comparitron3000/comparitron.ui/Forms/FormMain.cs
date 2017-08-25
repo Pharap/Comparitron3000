@@ -45,9 +45,10 @@ namespace comparitron.ui
             trackbarFrame.Value = comparitron.CurrentFrame;
             comparisonViewer.Frame = comparitron.CurrentFrame;
 
-            statusLabel.Text = comparitron.BasePath;
             var digits = comparitron.LastFrame.ToString().Length;
-            statusLabel.Text += " Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
+            statusLabel.Text = "Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
+
+            statusLabel.Text += " | "+comparitron.BasePath;
         }
 
         ///Toolstrip.
