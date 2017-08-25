@@ -47,8 +47,8 @@ namespace comparitron.ui
 
             var digits = comparitron.LastFrame.ToString().Length;
             statusLabel.Text = "Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
-
-            statusLabel.Text += " | "+comparitron.BasePath;
+            statusLabel.Text += " | " + comparitron.ProjectID;
+            statusLabel.Text += " | " + comparitron.BasePath;
         }
 
         ///Toolstrip.
@@ -58,6 +58,7 @@ namespace comparitron.ui
             {
                 formSettings.ShowDialog();
             }
+            updateUI();
         }
         private void engageToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -66,6 +67,16 @@ namespace comparitron.ui
                 formExport.ShowDialog();
             }
         }
+
+        private void projectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FormProject formProject = new FormProject(comparitron))
+            {
+                formProject.ShowDialog();
+            }
+            updateUI();
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(MessageBox.Show("Save current project?", "Save you fool!", MessageBoxButtons.YesNo) ==  DialogResult.Yes)
@@ -95,6 +106,8 @@ namespace comparitron.ui
             comparitron.SaveProject();
             Console.WriteLine("Saveas : " + comparitron.ProjectPath);
         }
+
+
 
         //Inputty things
         private void clearText()
@@ -175,5 +188,11 @@ namespace comparitron.ui
             Enum.TryParse<DisplayType>(comboBoxViewMode.SelectedValue.ToString(), out mode);
             comparisonViewer.Mode = mode;
         }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
