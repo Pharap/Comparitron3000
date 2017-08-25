@@ -24,7 +24,17 @@ namespace comparitron.ui
 
         private void comparisonViewer1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //Hide / unhide buttons
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                this.Bounds = Screen.PrimaryScreen.Bounds;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            }
         }
     }
 }
