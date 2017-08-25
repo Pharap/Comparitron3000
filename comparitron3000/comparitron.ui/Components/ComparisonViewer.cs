@@ -73,17 +73,26 @@ namespace comparitron.ui
             {
                 pathMX = BasePath + @"\mix\MX-" + frameIndex + ".jpg";
                 if (File.Exists(pathMX))
+                {
+                    imageMX.Dispose();
                     imageMX = Image.FromFile(pathMX);
+                }
             }
             else
             {
                 pathTV = BasePath + @"\old\TV-" + frameIndex + ".jpg";
                 if (File.Exists(pathTV))
+                {
+                    imageTV.Dispose();
                     imageTV = Image.FromFile(pathTV);
+                }
 
                 pathBD = BasePath + @"\new\BD-" + frameIndex + ".jpg";
                 if (File.Exists(pathBD))
+                {
+                    imageBD.Dispose();
                     imageBD = Image.FromFile(pathBD);
+                }
             }
         }
         
@@ -112,12 +121,13 @@ namespace comparitron.ui
                     };break;
                 case DisplayType.Split:
                     {
-                        int mid = (int)(imageBD.Width * (transition / 100));
                         if (imageTV != null)
                         {
                             graphics.DrawImage(imageTV, 0, 0);
                         }
-                        if(imageBD != null)
+
+                        int mid = (int)(imageBD.Width * (transition / 100));
+                        if (imageBD != null)
                         {
                             graphics.DrawImage(imageBD,
                                 new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
@@ -125,7 +135,7 @@ namespace comparitron.ui
                                 GraphicsUnit.Pixel);
                         }
 
-                        graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(mid - 3, 0, 6, imageBD.Height));
+                        graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(mid - 3, 0, 6, imageBD.Height)); //grab bar thing
 
                     }; break;
             }
