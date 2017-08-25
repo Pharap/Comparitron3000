@@ -43,10 +43,13 @@ namespace comparitron
             ProjectPath = BasePath + @"\project.xml";
 
             //Load item list
-            XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
-            using (var myFileStream = new FileStream(ProjectPath, FileMode.Open))
+            if (File.Exists(ProjectPath))
             {
-                itemList = (BindingList<ComparitronItem>)serializer.Deserialize(myFileStream);
+                XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
+                using (var myFileStream = new FileStream(ProjectPath, FileMode.Open))
+                {
+                    itemList = (BindingList<ComparitronItem>)serializer.Deserialize(myFileStream);
+                }
             }
 
             //Debug 
