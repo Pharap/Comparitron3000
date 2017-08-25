@@ -12,10 +12,13 @@ namespace comparitron.ui
 {
     class ComparisonViewer : PictureBox
     {
-        private Image imageTV, imageBD, imageMX;
-        public string pathTV { get; set; }
-        public string pathBD { get; set; }
-        public string pathMX { get; set;}
+        private Image imageTV;
+        private Image imageBD;
+        private Image imageMX;
+
+        public string pathTV { get; set; } = null;
+        public string pathBD { get; set; } = null;
+        public string pathMX { get; set; } = null;
 
         public string BasePath { get; set; } = @"";
 
@@ -74,7 +77,8 @@ namespace comparitron.ui
                 pathMX = BasePath + @"\mix\MX-" + frameIndex + ".jpg";
                 if (File.Exists(pathMX))
                 {
-                    imageMX.Dispose();
+                    if(imageMX != null)
+                        imageMX.Dispose();
                     imageMX = Image.FromFile(pathMX);
                 }
             }
@@ -83,14 +87,16 @@ namespace comparitron.ui
                 pathTV = BasePath + @"\old\TV-" + frameIndex + ".jpg";
                 if (File.Exists(pathTV))
                 {
-                    imageTV.Dispose();
+                    if(imageTV != null)
+                        imageTV.Dispose();
                     imageTV = Image.FromFile(pathTV);
                 }
 
                 pathBD = BasePath + @"\new\BD-" + frameIndex + ".jpg";
                 if (File.Exists(pathBD))
                 {
-                    imageBD.Dispose();
+                    if (imageBD != null)
+                        imageBD.Dispose();
                     imageBD = Image.FromFile(pathBD);
                 }
             }
@@ -99,7 +105,7 @@ namespace comparitron.ui
         protected override void OnPaint(PaintEventArgs pe)
         {
             Graphics graphics = pe.Graphics;
-            /*
+
             switch (mode)
             {
                 case DisplayType.Difference:
@@ -121,27 +127,27 @@ namespace comparitron.ui
                     };break;
                 case DisplayType.Split:
                     {
+                        int mid = 0;
                         if (imageTV != null)
                         {
                             graphics.DrawImage(imageTV, 0, 0);
                         }
-
-                        int mid = (int)(imageBD.Width * (transition / 100));
+                        
                         if (imageBD != null)
                         {
-                            
+                            mid = (int)(imageBD.Width * (transition / 100));
+
                             graphics.DrawImage(imageBD,
                                 new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
                                 new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
                                 GraphicsUnit.Pixel);
-                                
+
+                            graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(mid - 3, 0, 6, imageBD.Height)); //grab bar thing
                         }
 
-                        graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(mid - 3, 0, 6, imageBD.Height)); //grab bar thing
 
                     }; break;
             }
-            */
             base.OnPaint(pe);
         }
     }
