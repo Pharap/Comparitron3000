@@ -15,6 +15,7 @@ namespace comparitron.ui
     {
         ComparitronCore comparitron = null;
         SettingsCore settings = null;
+        FormViewer formViewer = null;
 
         public FormMain(ComparitronCore comparitron, SettingsCore settings)
         {
@@ -107,7 +108,15 @@ namespace comparitron.ui
             Console.WriteLine("Saveas : " + comparitron.ProjectPath);
         }
 
-
+        //Viewer
+        private void comparisonViewer_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if((formViewer == null) || (formViewer.IsDisposed))
+            {
+                formViewer = new FormViewer();
+            }
+            formViewer.Show();
+        }
 
         //Inputty things
         private void clearText()
@@ -193,6 +202,5 @@ namespace comparitron.ui
         {
 
         }
-
     }
 }

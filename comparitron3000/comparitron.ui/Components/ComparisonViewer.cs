@@ -99,7 +99,7 @@ namespace comparitron.ui
         protected override void OnPaint(PaintEventArgs pe)
         {
             Graphics graphics = pe.Graphics;
-            
+            /*
             switch (mode)
             {
                 case DisplayType.Difference:
@@ -129,17 +129,19 @@ namespace comparitron.ui
                         int mid = (int)(imageBD.Width * (transition / 100));
                         if (imageBD != null)
                         {
+                            
                             graphics.DrawImage(imageBD,
                                 new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
                                 new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
                                 GraphicsUnit.Pixel);
+                                
                         }
 
                         graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(mid - 3, 0, 6, imageBD.Height)); //grab bar thing
 
                     }; break;
             }
-
+            */
             base.OnPaint(pe);
         }
     }

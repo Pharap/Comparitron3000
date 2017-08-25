@@ -235,6 +235,7 @@
             this.comparisonViewer.TabIndex = 0;
             this.comparisonViewer.TabStop = false;
             this.comparisonViewer.Transition = 50F;
+            this.comparisonViewer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.comparisonViewer_MouseDoubleClick);
             // 
             // comboBoxViewMode
             // 
