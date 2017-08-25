@@ -42,16 +42,21 @@ namespace comparitron
             BasePath = Path;
             ProjectPath = BasePath + @"\project.xml";
 
+            //Load item list
             XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
             using (var myFileStream = new FileStream(ProjectPath, FileMode.Open))
             {
                 itemList = (BindingList<ComparitronItem>)serializer.Deserialize(myFileStream);
             }
+
+            //Debug 
+            Console.WriteLine(ProjectPath);
             Console.WriteLine(itemList == null);
             Console.WriteLine(itemList.Count);
 
-            Console.Write(@"Oh shi-!");
-            Console.WriteLine(ProjectPath);
+            //Count frames
+            string mixDir = BasePath + @"\mix";
+            LastFrame = Directory.GetFiles(mixDir, "*.jpg", SearchOption.TopDirectoryOnly).Length;
         }
 
         public void SaveProject()

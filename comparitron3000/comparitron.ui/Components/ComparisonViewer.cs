@@ -12,9 +12,29 @@ namespace comparitron.ui
     class ComparisonViewer : PictureBox
     {
         private Image imageTV, imageBD, imageMX;
-        private string pathTV, pathBD, pathMX;
+        public string pathTV { get; set; }
+        public string pathBD { get; set; }
+        public string pathMX { get; set;}
 
-        public int Frame = 0;
+        public string BasePath { get; set; } = @"";
+
+        private int frame = 1;
+        public int Frame
+        {
+            get
+            {
+                return this.frame;
+            }
+            set
+            {
+                if (value != frame)
+                {
+                    Reload();
+                    Invalidate();
+                }
+                this.frame = value;
+            }
+        }
 
         private DisplayType mode = DisplayType.Split;
         private float transition = 50;
@@ -40,25 +60,30 @@ namespace comparitron.ui
             }
         }
 
-        public string BasePath { get; set; } = @"";
 
         private void Reload()
         {
-            //Unmagick these strings at some point;
+            //Unmagick these all these things at some point;
             var digits = 6;
             string frameIndex = Frame.ToString("D" + digits);
 
-            pathTV = BasePath + "OLD/TV-" + frameIndex + ".jpg";
-            if(File.Exists(pathTV))
-                imageTV = Image.FromFile(pathTV);
+            //Only load needed images
+            if (mode == DisplayType.Difference)
+            {
+                pathMX = BasePath + "mix/MX-" + frameIndex + ".jpg";
+                if (File.Exists(pathMX))
+                    imageMX = Image.FromFile(pathMX);
+            }
+            else
+            {
+                pathTV = BasePath + "old/TV-" + frameIndex + ".jpg";
+                if (File.Exists(pathTV))
+                    imageTV = Image.FromFile(pathTV);
 
-            pathBD = BasePath + "NEW/BD-" + frameIndex + ".jpg";
-            if(File.Exists(pathBD))
-                imageBD = Image.FromFile(pathBD);
-
-            pathMX = BasePath + "MIX/MX-" + frameIndex + ".jpg";
-            if(File.Exists(pathMX))
-                imageMX = Image.FromFile(pathMX);
+                pathBD = BasePath + "new/BD-" + frameIndex + ".jpg";
+                if (File.Exists(pathBD))
+                    imageBD = Image.FromFile(pathBD);
+            }
         }
         
         protected override void OnPaint(PaintEventArgs pe)

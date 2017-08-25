@@ -27,9 +27,11 @@ namespace comparitron.ui
 
         private void reloadUI()
         {
-            //Used for big changes (opening a new file, startup, etc)
-            comboBoxViewMode.DataSource = Enum.GetValues(typeof(DisplayType));
+            //Used for big changes (opening a new file, settings changes, startup, etc)
+            comparisonViewer.BasePath = comparitron.BasePath;
 
+            comboBoxViewMode.DataSource = Enum.GetValues(typeof(DisplayType));
+            
             dataGridView.DataSource = comparitron.itemList;
 
             trackbarFrame.Minimum = 1;
@@ -41,9 +43,10 @@ namespace comparitron.ui
         {
             //For small changes (changing frame, viewmode)
             trackbarFrame.Value = comparitron.CurrentFrame;
+            comparisonViewer.Frame = comparitron.CurrentFrame;
 
-            var digits = comparitron.LastFrame.ToString().Length;
             statusLabel.Text = comparitron.BasePath;
+            var digits = comparitron.LastFrame.ToString().Length;
             statusLabel.Text += " Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
         }
 
@@ -64,7 +67,10 @@ namespace comparitron.ui
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Save
+            if(MessageBox.Show("Save current project?", "Save you fool!", MessageBoxButtons.YesNo) ==  DialogResult.Yes)
+            {
+                comparitron.SaveProject();
+            }
             this.Close();
         }
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
