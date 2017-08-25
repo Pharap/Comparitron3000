@@ -40,14 +40,15 @@ namespace comparitron
         public void LoadProject(string Path)
         {
             BasePath = Path;
-            ProjectPath = BasePath + @"\Project.xml";
+            ProjectPath = BasePath + @"\project.xml";
 
-            XmlSerializer serializer = new XmlSerializer(typeof(List<ComparitronItem>));
-            List<ComparitronItem> itemList = new List<ComparitronItem>();
+            XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
             using (var myFileStream = new FileStream(ProjectPath, FileMode.Open))
             {
-                itemList = (List<ComparitronItem>)serializer.Deserialize(myFileStream);
+                itemList = (BindingList<ComparitronItem>)serializer.Deserialize(myFileStream);
             }
+            Console.WriteLine(itemList == null);
+            Console.WriteLine(itemList.Count);
 
             Console.Write(@"Oh shi-!");
             Console.WriteLine(ProjectPath);
@@ -60,7 +61,7 @@ namespace comparitron
         public void SaveProject(string Path)
         { 
             //this just assumes the path is valid, because that's definately safe.
-            ProjectPath = BasePath + @"\Project.xml";
+            //ProjectPath = BasePath + @"\Project.xml";
             XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
             TextWriter writer = new StreamWriter(ProjectPath);
             //Header stuff

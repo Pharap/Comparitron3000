@@ -21,18 +21,25 @@ namespace comparitron.ui
             InitializeComponent();
             this.settings = settings;
             this.comparitron = comparitron;
+            
+            reloadUI();
+        }
 
-            /// Configure UI gizmos.
+        private void reloadUI()
+        {
+            //Used for big changes (opening a new file, startup, etc)
             comboBoxViewMode.DataSource = Enum.GetValues(typeof(DisplayType));
+
             dataGridView.DataSource = comparitron.itemList;
+
+            trackbarFrame.Minimum = 1;
+            trackbarFrame.Maximum = comparitron.LastFrame;
 
             updateUI();
         }
-
         private void updateUI()
         {
-            trackbarFrame.Minimum = 1;
-            trackbarFrame.Maximum = comparitron.LastFrame;
+            //For small changes (changing frame, viewmode)
             trackbarFrame.Value = comparitron.CurrentFrame;
 
             var digits = comparitron.LastFrame.ToString().Length;
@@ -74,7 +81,7 @@ namespace comparitron.ui
                     comparitron.LoadProject(Path);
                 }
             }
-            updateUI();
+            reloadUI();
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
