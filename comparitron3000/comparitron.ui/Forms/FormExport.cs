@@ -14,6 +14,7 @@ namespace comparitron.ui
     {
         ComparitronCore comparitron = null;
         SettingsCore settings = null;
+        ComparitronExporter exporter = null;
 
         public FormExport(ComparitronCore comparitron, SettingsCore settings)
         {
@@ -21,11 +22,17 @@ namespace comparitron.ui
 
             this.settings = settings;
             this.comparitron = comparitron;
+            exporter = new ComparitronExporter(comparitron, settings);
         }
 
         private void FormExport_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            exporter.Run();
         }
     }
 }

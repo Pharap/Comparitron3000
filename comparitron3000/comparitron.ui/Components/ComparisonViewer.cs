@@ -77,8 +77,8 @@ namespace comparitron.ui
         }
 
         private void Reload()
-        {
-            //Unmagick these all these things at some point;
+        { 
+            //Unmagick all these things at some point;
             var digits = 5;
             string frameIndex = Frame.ToString("D" + digits);
 

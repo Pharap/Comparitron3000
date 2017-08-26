@@ -60,7 +60,14 @@ namespace comparitron
 
             //Count frames
             string mixDir = BasePath + @"\mix";
-            LastFrame = Directory.GetFiles(mixDir, "*.jpg", SearchOption.TopDirectoryOnly).Length;
+            try
+            {
+                LastFrame = Directory.GetFiles(mixDir, "*.jpg", SearchOption.TopDirectoryOnly).Length;
+            }
+            catch
+            {
+                Console.WriteLine("No images!");
+            }
         }
 
         public void SaveProject()
