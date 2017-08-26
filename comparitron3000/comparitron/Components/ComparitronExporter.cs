@@ -11,6 +11,8 @@ namespace comparitron
     {
         ComparitronCore comparitron = null;
         SettingsCore settings = null;
+        public bool Running { get; set; } = false;
+        public string log { get; private set; } = "";
 
         public ComparitronExporter(ComparitronCore comparitron, SettingsCore settings)
         {
@@ -20,18 +22,25 @@ namespace comparitron
 
         public void Run()
         {
+            log = "";
+
             //Create file 
             string outfile = @"D:\comptest\page.php";
 
             using (var output = new StreamWriter(outfile))
             {
+                log += "Starting write..." + "\r\n";
                 //Insert upper template
                 //Page elements from list
                 output.WriteLine(@"<ul>");
+
+                log += "Items : " + comparitron.itemList.Count + "\r\n";
                 for (var i=0; i<comparitron.itemList.Count; ++i)
                 {
                     ComparitronItem item = comparitron.itemList[i];
                     ComparitronItem nextItem = null;
+
+                    log += i.ToString() + " : " + item.Type.ToString() + "\r\n";
 
                     //Find next item
                     if(i < comparitron.itemList.Count- 1)

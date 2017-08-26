@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,7 +33,30 @@ namespace comparitron.ui
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-            exporter.Run();
+            new Thread(() =>
+            {
+                exporter.Run();
+            }).Start();
+
+            btnRun.Enabled = false;
+            btnBack.Enabled = false;
+
+            timerUpdate.Enabled = true;
+            timerUpdate.Start();
+        }
+
+        private void timerUpdate_Tick(object sender, EventArgs e)
+        {
+            if (exporter.Running)
+            {
+                timerUpdate.Start();
+            }
+            else
+            {
+                btnRun.Enabled = true;
+                btnBack.Enabled = true;
+            }
+            textboxLog.Text = exporter.log;
         }
     }
 }
