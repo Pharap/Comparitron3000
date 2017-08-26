@@ -78,7 +78,7 @@ namespace comparitron
                                  If it's followed by something that isn't a comparison frame, end
                                  If it's followed by a comparison frame with a caption, end
                                 */
-                                if((nextItem == null) || ((nextItem.Type != ItemType.Comparison) || ((nextItem.Type == ItemType.Comparison) && (!string.IsNullOrEmpty(nextItem.Text)))))
+                                if((nextItem == null) || (nextItem.Type != ItemType.Comparison) || ((nextItem.Type == ItemType.Comparison) && (!string.IsNullOrEmpty(nextItem.Text))))
                                 {
                                     output.WriteLine(@"</li>");
                                 }
