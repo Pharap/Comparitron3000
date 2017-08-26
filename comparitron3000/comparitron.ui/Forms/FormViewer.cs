@@ -25,9 +25,6 @@ namespace comparitron.ui
         {
             comparisonViewer.Mode = mode;
             comparisonViewer.Transition = transition;
-            /*
-            comparisonViewer.BasePath = comparitron.BasePath;
-            comparisonViewer.Frame = comparitron.CurrentFrame;*/
         }
 
         public void importImage(Image imageTV, Image imageBD, Image imageMX)
