@@ -12,9 +12,19 @@ namespace comparitron.ui
 {
     public partial class FormViewer : Form
     {
-        public FormViewer()
+        ComparitronCore comparitron = null;
+        public FormViewer(ComparitronCore comparitron)
         {
             InitializeComponent();
+            this.comparitron = comparitron;
+        }
+
+        public void UpdateUI(DisplayType mode, float transition)
+        {
+            comparisonViewer.Mode = mode;
+            comparisonViewer.BasePath = comparitron.BasePath;
+            comparisonViewer.Frame = comparitron.CurrentFrame;
+            comparisonViewer.Transition = transition;
         }
 
         private void FormViewer_Load(object sender, EventArgs e)

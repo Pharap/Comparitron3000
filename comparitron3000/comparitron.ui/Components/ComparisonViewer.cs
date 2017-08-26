@@ -40,6 +40,9 @@ namespace comparitron.ui
             }
         }
 
+        private static int freeCountMax = 10;
+        private int freeCount = 10;
+
         private DisplayType mode = DisplayType.Split;
         private float transition = 50;
 
@@ -71,14 +74,24 @@ namespace comparitron.ui
             var digits = 5;
             string frameIndex = Frame.ToString("D" + digits);
 
+            //Free images every 50 frames so you don't run out of memory
+            if(--freeCount < 0)
+            {
+                if (imageMX != null)
+                    imageMX.Dispose();
+                if (imageTV != null)
+                    imageTV.Dispose();
+                if (imageBD != null)
+                    imageBD.Dispose();
+                freeCount = freeCountMax;
+            }
+
             //Only load needed images
             if (mode == DisplayType.Difference)
             {
                 pathMX = BasePath + @"\mix\MX-" + frameIndex + ".jpg";
                 if (File.Exists(pathMX))
                 {
-                    if(imageMX != null)
-                        imageMX.Dispose();
                     imageMX = Image.FromFile(pathMX);
                 }
             }
@@ -87,19 +100,16 @@ namespace comparitron.ui
                 pathTV = BasePath + @"\old\TV-" + frameIndex + ".jpg";
                 if (File.Exists(pathTV))
                 {
-                    if(imageTV != null)
-                        imageTV.Dispose();
                     imageTV = Image.FromFile(pathTV);
                 }
 
                 pathBD = BasePath + @"\new\BD-" + frameIndex + ".jpg";
                 if (File.Exists(pathBD))
                 {
-                    if (imageBD != null)
-                        imageBD.Dispose();
                     imageBD = Image.FromFile(pathBD);
                 }
             }
+
         }
         
         protected override void OnPaint(PaintEventArgs pe)

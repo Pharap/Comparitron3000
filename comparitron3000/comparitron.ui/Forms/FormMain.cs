@@ -50,6 +50,16 @@ namespace comparitron.ui
             statusLabel.Text = "Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
             statusLabel.Text += " | " + comparitron.ProjectID;
             statusLabel.Text += " | " + comparitron.BasePath;
+
+            updatePopout();
+        }
+        private void updatePopout()
+        {
+            //If the popout viewer exists, update it with current information.
+            if ((formViewer != null) && (formViewer.IsDisposed == false))
+            {
+                formViewer.UpdateUI(comparisonViewer.Mode, comparisonViewer.Transition);
+            }
         }
 
         ///Toolstrip.
@@ -113,9 +123,10 @@ namespace comparitron.ui
         {
             if((formViewer == null) || (formViewer.IsDisposed))
             {
-                formViewer = new FormViewer();
+                formViewer = new FormViewer(comparitron);
             }
             formViewer.Show();
+            updatePopout();
         }
 
         //Inputty things
@@ -189,6 +200,7 @@ namespace comparitron.ui
         private void trackBarFade_Scroll(object sender, EventArgs e)
         {
             comparisonViewer.Transition = trackBarFade.Value;
+            updatePopout();
         }
 
         private void comboBoxViewMode_SelectedIndexChanged(object sender, EventArgs e)
@@ -196,6 +208,7 @@ namespace comparitron.ui
             DisplayType mode;
             Enum.TryParse<DisplayType>(comboBoxViewMode.SelectedValue.ToString(), out mode);
             comparisonViewer.Mode = mode;
+            updatePopout();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
