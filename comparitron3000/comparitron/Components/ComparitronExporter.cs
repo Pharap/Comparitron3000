@@ -23,6 +23,7 @@ namespace comparitron
         public void Run()
         {
             log = "";
+            Running = true;
 
             //Create file 
             string outfile = @"D:\comptest\page.php";
@@ -109,6 +110,8 @@ namespace comparitron
 
                 //Insert lower template
             }
+
+            Running = false;
         }
 
     }
