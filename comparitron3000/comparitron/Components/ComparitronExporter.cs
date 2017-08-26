@@ -25,13 +25,21 @@ namespace comparitron
             log = "";
             Running = true;
 
-            //Create file 
-            string outfile = @"D:\comptest\page.php";
+            //Create directory and file 
+            string outPath = comparitron.BasePath + @"/output/";
+            string outFile = outPath + comparitron.ProjectID + ".php";
 
-            using (var output = new StreamWriter(outfile))
+            if(!Directory.Exists(outPath))
+            {
+                Directory.CreateDirectory(outPath);
+            }
+
+            //Start writing to it
+            using (var output = new StreamWriter(outFile))
             {
                 log += "Starting write..." + "\r\n";
                 //Insert upper template
+
                 //Page elements from list
                 output.WriteLine(@"<ul>");
 
