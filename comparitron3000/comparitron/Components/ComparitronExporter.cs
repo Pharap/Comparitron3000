@@ -89,7 +89,14 @@ namespace comparitron
                         case ItemType.Video:
                             {
                                 output.WriteLine(@"<li>");
-                                //Figure out later
+
+                                output.Write(@"<video width='auto' {0}>", item.Text);
+                                output.Write(@"<source src='{0}' type='video/mp4'>",item.Video);
+                                //Fallback image
+                                if (!string.IsNullOrEmpty(item.Image))
+                                    output.Write(@"<img src='{0}' style='max-width: 100%'>", item.Image);
+                                output.Write(@"</video>");
+
                                 output.WriteLine(@"</li>");
                             }; break;
                         case ItemType.Divider:
