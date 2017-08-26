@@ -45,9 +45,11 @@
             this.comparisonViewer.pathMX = null;
             this.comparisonViewer.pathTV = null;
             this.comparisonViewer.Size = new System.Drawing.Size(878, 457);
+            this.comparisonViewer.Slave = false;
             this.comparisonViewer.TabIndex = 1;
             this.comparisonViewer.TabStop = false;
             this.comparisonViewer.Transition = 50F;
+            this.comparisonViewer.DoubleClick += new System.EventHandler(this.comparisonViewer_MouseDoubleClick);
             // 
             // FormViewer
             // 

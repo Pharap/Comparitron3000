@@ -17,14 +17,24 @@ namespace comparitron.ui
         {
             InitializeComponent();
             this.comparitron = comparitron;
+
+            comparisonViewer.Slave = true;
         }
 
         public void UpdateUI(DisplayType mode, float transition)
         {
             comparisonViewer.Mode = mode;
-            comparisonViewer.BasePath = comparitron.BasePath;
-            comparisonViewer.Frame = comparitron.CurrentFrame;
             comparisonViewer.Transition = transition;
+            /*
+            comparisonViewer.BasePath = comparitron.BasePath;
+            comparisonViewer.Frame = comparitron.CurrentFrame;*/
+        }
+
+        public void importImage(Image imageTV, Image imageBD, Image imageMX)
+        {
+            comparisonViewer.imageTV = imageTV;
+            comparisonViewer.imageBD = imageBD;
+            comparisonViewer.imageMX = imageMX;
         }
 
         private void FormViewer_Load(object sender, EventArgs e)
@@ -32,7 +42,7 @@ namespace comparitron.ui
 
         }
 
-        private void comparisonViewer1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void comparisonViewer_MouseDoubleClick(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Maximized)
             {

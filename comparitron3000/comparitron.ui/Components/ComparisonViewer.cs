@@ -12,15 +12,17 @@ namespace comparitron.ui
 {
     class ComparisonViewer : PictureBox
     {
-        private Image imageTV;
-        private Image imageBD;
-        private Image imageMX;
+        public Image imageTV;
+        public Image imageBD;
+        public Image imageMX;
 
         public string pathTV { get; set; } = null;
         public string pathBD { get; set; } = null;
         public string pathMX { get; set; } = null;
 
         public string BasePath { get; set; } = @"";
+
+        public bool Slave { get; set; } = false;
 
         private int frame = 1;
         public int Frame
@@ -33,19 +35,19 @@ namespace comparitron.ui
             {
                 if (value != frame)
                 {
-                    Reload();
+                    if(!Slave)
+                        Reload();
+
                     Invalidate();
                 }
                 this.frame = value;
             }
         }
 
-        private static int freeCountMax = 10;
-        private int freeCount = 10;
-
+        //View properties
         private DisplayType mode = DisplayType.Split;
         private float transition = 50;
-
+        
         public DisplayType Mode
         {
             get { return mode; }
@@ -67,6 +69,12 @@ namespace comparitron.ui
             }
         }
 
+        public void importImage(Image imageTV, Image imageBD, Image imageMX)
+        {
+            this.imageTV = imageTV;
+            this.imageBD = imageBD;
+            this.imageMX = imageMX;
+        }
 
         private void Reload()
         {
@@ -74,21 +82,12 @@ namespace comparitron.ui
             var digits = 5;
             string frameIndex = Frame.ToString("D" + digits);
 
-            //Free images every 50 frames so you don't run out of memory
-            if(--freeCount < 0)
-            {
-                if (imageMX != null)
-                    imageMX.Dispose();
-                if (imageTV != null)
-                    imageTV.Dispose();
-                if (imageBD != null)
-                    imageBD.Dispose();
-                freeCount = freeCountMax;
-            }
-
             //Only load needed images
             if (mode == DisplayType.Difference)
             {
+                if ((imageMX != null) && (!Slave))
+                    imageMX.Dispose();
+
                 pathMX = BasePath + @"\mix\MX-" + frameIndex + ".jpg";
                 if (File.Exists(pathMX))
                 {
@@ -97,11 +96,17 @@ namespace comparitron.ui
             }
             else
             {
+                if ((imageTV != null) && (!Slave))
+                    imageTV.Dispose();
+
                 pathTV = BasePath + @"\old\TV-" + frameIndex + ".jpg";
                 if (File.Exists(pathTV))
                 {
                     imageTV = Image.FromFile(pathTV);
                 }
+
+                if ((imageBD != null) && (!Slave))
+                    imageBD.Dispose();
 
                 pathBD = BasePath + @"\new\BD-" + frameIndex + ".jpg";
                 if (File.Exists(pathBD))
@@ -121,7 +126,14 @@ namespace comparitron.ui
                 case DisplayType.Difference:
                     {
                         if (imageMX != null)
-                            graphics.DrawImage(imageMX, 0, 0);
+                        {
+                            try { graphics.DrawImage(imageMX, 0, 0); }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine("Exception information: {0}", e);
+                            }
+                            
+                        }
 
                     };break;
                 case DisplayType.Crossfade:
@@ -158,6 +170,10 @@ namespace comparitron.ui
 
                     }; break;
             }
+
+            if(Slave)
+                graphics.DrawRectangle(new Pen(Color.Black), 0, 0, 16, 16);
+
             base.OnPaint(pe);
         }
     }

@@ -1,0 +1,5 @@
+Image stretching
+HTML exporting
+Hotkeys
+Demagicing the magic strings
+Putting "settings" to use somehow

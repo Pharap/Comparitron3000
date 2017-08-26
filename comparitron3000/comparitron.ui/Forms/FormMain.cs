@@ -58,6 +58,7 @@ namespace comparitron.ui
             //If the popout viewer exists, update it with current information.
             if ((formViewer != null) && (formViewer.IsDisposed == false))
             {
+                formViewer.importImage(comparisonViewer.imageTV, comparisonViewer.imageBD, comparisonViewer.imageMX);
                 formViewer.UpdateUI(comparisonViewer.Mode, comparisonViewer.Transition);
             }
         }
