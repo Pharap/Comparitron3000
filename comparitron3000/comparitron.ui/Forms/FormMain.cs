@@ -74,9 +74,16 @@ namespace comparitron.ui
         }
         private void engageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (FormExport formExport = new FormExport(comparitron,settings))
+            if ((string.IsNullOrEmpty(comparitron.ProjectID)) || (string.IsNullOrEmpty(comparitron.BasePath)))
             {
-                formExport.ShowDialog();
+                MessageBox.Show("Check project settings!");
+            }
+            else
+            {
+                using (FormExport formExport = new FormExport(comparitron, settings))
+                {
+                    formExport.ShowDialog();
+                }
             }
         }
 
@@ -116,7 +123,7 @@ namespace comparitron.ui
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             comparitron.SaveProject();
-            Console.WriteLine("Saveas : " + comparitron.ProjectPath);
+            Console.WriteLine("Save as : " + comparitron.ProjectPath);
         }
 
         //Viewer

@@ -58,6 +58,7 @@
             this.ClientSize = new System.Drawing.Size(878, 457);
             this.Controls.Add(this.comparisonViewer);
             this.Name = "FormViewer";
+            this.ShowIcon = false;
             this.Text = "FormViewer";
             this.Load += new System.EventHandler(this.FormViewer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
