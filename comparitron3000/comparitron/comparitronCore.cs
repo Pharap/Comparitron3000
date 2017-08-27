@@ -54,15 +54,15 @@ namespace comparitron
             }
 
             //Debug 
-            Console.WriteLine(ProjectPath);
-            Console.WriteLine(itemList == null);
-            Console.WriteLine(itemList.Count);
+            Console.WriteLine("Loading " + ProjectPath);
+            Console.WriteLine(itemList.Count.ToString() + " items found");
 
             //Count frames
             string mixDir = BasePath + @"\mix";
             try
             {
                 LastFrame = Directory.GetFiles(mixDir, "*.jpg", SearchOption.TopDirectoryOnly).Length;
+                Console.WriteLine(LastFrame + " frames discovered");
             }
             catch
             {
