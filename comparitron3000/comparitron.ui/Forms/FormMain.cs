@@ -167,23 +167,59 @@ namespace comparitron.ui
         //Interaction buttons.
         private void btnMoveUp_Click(object sender, EventArgs e)
         {
-
+            var index = dataGridView.CurrentRow.Index;
+            if (index > 0)
+            {
+                //move item
+                var item = comparitron.itemList[index];
+                comparitron.itemList.RemoveAt(index);
+                comparitron.itemList.Insert(index - 1, item);
+                //Select it
+                dataGridView.CurrentCell = dataGridView.Rows[index-1].Cells[0];
+                dataGridView.Rows[index-1].Selected = true;
+            }
         }
         private void btnMoveDown_Click(object sender, EventArgs e)
         {
-
+            var index = dataGridView.CurrentRow.Index;
+            if (index < comparitron.itemList.Count - 1)
+            {
+                //move item
+                var item = comparitron.itemList[index];
+                comparitron.itemList.RemoveAt(index);
+                comparitron.itemList.Insert(index + 1, item);
+                //Select it
+                dataGridView.CurrentCell = dataGridView.Rows[index + 1].Cells[0];
+                dataGridView.Rows[index + 1].Selected = true;
+            }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            var index = dataGridView.CurrentRow.Index;
+            comparitron.itemList.RemoveAt(index);
         }
         private void btnGoto_Click(object sender, EventArgs e)
         {
+            var index = dataGridView.CurrentRow.Index;
+            var item = comparitron.itemList[index];
 
+            if (item.Frame != 0)
+            {
+                comparitron.CurrentFrame = item.Frame;
+            }
+            updateUI();
         }
         private void btnSetFrame_Click(object sender, EventArgs e)
         {
+            var index = dataGridView.CurrentRow.Index;
+            var item = comparitron.itemList[index];
 
+            if(item.Type == ItemType.Comparison)
+            {
+                item.Frame = comparitron.CurrentFrame;
+                dataGridView.Update();
+                dataGridView.Refresh();
+            }
         }
 
         //Track

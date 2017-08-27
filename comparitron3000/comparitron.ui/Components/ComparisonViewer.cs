@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Drawing.Text;
+using System.ComponentModel;
 
 namespace comparitron.ui
 {
@@ -47,7 +48,8 @@ namespace comparitron.ui
         //View properties
         private DisplayType mode = DisplayType.Split;
         private float transition = 50;
-        
+
+        [System.ComponentModel.DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DisplayType Mode
         {
             get { return mode; }

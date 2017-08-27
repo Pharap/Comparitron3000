@@ -268,20 +268,20 @@
             // 
             // btnTrackLeftFar
             // 
+            this.btnTrackLeftFar.Image = global::comparitron.ui.Properties.Resources.btnSkipBack;
             this.btnTrackLeftFar.Location = new System.Drawing.Point(3, 3);
             this.btnTrackLeftFar.Name = "btnTrackLeftFar";
             this.btnTrackLeftFar.Size = new System.Drawing.Size(75, 23);
             this.btnTrackLeftFar.TabIndex = 0;
-            this.btnTrackLeftFar.Text = "<--";
             this.btnTrackLeftFar.UseVisualStyleBackColor = true;
             // 
             // btnTrackLeft
             // 
+            this.btnTrackLeft.Image = global::comparitron.ui.Properties.Resources.btnBack;
             this.btnTrackLeft.Location = new System.Drawing.Point(84, 3);
             this.btnTrackLeft.Name = "btnTrackLeft";
             this.btnTrackLeft.Size = new System.Drawing.Size(75, 23);
             this.btnTrackLeft.TabIndex = 1;
-            this.btnTrackLeft.Text = "<";
             this.btnTrackLeft.UseVisualStyleBackColor = true;
             this.btnTrackLeft.Click += new System.EventHandler(this.btnTrackLeft_Click);
             // 
@@ -296,21 +296,21 @@
             // 
             // btnTrackRight
             // 
+            this.btnTrackRight.Image = global::comparitron.ui.Properties.Resources.btnNext;
             this.btnTrackRight.Location = new System.Drawing.Point(246, 3);
             this.btnTrackRight.Name = "btnTrackRight";
             this.btnTrackRight.Size = new System.Drawing.Size(75, 23);
             this.btnTrackRight.TabIndex = 3;
-            this.btnTrackRight.Text = ">";
             this.btnTrackRight.UseVisualStyleBackColor = true;
             this.btnTrackRight.Click += new System.EventHandler(this.btnTrackRight_Click);
             // 
             // btnTrackRightFar
             // 
+            this.btnTrackRightFar.Image = global::comparitron.ui.Properties.Resources.btnSkipNext;
             this.btnTrackRightFar.Location = new System.Drawing.Point(327, 3);
             this.btnTrackRightFar.Name = "btnTrackRightFar";
             this.btnTrackRightFar.Size = new System.Drawing.Size(75, 23);
             this.btnTrackRightFar.TabIndex = 4;
-            this.btnTrackRightFar.Text = "-->";
             this.btnTrackRightFar.UseVisualStyleBackColor = true;
             // 
             // trackbarFrame
