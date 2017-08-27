@@ -33,8 +33,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOkay = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.inputProjectID = new System.Windows.Forms.TextBox();
             this.lblProjectID = new System.Windows.Forms.Label();
+            this.inputProjectID = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -74,6 +74,7 @@
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOkay
             // 
@@ -95,13 +96,6 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(527, 105);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
-            // inputProjectID
-            // 
-            this.inputProjectID.Location = new System.Drawing.Point(60, 3);
-            this.inputProjectID.Name = "inputProjectID";
-            this.inputProjectID.Size = new System.Drawing.Size(100, 20);
-            this.inputProjectID.TabIndex = 0;
-            // 
             // lblProjectID
             // 
             this.lblProjectID.AutoSize = true;
@@ -111,13 +105,22 @@
             this.lblProjectID.TabIndex = 1;
             this.lblProjectID.Text = "ProjectID";
             // 
+            // inputProjectID
+            // 
+            this.inputProjectID.Location = new System.Drawing.Point(60, 3);
+            this.inputProjectID.Name = "inputProjectID";
+            this.inputProjectID.Size = new System.Drawing.Size(100, 20);
+            this.inputProjectID.TabIndex = 0;
+            // 
             // FormProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 146);
+            this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormProject";
+            this.ShowIcon = false;
             this.Text = "FormProject";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

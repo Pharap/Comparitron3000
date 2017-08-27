@@ -15,6 +15,7 @@ namespace comparitron.ui
     {
         ComparitronCore comparitron = null;
         SettingsCore settings = null;
+        FormViewer formViewer = null;
 
         public FormMain(ComparitronCore comparitron, SettingsCore settings)
         {
@@ -49,6 +50,17 @@ namespace comparitron.ui
             statusLabel.Text = "Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
             statusLabel.Text += " | " + comparitron.ProjectID;
             statusLabel.Text += " | " + comparitron.BasePath;
+
+            updatePopout();
+        }
+        private void updatePopout()
+        {
+            //If the popout viewer exists, update it with current information.
+            if ((formViewer != null) && (formViewer.IsDisposed == false))
+            {
+                formViewer.importImage(comparisonViewer.imageTV, comparisonViewer.imageBD, comparisonViewer.imageMX);
+                formViewer.UpdateUI(comparisonViewer.Mode, comparisonViewer.Transition);
+            }
         }
 
         ///Toolstrip.
@@ -62,9 +74,16 @@ namespace comparitron.ui
         }
         private void engageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (FormExport formExport = new FormExport(comparitron,settings))
+            if ((string.IsNullOrEmpty(comparitron.ProjectID)) || (string.IsNullOrEmpty(comparitron.BasePath)))
             {
-                formExport.ShowDialog();
+                MessageBox.Show("Check project settings!");
+            }
+            else
+            {
+                using (FormExport formExport = new FormExport(comparitron, settings))
+                {
+                    formExport.ShowDialog();
+                }
             }
         }
 
@@ -104,10 +123,19 @@ namespace comparitron.ui
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             comparitron.SaveProject();
-            Console.WriteLine("Saveas : " + comparitron.ProjectPath);
+            Console.WriteLine("Save as : " + comparitron.ProjectPath);
         }
 
-
+        //Viewer
+        private void comparisonViewer_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if((formViewer == null) || (formViewer.IsDisposed))
+            {
+                formViewer = new FormViewer(comparitron);
+            }
+            formViewer.Show();
+            updatePopout();
+        }
 
         //Inputty things
         private void clearText()
@@ -180,6 +208,7 @@ namespace comparitron.ui
         private void trackBarFade_Scroll(object sender, EventArgs e)
         {
             comparisonViewer.Transition = trackBarFade.Value;
+            updatePopout();
         }
 
         private void comboBoxViewMode_SelectedIndexChanged(object sender, EventArgs e)
@@ -187,12 +216,12 @@ namespace comparitron.ui
             DisplayType mode;
             Enum.TryParse<DisplayType>(comboBoxViewMode.SelectedValue.ToString(), out mode);
             comparisonViewer.Mode = mode;
+            updatePopout();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
 
         }
-
     }
 }

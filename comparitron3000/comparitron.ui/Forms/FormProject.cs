@@ -18,11 +18,19 @@ namespace comparitron.ui
         {
             InitializeComponent();
             this.comparitron = comparitron;
+
+            inputProjectID.Text = comparitron.ProjectID;
         }
 
         private void btnOkay_Click(object sender, EventArgs e)
         {
             comparitron.ProjectID = inputProjectID.Text;
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
