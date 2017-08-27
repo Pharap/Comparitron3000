@@ -42,10 +42,14 @@
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.tableLayoutLeft = new System.Windows.Forms.TableLayoutPanel();
+            this.comparisonViewer = new comparitron.ui.ComparisonViewer();
             this.comboBoxViewMode = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnTrackLeftFar = new System.Windows.Forms.Button();
+            this.btnTrackLeft = new System.Windows.Forms.Button();
             this.btnJumpFrame = new System.Windows.Forms.Button();
+            this.btnTrackRight = new System.Windows.Forms.Button();
+            this.btnTrackRightFar = new System.Windows.Forms.Button();
             this.trackbarFrame = new System.Windows.Forms.TrackBar();
             this.trackBarFade = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -64,10 +68,6 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.textBoxInput = new System.Windows.Forms.TextBox();
             this.openProjectBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.comparisonViewer = new comparitron.ui.ComparisonViewer();
-            this.btnTrackLeft = new System.Windows.Forms.Button();
-            this.btnTrackRight = new System.Windows.Forms.Button();
-            this.btnTrackRightFar = new System.Windows.Forms.Button();
             this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStripMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -76,6 +76,7 @@
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.tableLayoutLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackbarFrame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarFade)).BeginInit();
@@ -83,7 +84,6 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -218,6 +218,26 @@
             this.tableLayoutLeft.Size = new System.Drawing.Size(815, 693);
             this.tableLayoutLeft.TabIndex = 0;
             // 
+            // comparisonViewer
+            // 
+            this.comparisonViewer.BasePath = "";
+            this.comparisonViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tableLayoutLeft.SetColumnSpan(this.comparisonViewer, 2);
+            this.comparisonViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comparisonViewer.Frame = 1;
+            this.comparisonViewer.Location = new System.Drawing.Point(3, 33);
+            this.comparisonViewer.Mode = DisplayType.Split;
+            this.comparisonViewer.Name = "comparisonViewer";
+            this.comparisonViewer.pathBD = "NEW/BD-000001.jpg";
+            this.comparisonViewer.pathMX = null;
+            this.comparisonViewer.pathTV = "OLD/TV-000001.jpg";
+            this.comparisonViewer.Size = new System.Drawing.Size(809, 598);
+            this.comparisonViewer.Slave = false;
+            this.comparisonViewer.TabIndex = 0;
+            this.comparisonViewer.TabStop = false;
+            this.comparisonViewer.Transition = 50F;
+            this.comparisonViewer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.comparisonViewer_MouseDoubleClick);
+            // 
             // comboBoxViewMode
             // 
             this.comboBoxViewMode.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -255,6 +275,16 @@
             this.btnTrackLeftFar.TabIndex = 0;
             this.btnTrackLeftFar.UseVisualStyleBackColor = true;
             // 
+            // btnTrackLeft
+            // 
+            this.btnTrackLeft.Image = global::comparitron.ui.Properties.Resources.btnBack;
+            this.btnTrackLeft.Location = new System.Drawing.Point(84, 3);
+            this.btnTrackLeft.Name = "btnTrackLeft";
+            this.btnTrackLeft.Size = new System.Drawing.Size(75, 23);
+            this.btnTrackLeft.TabIndex = 1;
+            this.btnTrackLeft.UseVisualStyleBackColor = true;
+            this.btnTrackLeft.Click += new System.EventHandler(this.btnTrackLeft_Click);
+            // 
             // btnJumpFrame
             // 
             this.btnJumpFrame.Location = new System.Drawing.Point(165, 3);
@@ -263,6 +293,25 @@
             this.btnJumpFrame.TabIndex = 2;
             this.btnJumpFrame.Text = "Frame";
             this.btnJumpFrame.UseVisualStyleBackColor = true;
+            // 
+            // btnTrackRight
+            // 
+            this.btnTrackRight.Image = global::comparitron.ui.Properties.Resources.btnNext;
+            this.btnTrackRight.Location = new System.Drawing.Point(246, 3);
+            this.btnTrackRight.Name = "btnTrackRight";
+            this.btnTrackRight.Size = new System.Drawing.Size(75, 23);
+            this.btnTrackRight.TabIndex = 3;
+            this.btnTrackRight.UseVisualStyleBackColor = true;
+            this.btnTrackRight.Click += new System.EventHandler(this.btnTrackRight_Click);
+            // 
+            // btnTrackRightFar
+            // 
+            this.btnTrackRightFar.Image = global::comparitron.ui.Properties.Resources.btnSkipNext;
+            this.btnTrackRightFar.Location = new System.Drawing.Point(327, 3);
+            this.btnTrackRightFar.Name = "btnTrackRightFar";
+            this.btnTrackRightFar.Size = new System.Drawing.Size(75, 23);
+            this.btnTrackRightFar.TabIndex = 4;
+            this.btnTrackRightFar.UseVisualStyleBackColor = true;
             // 
             // trackbarFrame
             // 
@@ -456,55 +505,6 @@
             this.textBoxInput.Size = new System.Drawing.Size(533, 20);
             this.textBoxInput.TabIndex = 4;
             // 
-            // comparisonViewer
-            // 
-            this.comparisonViewer.BasePath = "";
-            this.comparisonViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableLayoutLeft.SetColumnSpan(this.comparisonViewer, 2);
-            this.comparisonViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comparisonViewer.Frame = 1;
-            this.comparisonViewer.Location = new System.Drawing.Point(3, 33);
-            this.comparisonViewer.Mode = DisplayType.Split;
-            this.comparisonViewer.Name = "comparisonViewer";
-            this.comparisonViewer.pathBD = "NEW/BD-000001.jpg";
-            this.comparisonViewer.pathMX = null;
-            this.comparisonViewer.pathTV = "OLD/TV-000001.jpg";
-            this.comparisonViewer.Size = new System.Drawing.Size(809, 598);
-            this.comparisonViewer.Slave = false;
-            this.comparisonViewer.TabIndex = 0;
-            this.comparisonViewer.TabStop = false;
-            this.comparisonViewer.Transition = 50F;
-            this.comparisonViewer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.comparisonViewer_MouseDoubleClick);
-            // 
-            // btnTrackLeft
-            // 
-            this.btnTrackLeft.Image = global::comparitron.ui.Properties.Resources.btnBack;
-            this.btnTrackLeft.Location = new System.Drawing.Point(84, 3);
-            this.btnTrackLeft.Name = "btnTrackLeft";
-            this.btnTrackLeft.Size = new System.Drawing.Size(75, 23);
-            this.btnTrackLeft.TabIndex = 1;
-            this.btnTrackLeft.UseVisualStyleBackColor = true;
-            this.btnTrackLeft.Click += new System.EventHandler(this.btnTrackLeft_Click);
-            // 
-            // btnTrackRight
-            // 
-            this.btnTrackRight.Image = global::comparitron.ui.Properties.Resources.btnNext;
-            this.btnTrackRight.Location = new System.Drawing.Point(246, 3);
-            this.btnTrackRight.Name = "btnTrackRight";
-            this.btnTrackRight.Size = new System.Drawing.Size(75, 23);
-            this.btnTrackRight.TabIndex = 3;
-            this.btnTrackRight.UseVisualStyleBackColor = true;
-            this.btnTrackRight.Click += new System.EventHandler(this.btnTrackRight_Click);
-            // 
-            // btnTrackRightFar
-            // 
-            this.btnTrackRightFar.Image = global::comparitron.ui.Properties.Resources.btnSkipNext;
-            this.btnTrackRightFar.Location = new System.Drawing.Point(327, 3);
-            this.btnTrackRightFar.Name = "btnTrackRightFar";
-            this.btnTrackRightFar.Size = new System.Drawing.Size(75, 23);
-            this.btnTrackRightFar.TabIndex = 4;
-            this.btnTrackRightFar.UseVisualStyleBackColor = true;
-            // 
             // comparitronCoreBindingSource
             // 
             this.comparitronCoreBindingSource.DataSource = typeof(comparitron.ComparitronCore);
@@ -534,6 +534,7 @@
             this.splitContainerMain.ResumeLayout(false);
             this.tableLayoutLeft.ResumeLayout(false);
             this.tableLayoutLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackbarFrame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarFade)).EndInit();
@@ -542,7 +543,6 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
