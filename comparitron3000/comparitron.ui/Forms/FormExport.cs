@@ -58,5 +58,10 @@ namespace comparitron.ui
             }
             textboxLog.Text = exporter.log;
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -162,9 +162,10 @@ namespace comparitron
                         }
                     }
                 }
-                Console.WriteLine("Done!");
+                log += "Done! \r\n";
             }
 
+            log += "Export complete, go home \r\n";
 
             Running = false;
         }

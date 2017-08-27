@@ -232,6 +232,7 @@
             this.comparisonViewer.pathMX = null;
             this.comparisonViewer.pathTV = "OLD/TV-000001.jpg";
             this.comparisonViewer.Size = new System.Drawing.Size(809, 598);
+            this.comparisonViewer.Slave = false;
             this.comparisonViewer.TabIndex = 0;
             this.comparisonViewer.TabStop = false;
             this.comparisonViewer.Transition = 50F;
