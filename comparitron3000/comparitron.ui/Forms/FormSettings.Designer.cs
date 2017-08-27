@@ -36,23 +36,29 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textFooterFile = new System.Windows.Forms.TextBox();
+            this.textHeaderFile = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.comboImageFormat = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBDFolder = new System.Windows.Forms.TextBox();
+            this.textBDPrefix = new System.Windows.Forms.TextBox();
+            this.textTVFolder = new System.Windows.Forms.TextBox();
+            this.textTVPrefix = new System.Windows.Forms.TextBox();
+            this.textMXFolder = new System.Windows.Forms.TextBox();
+            this.textMXPrefix = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -105,7 +111,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
@@ -115,15 +120,29 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textMXPrefix);
+            this.groupBox1.Controls.Add(this.textMXFolder);
+            this.groupBox1.Controls.Add(this.textTVPrefix);
+            this.groupBox1.Controls.Add(this.textTVFolder);
+            this.groupBox1.Controls.Add(this.textBDPrefix);
+            this.groupBox1.Controls.Add(this.textBDFolder);
+            this.groupBox1.Controls.Add(this.comboImageFormat);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textFooterFile);
+            this.groupBox1.Controls.Add(this.textHeaderFile);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(-3, 51);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(482, 70);
+            this.groupBox1.Size = new System.Drawing.Size(482, 148);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Paths";
@@ -146,19 +165,19 @@
             this.button1.Text = "Browse";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // textFooterFile
             // 
-            this.textBox2.Location = new System.Drawing.Point(77, 42);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(306, 20);
-            this.textBox2.TabIndex = 3;
+            this.textFooterFile.Location = new System.Drawing.Point(77, 42);
+            this.textFooterFile.Name = "textFooterFile";
+            this.textFooterFile.Size = new System.Drawing.Size(306, 20);
+            this.textFooterFile.TabIndex = 3;
             // 
-            // textBox1
+            // textHeaderFile
             // 
-            this.textBox1.Location = new System.Drawing.Point(77, 17);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(306, 20);
-            this.textBox1.TabIndex = 2;
+            this.textHeaderFile.Location = new System.Drawing.Point(77, 17);
+            this.textHeaderFile.Name = "textHeaderFile";
+            this.textHeaderFile.Size = new System.Drawing.Size(306, 20);
+            this.textHeaderFile.TabIndex = 2;
             // 
             // label2
             // 
@@ -178,70 +197,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Header File";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(-3, 127);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(482, 70);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Paths";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(389, 40);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Browse";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(389, 15);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Browse";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(77, 42);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(306, 20);
-            this.textBox3.TabIndex = 3;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(77, 17);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(306, 20);
-            this.textBox4.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 45);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Footer File";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 20);
+            this.label4.Location = new System.Drawing.Point(12, 116);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 13);
+            this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Header File";
+            this.label4.Text = "Image type";
             // 
             // label5
             // 
@@ -249,12 +212,119 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(67, 6);
+            this.label5.Location = new System.Drawing.Point(76, 6);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(316, 42);
             this.label5.TabIndex = 7;
             this.label5.Text = "Comparitron 3000";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // comboImageFormat
+            // 
+            this.comboImageFormat.FormattingEnabled = true;
+            this.comboImageFormat.Items.AddRange(new object[] {
+            "jpg",
+            "png"});
+            this.comboImageFormat.Location = new System.Drawing.Point(77, 113);
+            this.comboImageFormat.Name = "comboImageFormat";
+            this.comboImageFormat.Size = new System.Drawing.Size(121, 21);
+            this.comboImageFormat.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 67);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "TV Folder";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(160, 67);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "BD Folder";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(316, 67);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "MX Folder";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 90);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "TV prefix";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(160, 90);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(51, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "BD Prefix";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(316, 90);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(52, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "MX Prefix";
+            // 
+            // textBDFolder
+            // 
+            this.textBDFolder.Location = new System.Drawing.Point(219, 64);
+            this.textBDFolder.Name = "textBDFolder";
+            this.textBDFolder.Size = new System.Drawing.Size(91, 20);
+            this.textBDFolder.TabIndex = 12;
+            // 
+            // textBDPrefix
+            // 
+            this.textBDPrefix.Location = new System.Drawing.Point(219, 87);
+            this.textBDPrefix.Name = "textBDPrefix";
+            this.textBDPrefix.Size = new System.Drawing.Size(91, 20);
+            this.textBDPrefix.TabIndex = 13;
+            // 
+            // textTVFolder
+            // 
+            this.textTVFolder.Location = new System.Drawing.Point(63, 64);
+            this.textTVFolder.Name = "textTVFolder";
+            this.textTVFolder.Size = new System.Drawing.Size(91, 20);
+            this.textTVFolder.TabIndex = 14;
+            // 
+            // textTVPrefix
+            // 
+            this.textTVPrefix.Location = new System.Drawing.Point(63, 87);
+            this.textTVPrefix.Name = "textTVPrefix";
+            this.textTVPrefix.Size = new System.Drawing.Size(91, 20);
+            this.textTVPrefix.TabIndex = 15;
+            // 
+            // textMXFolder
+            // 
+            this.textMXFolder.Location = new System.Drawing.Point(373, 64);
+            this.textMXFolder.Name = "textMXFolder";
+            this.textMXFolder.Size = new System.Drawing.Size(91, 20);
+            this.textMXFolder.TabIndex = 16;
+            // 
+            // textMXPrefix
+            // 
+            this.textMXPrefix.Location = new System.Drawing.Point(373, 87);
+            this.textMXPrefix.Name = "textMXPrefix";
+            this.textMXPrefix.Size = new System.Drawing.Size(91, 20);
+            this.textMXPrefix.TabIndex = 17;
             // 
             // FormSettings
             // 
@@ -274,8 +344,6 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -287,20 +355,27 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOkay;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textFooterFile;
+        private System.Windows.Forms.TextBox textHeaderFile;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboImageFormat;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textTVPrefix;
+        private System.Windows.Forms.TextBox textTVFolder;
+        private System.Windows.Forms.TextBox textBDPrefix;
+        private System.Windows.Forms.TextBox textBDFolder;
+        private System.Windows.Forms.TextBox textMXPrefix;
+        private System.Windows.Forms.TextBox textMXFolder;
     }
 }

@@ -10,9 +10,21 @@ namespace comparitron
 {
     public class SettingsCore
     {
-        public string templateHeader { get; set; } = null;
-        public string templateFooter { get; set; } = null;
+        //Settings!
+        public string TemplateHeader { get; set; } = "jfdifrd";
+        public string TemplateFooter { get; set; } = "ifdfd";
 
+        public string TVFolder { get; set; } = @"old\";
+        public string BDFolder { get; set; } = @"new\";
+        public string MXFolder { get; set; } = @"mix\";
+
+        public string TVPrefix { get; set; } = @"tv-";
+        public string BDPrefix { get; set; } = @"bd-";
+        public string MXPrefix { get; set; } = @"mx-";
+
+        public string ImageFormat { get; set; } = @".jpg";
+
+        //Unsettings!
         public void LoadSettings()
         {
             XmlReader reader = XmlReader.Create("settings.xml");
@@ -20,10 +32,10 @@ namespace comparitron
             reader.ReadStartElement();
 
             reader.ReadElementContentAsString();    //Template
-            templateHeader = reader.ReadElementContentAsString();    //Header
+            TemplateHeader = reader.ReadElementContentAsString();    //Header
             reader.ReadEndElement();
             reader.ReadStartElement();
-            templateFooter = reader.ReadElementContentAsString();   //Footer
+            TemplateFooter = reader.ReadElementContentAsString();   //Footer
             reader.ReadEndElement();
 
             reader.Close();
@@ -37,11 +49,11 @@ namespace comparitron
             writer.WriteStartElement("Template");
 
             writer.WriteStartElement("Header");
-            writer.WriteAttributeString("path",templateHeader);
+            writer.WriteAttributeString("path", TemplateHeader);
             writer.WriteEndElement();
 
             writer.WriteStartElement("Footer");
-            writer.WriteAttributeString("path", templateFooter);
+            writer.WriteAttributeString("path", TemplateFooter);
             writer.WriteEndElement();
 
             writer.WriteEndDocument();
