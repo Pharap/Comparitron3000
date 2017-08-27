@@ -15,26 +15,37 @@ namespace comparitron
 
         public void LoadSettings()
         {
+            XmlReader reader = XmlReader.Create("settings.xml");
 
+            reader.ReadStartElement();
+
+            reader.ReadElementContentAsString();    //Template
+            templateHeader = reader.ReadElementContentAsString();    //Header
+            reader.ReadEndElement();
+            reader.ReadStartElement();
+            templateFooter = reader.ReadElementContentAsString();   //Footer
+            reader.ReadEndElement();
+
+            reader.Close();
         }
 
         public void SaveSettings()
         {
-            XmlWriter xmlWriter = XmlWriter.Create("settings.xml");
+            XmlWriter writer = XmlWriter.Create("settings.xml");
 
-            xmlWriter.WriteStartDocument();
-            xmlWriter.WriteStartElement("Template");
+            writer.WriteStartDocument();
+            writer.WriteStartElement("Template");
 
-            xmlWriter.WriteStartElement("Header");
-            xmlWriter.WriteAttributeString("path",templateHeader);
-            xmlWriter.WriteEndElement();
+            writer.WriteStartElement("Header");
+            writer.WriteAttributeString("path",templateHeader);
+            writer.WriteEndElement();
 
-            xmlWriter.WriteStartElement("Footer");
-            xmlWriter.WriteAttributeString("path", templateFooter);
-            xmlWriter.WriteEndElement();
+            writer.WriteStartElement("Footer");
+            writer.WriteAttributeString("path", templateFooter);
+            writer.WriteEndElement();
 
-            xmlWriter.WriteEndDocument();
-            xmlWriter.Close();
+            writer.WriteEndDocument();
+            writer.Close();
         }
     }
 }

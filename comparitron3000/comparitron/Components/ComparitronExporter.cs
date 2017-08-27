@@ -11,7 +11,7 @@ namespace comparitron
     {
         ComparitronCore comparitron = null;
         SettingsCore settings = null;
-        public bool Running { get; set; } = false;
+        public bool Running { get; private set; } = false;
         public string log { get; private set; } = "";
 
         public ComparitronExporter(ComparitronCore comparitron, SettingsCore settings)
