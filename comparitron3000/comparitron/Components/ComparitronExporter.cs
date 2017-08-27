@@ -26,6 +26,7 @@ namespace comparitron
             Running = true;
 
             //Create directory and file 
+            string basePath = comparitron.BasePath;
             string outPath = comparitron.BasePath + @"/output/";
             string outFile = outPath + comparitron.ProjectID + ".php";
 
@@ -39,6 +40,11 @@ namespace comparitron
             {
                 log += "Starting write..." + "\r\n";
                 //Insert upper template
+
+                    //quick bodge to get things working
+                    output.WriteLine(@"<html><head>");
+                    output.WriteLine(@"<link href='css/twentytwenty.css' rel='stylesheet' type='text/css'/>");
+                    output.WriteLine(@"</head><body>");
 
                 //Page elements from list
                 output.WriteLine(@"<ul>");
@@ -117,7 +123,48 @@ namespace comparitron
                 output.WriteLine(@"</ul>");
 
                 //Insert lower template
+
+                //Quick bodge to get things working
+                    output.WriteLine(@"<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js'></script>");
+                    output.WriteLine(@"<script src='js/jquery.event.move.js'></script>");
+
+                    output.WriteLine(@"<script src='js/jquery.twentytwenty.js'></script>");
+                    output.WriteLine(@"</body></html>");
+
+                log += "Done! \r\n";
             }
+
+            //Move image files
+            if (Directory.Exists(basePath+@"\old\") && (Directory.Exists(basePath+@"\new\")))
+            {
+                string imagePath = basePath + @"\output\images\" + comparitron.ProjectID + @"\";
+                log += "Moving image files..." + "\r\n";
+
+                if (!Directory.Exists(imagePath))
+                    Directory.CreateDirectory(imagePath);
+
+                foreach (var line in comparitron.itemList)
+                {
+                    if (line.Type == ItemType.Comparison)
+                    { 
+                        string tvName = string.Format("tv-{0:D5}.jpg", line.Frame);
+                        string bdName = string.Format("bd-{0:D5}.jpg", line.Frame);
+
+                        log += "Moving " + tvName + " from " + basePath + @"\old to " + imagePath + "\r\n";
+                        if (File.Exists(basePath + @"\old\" + tvName))
+                        { 
+                            File.Copy(basePath + @"\old\" + tvName, imagePath + tvName, true);
+                        }
+                        log += "Moving " + bdName + " from " + basePath + @"\new to " + imagePath + "\r\n";
+                        if (File.Exists(basePath + @"\new\" + bdName))
+                        {
+                            File.Copy(basePath + @"\new\" + bdName, imagePath + bdName, true);
+                        }
+                    }
+                }
+                Console.WriteLine("Done!");
+            }
+
 
             Running = false;
         }
