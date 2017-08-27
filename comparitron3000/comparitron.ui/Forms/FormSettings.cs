@@ -28,7 +28,7 @@ namespace comparitron.ui
 
         private void btnOkay_Click(object sender, EventArgs e)
         {
-            //Save goes here
+            settings.SaveSettings();
             this.Close();
         }
 
