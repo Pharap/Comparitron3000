@@ -25,7 +25,7 @@ namespace comparitron
         public string BDPrefix { get; set; } = @"bd-";
         public string MXPrefix { get; set; } = @"mx-";
 
-        public string ImageFormat { get; set; } = @".jpg";
+        public string ImageFormat { get; set; } = @"jpg";
         
         //Unsettings
         public static Settings Load(string path)

@@ -68,5 +68,21 @@ namespace comparitron.ui
         {
 
         }
+
+        private void btnHeaderBrowse_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textHeaderFile.Text = openFileDialog.FileName;
+            }
+        }
+
+        private void btnFooterBrowse_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textFooterFile.Text = openFileDialog.FileName;
+            }
+        }
     }
 }

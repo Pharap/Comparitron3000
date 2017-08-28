@@ -1,4 +1,4 @@
 Image stretching
 Finish HTML exporting
 Hotkeys
-Demagicing the magic strings (Putting "settings" to use somehow)
+Link viewer up with settings

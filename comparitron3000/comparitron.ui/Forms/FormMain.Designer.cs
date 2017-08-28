@@ -226,7 +226,6 @@
             this.comparisonViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comparisonViewer.Frame = 1;
             this.comparisonViewer.Location = new System.Drawing.Point(3, 33);
-            this.comparisonViewer.Mode = DisplayType.Split;
             this.comparisonViewer.Name = "comparisonViewer";
             this.comparisonViewer.pathBD = "NEW/BD-000001.jpg";
             this.comparisonViewer.pathMX = null;
