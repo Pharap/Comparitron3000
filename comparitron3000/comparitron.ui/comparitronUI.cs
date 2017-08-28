@@ -20,7 +20,7 @@ namespace comparitron.ui
             Application.SetCompatibleTextRenderingDefault(false);
 
             //fun
-            Settings settings = Settings.Load();
+            Settings settings = Settings.LoadDefault();
             ComparitronCore comparitron = new ComparitronCore(settings);
             Application.Run(new FormMain(comparitron,settings));
         }

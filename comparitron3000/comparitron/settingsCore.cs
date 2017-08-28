@@ -28,7 +28,7 @@ namespace comparitron
         public string ImageFormat { get; set; } = @".jpg";
         
         //Unsettings
-        public static Settings Load()
+        public static Settings Load(string path)
         {
             if (File.Exists(SettingsFile))
             {
@@ -41,13 +41,22 @@ namespace comparitron
             return new Settings();
         }
 
-        public static void Save(Settings settings)
+        public static void Save(Settings settings, string path)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Settings));
             using (TextWriter writer = new StreamWriter(SettingsFile))
             {
                 serializer.Serialize(writer, settings);
             }
+        }
+
+        public static void SaveDefault(Settings settings)
+        {
+            Save(settings, SettingsFile);
+        }
+        public static Settings LoadDefault()
+        {
+            return Load(SettingsFile);
         }
     }
 }

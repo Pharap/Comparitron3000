@@ -50,7 +50,7 @@ namespace comparitron.ui
 
             settings.ImageFormat = comboImageFormat.Text;
 
-            Settings.Save(settings);
+            Settings.SaveDefault(settings);
             this.Close();
         }
 
