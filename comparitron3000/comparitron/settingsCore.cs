@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace comparitron
 {
-    public class SettingsCore
+    public class SettingsHolder
     {
-        //Settings!
         public string TemplateHeader { get; set; } = "jfdifrd";
         public string TemplateFooter { get; set; } = "ifdfd";
 
@@ -23,41 +23,57 @@ namespace comparitron
         public string MXPrefix { get; set; } = @"mx-";
 
         public string ImageFormat { get; set; } = @".jpg";
+    }
 
-        //Unsettings!
-        public void LoadSettings()
+    public class SettingsCore
+    {
+        //Settings!
+        SettingsHolder holder = new SettingsHolder();
+
+        public string TemplateHeader { get { return holder.TemplateHeader; } set { holder.TemplateHeader = value; } }
+        public string TemplateFooter { get { return holder.TemplateFooter; } set { holder.TemplateFooter = value; } }
+
+        public string TVFolder { get { return holder.TVFolder; } set { holder.TVFolder = value; } }
+        public string BDFolder { get { return holder.BDFolder; } set { holder.BDFolder = value; } }
+        public string MXFolder { get { return holder.MXFolder; } set { holder.MXFolder = value; } }
+
+        public string TVPrefix { get { return holder.TVPrefix; } set { holder.TVPrefix = value; } }
+        public string BDPrefix { get { return holder.BDPrefix; } set { holder.BDPrefix = value; } }
+        public string MXPrefix { get { return holder.MXPrefix; } set { holder.MXPrefix = value; } }
+
+        public string ImageFormat { get { return holder.ImageFormat; } set { holder.ImageFormat = value; } }
+
+
+        public SettingsCore()
         {
-            XmlReader reader = XmlReader.Create("settings.xml");
-
-            reader.ReadStartElement();
-
-            reader.ReadElementContentAsString();    //Template
-            TemplateHeader = reader.ReadElementContentAsString();    //Header
-            reader.ReadEndElement();
-            reader.ReadStartElement();
-            TemplateFooter = reader.ReadElementContentAsString();   //Footer
-            reader.ReadEndElement();
-
-            reader.Close();
+            Load();
         }
 
-        public void SaveSettings()
+        //Unsettings!
+        public void Load()
         {
-            XmlWriter writer = XmlWriter.Create("settings.xml");
+            if(!File.Exists("settings.xml"))
+            {
+                Save(); //If it doesn't exist, create it with default values.
+                return;
+            }
+            else
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(SettingsHolder));
+                using (FileStream fileStream = new FileStream("settings.xml", FileMode.Open))
+                {
+                    holder = (SettingsHolder)serializer.Deserialize(fileStream);
+                }
+            }
+        }
 
-            writer.WriteStartDocument();
-            writer.WriteStartElement("Template");
-
-            writer.WriteStartElement("Header");
-            writer.WriteAttributeString("path", TemplateHeader);
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("Footer");
-            writer.WriteAttributeString("path", TemplateFooter);
-            writer.WriteEndElement();
-
-            writer.WriteEndDocument();
-            writer.Close();
+        public void Save()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(SettingsHolder));
+            using (TextWriter writer = new StreamWriter("settings.xml"))
+            {
+                serializer.Serialize(writer, holder);
+            }
         }
     }
 }

@@ -38,21 +38,19 @@ namespace comparitron.ui
 
         private void btnOkay_Click(object sender, EventArgs e)
         {
-            //Swap these!
-            textHeaderFile.Text = settings.TemplateHeader;
-            textFooterFile.Text = settings.TemplateFooter;
+            settings.TemplateHeader = textHeaderFile.Text;
+            settings.TemplateFooter = textFooterFile.Text;
 
-            textTVFolder.Text = settings.TVFolder;
-            textTVPrefix.Text = settings.TVPrefix;
-            textBDFolder.Text = settings.BDFolder;
-            textBDPrefix.Text = settings.BDPrefix;
-            textMXFolder.Text = settings.MXFolder;
-            textMXPrefix.Text = settings.MXPrefix;
+            settings.TVFolder = textTVFolder.Text;
+            settings.TVPrefix = textTVPrefix.Text;
+            settings.BDFolder = textBDFolder.Text;
+            settings.BDPrefix = textBDPrefix.Text;
+            settings.MXFolder = textMXFolder.Text;
+            settings.MXPrefix = textMXPrefix.Text;
 
-            comboImageFormat.Text = settings.ImageFormat;
-            //Swap these!
+            settings.ImageFormat = comboImageFormat.Text;
 
-            settings.SaveSettings();
+            settings.Save();
             this.Close();
         }
 
@@ -62,6 +60,11 @@ namespace comparitron.ui
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void comboImageFormat_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
