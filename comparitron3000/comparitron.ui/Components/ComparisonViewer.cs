@@ -13,6 +13,8 @@ namespace comparitron.ui
 {
     class ComparisonViewer : PictureBox
     {
+        public Settings settings { get; set;  } = null;
+
         public Image imageTV;
         public Image imageBD;
         public Image imageMX;
@@ -80,9 +82,13 @@ namespace comparitron.ui
 
         private void Reload()
         { 
-            //Unmagick all these things at some point;
+            // Paths!
             var digits = 5;
             string frameIndex = Frame.ToString("D" + digits);
+
+            pathTV = BasePath + @"\" + settings.TVFolder + @"\" + settings.TVPrefix + frameIndex + @"." + settings.ImageFormat;
+            pathBD = BasePath + @"\" + settings.BDFolder + @"\" + settings.BDPrefix + frameIndex + @"." + settings.ImageFormat;
+            pathMX = BasePath + @"\" + settings.MXFolder + @"\" + settings.MXPrefix + frameIndex + @"." + settings.ImageFormat;
 
             //Only load needed images
             if (mode == DisplayType.Difference)
@@ -90,7 +96,6 @@ namespace comparitron.ui
                 if ((imageMX != null) && (!Slave))
                     imageMX.Dispose();
 
-                pathMX = BasePath + @"\mix\MX-" + frameIndex + ".jpg";
                 if (File.Exists(pathMX))
                 {
                     imageMX = Image.FromFile(pathMX);
@@ -100,8 +105,7 @@ namespace comparitron.ui
             {
                 if ((imageTV != null) && (!Slave))
                     imageTV.Dispose();
-
-                pathTV = BasePath + @"\old\TV-" + frameIndex + ".jpg";
+                
                 if (File.Exists(pathTV))
                 {
                     imageTV = Image.FromFile(pathTV);
@@ -109,8 +113,7 @@ namespace comparitron.ui
 
                 if ((imageBD != null) && (!Slave))
                     imageBD.Dispose();
-
-                pathBD = BasePath + @"\new\BD-" + frameIndex + ".jpg";
+                
                 if (File.Exists(pathBD))
                 {
                     imageBD = Image.FromFile(pathBD);
@@ -175,6 +178,17 @@ namespace comparitron.ui
 
             if(Slave)
                 graphics.DrawRectangle(new Pen(Color.Black), 0, 0, 16, 16);
+            else
+            {
+                //Bleh.
+                using (System.Drawing.Font font = new System.Drawing.Font("Arial", 16))
+                {
+                    using (System.Drawing.SolidBrush brush = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
+                    {
+                        graphics.DrawString(pathTV + "\r\n" + pathBD + "\r\n" + pathMX, font, brush, new Point(0, 0));
+                    }
+                }
+            }
 
             base.OnPaint(pe);
         }

@@ -14,12 +14,12 @@ namespace comparitron
         const string SettingsFile = "settings.xml";
 
         //Settings
-        public string TemplateHeader { get; set; } = "jfdifrd";
-        public string TemplateFooter { get; set; } = "ifdfd";
+        public string TemplateHeader { get; set; } = null;
+        public string TemplateFooter { get; set; } = null;
 
-        public string TVFolder { get; set; } = @"old\";
-        public string BDFolder { get; set; } = @"new\";
-        public string MXFolder { get; set; } = @"mix\";
+        public string TVFolder { get; set; } = @"old";
+        public string BDFolder { get; set; } = @"new";
+        public string MXFolder { get; set; } = @"mix";
 
         public string TVPrefix { get; set; } = @"tv-";
         public string BDPrefix { get; set; } = @"bd-";

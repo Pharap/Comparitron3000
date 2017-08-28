@@ -22,6 +22,7 @@ namespace comparitron.ui
             InitializeComponent();
             this.settings = settings;
             this.comparitron = comparitron;
+            comparisonViewer.settings = settings;
             
             reloadUI();
         }

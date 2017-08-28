@@ -39,8 +39,8 @@ namespace comparitron
             using (var output = new StreamWriter(outFile))
             {
                 log += "Starting write..." + "\r\n";
-                //Insert upper template
 
+                //Insert upper template
                 if ((settings.TemplateHeader == null) || (!File.Exists(settings.TemplateHeader)))
                 {
                     log += "Template Header not found, using fallback. \r\n";
@@ -50,7 +50,11 @@ namespace comparitron
                     output.WriteLine(@"<link href='css/twentytwenty.css' rel='stylesheet' type='text/css'/>");
                     output.WriteLine(@"</head><body>");
                 }
-
+                else
+                {
+                    //Load template from file
+                }
+                
                 //Page elements from list
                 output.WriteLine(@"<ul>");
 
@@ -131,13 +135,20 @@ namespace comparitron
                 output.WriteLine(@"</ul>");
 
                 //Insert lower template
-
-                //Quick bodge to get things working
+                if ((settings.TemplateFooter == null) || (!File.Exists(settings.TemplateFooter)))
+                {
+                    log += "Template Footer not found, using fallback. \r\n";
+                    //Fallback
                     output.WriteLine(@"<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js'></script>");
                     output.WriteLine(@"<script src='js/jquery.event.move.js'></script>");
 
                     output.WriteLine(@"<script src='js/jquery.twentytwenty.js'></script>");
                     output.WriteLine(@"</body></html>");
+                }
+                else
+                {
+                    //Load template from file
+                }
 
                 log += "Done! \r\n";
             }
