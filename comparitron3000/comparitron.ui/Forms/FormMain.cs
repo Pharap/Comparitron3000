@@ -14,10 +14,10 @@ namespace comparitron.ui
     public partial class FormMain : Form
     {
         ComparitronCore comparitron = null;
-        SettingsCore settings = null;
+        Settings settings = null;
         FormViewer formViewer = null;
 
-        public FormMain(ComparitronCore comparitron, SettingsCore settings)
+        public FormMain(ComparitronCore comparitron, Settings settings)
         {
             InitializeComponent();
             this.settings = settings;

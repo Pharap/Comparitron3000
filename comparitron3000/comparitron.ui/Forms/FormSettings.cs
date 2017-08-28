@@ -12,9 +12,9 @@ namespace comparitron.ui
 {
     public partial class FormSettings : Form
     {
-        SettingsCore settings = null;
+        Settings settings = null;
 
-        public FormSettings(SettingsCore settings)
+        public FormSettings(Settings settings)
         {
             this.settings = settings;
             InitializeComponent();
@@ -50,7 +50,7 @@ namespace comparitron.ui
 
             settings.ImageFormat = comboImageFormat.Text;
 
-            settings.Save();
+            Settings.Save(settings);
             this.Close();
         }
 

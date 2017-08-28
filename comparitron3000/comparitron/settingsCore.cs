@@ -9,9 +9,11 @@ using System.Xml.Serialization;
 
 namespace comparitron
 {
-    public class SettingsCore
+    public class Settings
     {
-        //Settings!
+        const string SettingsFile = "settings.xml";
+
+        //Settings
         public string TemplateHeader { get; set; } = "jfdifrd";
         public string TemplateFooter { get; set; } = "ifdfd";
 
@@ -25,28 +27,27 @@ namespace comparitron
 
         public string ImageFormat { get; set; } = @".jpg";
         
-        public SettingsCore()
+        //Unsettings
+        public static Settings Load()
         {
-            Load();
+            if (File.Exists(SettingsFile))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+                using (FileStream fileStream = File.Open(SettingsFile, FileMode.Open))
+                {
+                    return (Settings)serializer.Deserialize(fileStream);
+                }
+            }
+            return new Settings();
         }
 
-        //Unsettings!
-        public static void Load()
+        public static void Save(Settings settings)
         {
-            if(!File.Exists("settings.xml"))
+            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+            using (TextWriter writer = new StreamWriter(SettingsFile))
             {
-                Save(); //If it doesn't exist, create it with default values.
-                return;
+                serializer.Serialize(writer, settings);
             }
-            else
-            {
-
-            }
-        }
-
-        public static void Save()
-        {
-
         }
     }
 }
