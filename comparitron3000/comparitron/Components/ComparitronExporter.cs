@@ -52,7 +52,13 @@ namespace comparitron
                 }
                 else
                 {
-                    //Load template from file
+                    foreach (var line in File.ReadLines(settings.TemplateHeader))
+                    {
+                        string outLine = line;
+                        outLine = line.Replace(@"PAGECODE", comparitron.ProjectID);
+                        outLine = line.Replace(@"PAGENAME", comparitron.ProjectTitle);
+                        output.WriteLine(outLine);
+                    }
                 }
                 
                 //Page elements from list
@@ -119,9 +125,11 @@ namespace comparitron
 
                                 output.Write(@"<video width='auto' {0}>", item.Text);
                                 output.Write(@"<source src='{0}' type='video/mp4'>",item.Video);
+
                                 //Fallback image
                                 if (!string.IsNullOrEmpty(item.Image))
                                     output.Write(@"<img src='{0}' style='max-width: 100%'>", item.Image);
+
                                 output.Write(@"</video>");
 
                                 output.WriteLine(@"</li>");
@@ -147,7 +155,11 @@ namespace comparitron
                 }
                 else
                 {
-                    //Load template from file
+                    //Load from file
+                    foreach (var line in File.ReadLines(settings.TemplateFooter))
+                    {
+                        output.WriteLine(line);
+                    }
                 }
 
                 log += "Done! \r\n";

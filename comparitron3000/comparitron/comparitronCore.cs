@@ -18,6 +18,7 @@ namespace comparitron
         public string BasePath { get; set; } = null;
         public string ProjectPath { get; set; } = null;
         public string ProjectID { get; set; } = null;       // "SW209" "BW01" and such
+        public string ProjectTitle { get; set; } = null;    
 
         //List of things;
         public BindingList<ComparitronItem> itemList = new BindingList<ComparitronItem>();
