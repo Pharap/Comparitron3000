@@ -12,7 +12,7 @@ namespace comparitron
 {
     public class ComparitronCore
     {
-        private SettingsCore settings = null;
+        private Settings settings = null;
 
         //Directories & Paths
         public string BasePath { get; set; } = null;
@@ -32,7 +32,7 @@ namespace comparitron
             set { this.currentFrame = Math.Min(Math.Max(value,1), LastFrame); }
         }
 
-        public ComparitronCore(SettingsCore settings)
+        public ComparitronCore(Settings settings)
         {
             this.settings = settings;
         }

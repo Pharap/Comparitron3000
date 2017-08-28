@@ -10,11 +10,11 @@ namespace comparitron
     public class ComparitronExporter
     {
         ComparitronCore comparitron = null;
-        SettingsCore settings = null;
+        Settings settings = null;
         public bool Running { get; private set; } = false;
         public string log { get; private set; } = "";
 
-        public ComparitronExporter(ComparitronCore comparitron, SettingsCore settings)
+        public ComparitronExporter(ComparitronCore comparitron, Settings settings)
         {
             this.settings = settings;
             this.comparitron = comparitron;
