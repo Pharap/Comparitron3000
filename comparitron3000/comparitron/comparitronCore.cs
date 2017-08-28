@@ -72,16 +72,18 @@ namespace comparitron
 
         public void SaveProject()
         {
-            SaveProject(BasePath);
+            if(BasePath != null)
+                SaveProject(BasePath);
         }
         public void SaveProject(string Path)
-        { 
+        {
             //this just assumes the path is valid, because that's definately safe.
             //ProjectPath = BasePath + @"\Project.xml";
             XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
-            TextWriter writer = new StreamWriter(ProjectPath);
-            //Header stuff
-            serializer.Serialize(writer, itemList);
+            using (TextWriter writer = new StreamWriter(ProjectPath))
+            {
+                serializer.Serialize(writer, itemList);
+            }
         }
 
         //Thing list
