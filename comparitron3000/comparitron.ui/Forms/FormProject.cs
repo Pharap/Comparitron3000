@@ -20,11 +20,13 @@ namespace comparitron.ui
             this.comparitron = comparitron;
 
             inputProjectID.Text = comparitron.ProjectID;
+            inputProjectTitle.Text = comparitron.ProjectTitle;
         }
 
         private void btnOkay_Click(object sender, EventArgs e)
         {
             comparitron.ProjectID = inputProjectID.Text;
+            comparitron.ProjectTitle = inputProjectTitle.Text;
             this.Close();
         }
 
