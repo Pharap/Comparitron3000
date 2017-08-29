@@ -39,6 +39,18 @@ namespace comparitron
         }
         
         // IO
+        public void ScanForFiles(string Path)
+        {
+            //Count frames
+            LastFrame = Directory.GetFiles(Path, "*.jpg", SearchOption.TopDirectoryOnly).Length;
+            Console.WriteLine(LastFrame + " frames discovered");
+
+            if(LastFrame == 0)
+            { 
+                Console.WriteLine("No images!");
+            }
+        }
+         
         public void LoadProject(string Path)
         {
             BasePath = Path;
@@ -58,17 +70,7 @@ namespace comparitron
             Console.WriteLine("Loading " + ProjectPath);
             Console.WriteLine(itemList.Count.ToString() + " items found");
 
-            //Count frames
-            string mixDir = BasePath + @"\mix";
-            try
-            {
-                LastFrame = Directory.GetFiles(mixDir, "*.jpg", SearchOption.TopDirectoryOnly).Length;
-                Console.WriteLine(LastFrame + " frames discovered");
-            }
-            catch
-            {
-                Console.WriteLine("No images!");
-            }
+            ScanForFiles(BasePath + settings.MXFolder);
         }
 
         public void SaveProject()

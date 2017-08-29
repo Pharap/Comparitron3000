@@ -86,17 +86,16 @@ namespace comparitron
                                 //If there's no caption, append to previous thing, unless this is the first thing
                                 if((!string.IsNullOrEmpty(item.Text)) || (i == 0))
                                 {
-                                    output.WriteLine(@"<li>");
-                                    output.WriteLine(item.Text);
+                                    output.Write(@"<li>");
+                                    output.Write(item.Text);
                                 }
 
                                 string tvline = @"<img src='/images/" + comparitron.ProjectID + "/" + settings.TVPrefix + item.Frame.ToString("D5") + "." + settings.ImageFormat + @"'/>";
                                 string bdline = @"<img src='/images/" + comparitron.ProjectID + "/" + settings.BDPrefix + item.Frame.ToString("D5") + "." + settings.ImageFormat + @"'/>";
 
-                                output.WriteLine("<div class=\"twentytwenty-container\">");
-                                output.WriteLine(tvline);
-                                output.WriteLine(bdline);
-                                output.WriteLine("</div>");
+                                output.Write("<div class=\"twentytwenty-container\">");
+                                output.Write(tvline);
+                                output.Write(bdline);
                                 
                                 /*
                                  If this is the last entry, end the list item.
@@ -105,29 +104,29 @@ namespace comparitron
                                 */
                                 if((nextItem == null) || (nextItem.Type != ItemType.Comparison) || ((nextItem.Type == ItemType.Comparison) && (!string.IsNullOrEmpty(nextItem.Text))))
                                 {
+                                    output.Write("</div>");
                                     output.WriteLine(@"</li>");
+                                }
+                                else
+                                {
+                                    output.WriteLine("</div>");
                                 }
                             }; break;
                         case ItemType.Text:
                             {
-                                output.WriteLine(@"<li>");
-                                output.WriteLine(item.Text);
-
-                                if ((nextItem != null) && (nextItem.Type == ItemType.Divider) && (nextItem.Text == "header"))
-                                {
-                                    output.WriteLine(@"<hr/>");
-                                }
+                                output.Write(@"<li>");
+                                output.Write(item.Text);
                                 output.WriteLine(@"</li>");
                             }; break;
                         case ItemType.Image:
                             {
-                                output.WriteLine(@"<li>");
-                                output.WriteLine(@"<img src='{0}' title='{1}' />", item.Image, item.Text);
+                                output.Write(@"<li>");
+                                output.Write(@"<img src='{0}' title='{1}' />", item.Image, item.Text);
                                 output.WriteLine(@"</li>");
                             }; break;
                         case ItemType.Video:
                             {
-                                output.WriteLine(@"<li>");
+                                output.Write(@"<li>");
 
                                 output.Write(@"<video width='auto' {0}>", item.Text);
                                 output.Write(@"<source src='{0}' type='video/webm'>",item.Video);
@@ -142,10 +141,7 @@ namespace comparitron
                             }; break;
                         case ItemType.Divider:
                             {
-                                if(item.Text != "header")
-                                {
-                                    output.WriteLine(@"<hr/>");
-                                }
+                                output.WriteLine(@"<li><hr/></li");
                             }; break;
                     }
                 }

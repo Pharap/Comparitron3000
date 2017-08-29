@@ -67,8 +67,9 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.textBoxInput = new System.Windows.Forms.TextBox();
             this.openProjectBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comparisonViewer = new comparitron.ui.ComparisonViewer();
+            this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reloadFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
@@ -83,8 +84,8 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -105,6 +106,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
+            this.reloadFolderToolStripMenuItem,
             this.loadToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
@@ -115,28 +117,28 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -485,10 +487,6 @@
             this.textBoxInput.Size = new System.Drawing.Size(533, 20);
             this.textBoxInput.TabIndex = 4;
             // 
-            // comparitronCoreBindingSource
-            // 
-            this.comparitronCoreBindingSource.DataSource = typeof(comparitron.ComparitronCore);
-            // 
             // comparisonViewer
             // 
             this.comparisonViewer.BasePath = "";
@@ -501,12 +499,24 @@
             this.comparisonViewer.pathBD = "NEW/BD-000001.jpg";
             this.comparisonViewer.pathMX = null;
             this.comparisonViewer.pathTV = "OLD/TV-000001.jpg";
+            this.comparisonViewer.settings = null;
             this.comparisonViewer.Size = new System.Drawing.Size(809, 598);
             this.comparisonViewer.Slave = false;
             this.comparisonViewer.TabIndex = 0;
             this.comparisonViewer.TabStop = false;
             this.comparisonViewer.Transition = 50F;
             this.comparisonViewer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.comparisonViewer_MouseDoubleClick);
+            // 
+            // comparitronCoreBindingSource
+            // 
+            this.comparitronCoreBindingSource.DataSource = typeof(comparitron.ComparitronCore);
+            // 
+            // reloadFolderToolStripMenuItem
+            // 
+            this.reloadFolderToolStripMenuItem.Name = "reloadFolderToolStripMenuItem";
+            this.reloadFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.reloadFolderToolStripMenuItem.Text = "Reload Folder";
+            this.reloadFolderToolStripMenuItem.Click += new System.EventHandler(this.reloadFolderToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -521,7 +531,6 @@
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "FormMain";
             this.Text = "Comparitron 3000";
-            this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -541,8 +550,8 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -590,6 +599,7 @@
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.FolderBrowserDialog openProjectBrowserDialog;
         private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reloadFolderToolStripMenuItem;
     }
 }
 

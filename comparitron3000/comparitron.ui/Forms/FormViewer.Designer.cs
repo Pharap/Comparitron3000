@@ -59,7 +59,7 @@
             this.Controls.Add(this.comparisonViewer);
             this.Name = "FormViewer";
             this.ShowIcon = false;
-            this.Text = "FormViewer";
+            this.Text = "Comparitron compare-o-matic";
             this.Load += new System.EventHandler(this.FormViewer_Load);
             this.ResizeEnd += new System.EventHandler(this.FormViewer_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();

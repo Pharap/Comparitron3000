@@ -37,9 +37,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.inputProjectID = new System.Windows.Forms.TextBox();
             this.inputProjectTitle = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -54,7 +56,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(401, 152);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(335, 109);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -63,7 +65,7 @@
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Controls.Add(this.btnCancel);
             this.flowLayoutPanel1.Controls.Add(this.btnOkay);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(119, 120);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(86, 77);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 29);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -90,29 +92,27 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.label1);
-            this.flowLayoutPanel2.Controls.Add(this.inputProjectID);
-            this.flowLayoutPanel2.Controls.Add(this.label2);
-            this.flowLayoutPanel2.Controls.Add(this.inputProjectTitle);
+            this.flowLayoutPanel2.Controls.Add(this.groupBox1);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(395, 111);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(329, 68);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(6, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "ProjectID";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(166, 0);
+            this.label2.Location = new System.Drawing.Point(6, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 13);
             this.label2.TabIndex = 1;
@@ -120,33 +120,48 @@
             // 
             // inputProjectID
             // 
-            this.inputProjectID.Location = new System.Drawing.Point(60, 3);
+            this.inputProjectID.Location = new System.Drawing.Point(72, 13);
             this.inputProjectID.Name = "inputProjectID";
-            this.inputProjectID.Size = new System.Drawing.Size(100, 20);
+            this.inputProjectID.Size = new System.Drawing.Size(244, 20);
             this.inputProjectID.TabIndex = 2;
             // 
             // inputProjectTitle
             // 
-            this.inputProjectTitle.Location = new System.Drawing.Point(232, 3);
+            this.inputProjectTitle.Location = new System.Drawing.Point(72, 36);
             this.inputProjectTitle.Name = "inputProjectTitle";
-            this.inputProjectTitle.Size = new System.Drawing.Size(100, 20);
+            this.inputProjectTitle.Size = new System.Drawing.Size(244, 20);
             this.inputProjectTitle.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.inputProjectTitle);
+            this.groupBox1.Controls.Add(this.inputProjectID);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(322, 65);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
             // 
             // FormProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 152);
+            this.ClientSize = new System.Drawing.Size(335, 109);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormProject";
             this.ShowIcon = false;
-            this.Text = "FormProject";
+            this.ShowInTaskbar = false;
+            this.Text = "Project settings";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -162,5 +177,6 @@
         private System.Windows.Forms.TextBox inputProjectID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox inputProjectTitle;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

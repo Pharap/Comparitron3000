@@ -75,9 +75,13 @@ namespace comparitron.ui
         }
         private void engageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((string.IsNullOrEmpty(comparitron.ProjectID)) || (string.IsNullOrEmpty(comparitron.BasePath)))
+            if (string.IsNullOrEmpty(comparitron.ProjectID))
             {
-                MessageBox.Show("Check project settings!");
+                MessageBox.Show("Check project settings! \r\n Unusable ID!");
+            }
+            else if (string.IsNullOrEmpty(comparitron.BasePath) || (Directory.Exists(comparitron.BasePath)))
+            {
+                MessageBox.Show("Bad Project Path!");
             }
             else
             {
@@ -107,8 +111,18 @@ namespace comparitron.ui
         }
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (FormNewProject formNew = new FormNewProject())
+            {
+                formNew.ShowDialog();
+            }
+            reloadUI();
         }
+        
+        private void reloadFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            comparitron.ScanForFiles(settings.MXFolder);
+        }
+
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openProjectBrowserDialog.ShowDialog() == DialogResult.OK)
@@ -239,8 +253,7 @@ namespace comparitron.ui
             comparitron.CurrentFrame = trackbarFrame.Value;
             updateUI();
         }
-
-
+        
         //View settings;
         private void trackBarFade_Scroll(object sender, EventArgs e)
         {
@@ -254,11 +267,6 @@ namespace comparitron.ui
             Enum.TryParse<DisplayType>(comboBoxViewMode.SelectedValue.ToString(), out mode);
             comparisonViewer.Mode = mode;
             updatePopout();
-        }
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
