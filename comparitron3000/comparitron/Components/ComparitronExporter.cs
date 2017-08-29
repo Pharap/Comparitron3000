@@ -10,11 +10,11 @@ namespace comparitron
     public class ComparitronExporter
     {
         ComparitronCore comparitron = null;
-        SettingsCore settings = null;
-        public bool Running { get; set; } = false;
+        Settings settings = null;
+        public bool Running { get; private set; } = false;
         public string log { get; private set; } = "";
 
-        public ComparitronExporter(ComparitronCore comparitron, SettingsCore settings)
+        public ComparitronExporter(ComparitronCore comparitron, Settings settings)
         {
             this.settings = settings;
             this.comparitron = comparitron;
@@ -39,15 +39,31 @@ namespace comparitron
             using (var output = new StreamWriter(outFile))
             {
                 log += "Starting write..." + "\r\n";
-                //Insert upper template
 
-                    //quick bodge to get things working
+                output.WriteLine(@"<!-- Generated with Comparitron3000 page builder -->");
+                //Insert upper template
+                if ((settings.TemplateHeader == null) || (!File.Exists(settings.TemplateHeader)))
+                {
+                    log += "Template Header not found, using fallback. \r\n";
+
+                    //Fallback
                     output.WriteLine(@"<html><head>");
                     output.WriteLine(@"<link href='css/twentytwenty.css' rel='stylesheet' type='text/css'/>");
                     output.WriteLine(@"</head><body>");
-
+                }
+                else
+                {
+                    foreach (var line in File.ReadLines(settings.TemplateHeader))
+                    {
+                        string outLine = line;
+                        outLine = line.Replace(@"PAGECODE", comparitron.ProjectID);
+                        outLine = line.Replace(@"PAGENAME", comparitron.ProjectTitle);
+                        output.WriteLine(outLine);
+                    }
+                }
+                
                 //Page elements from list
-                output.WriteLine(@"<ul>");
+                output.WriteLine(@"<ol>");
 
                 log += "Items : " + comparitron.itemList.Count + "\r\n";
                 for (var i=0; i<comparitron.itemList.Count; ++i)
@@ -73,10 +89,13 @@ namespace comparitron
                                     output.WriteLine(@"<li>");
                                     output.WriteLine(item.Text);
                                 }
-                                
+
+                                string tvline = @"<img src='/images/" + comparitron.ProjectID + "/" + settings.TVPrefix + item.Frame.ToString("D5") + "." + settings.ImageFormat + @"'/>";
+                                string bdline = @"<img src='/images/" + comparitron.ProjectID + "/" + settings.BDPrefix + item.Frame.ToString("D5") + "." + settings.ImageFormat + @"'/>";
+
                                 output.WriteLine("<div class=\"twentytwenty-container\">");
-                                output.WriteLine("\t<img src=\"./images/{0}/tv-{1:D5}.jpg\" />", comparitron.ProjectID, item.Frame);
-                                output.WriteLine("\t<img src=\"./images/{0}/bd-{1:D5}.jpg\" />", comparitron.ProjectID, item.Frame);
+                                output.WriteLine(tvline);
+                                output.WriteLine(bdline);
                                 output.WriteLine("</div>");
                                 
                                 /*
@@ -93,6 +112,11 @@ namespace comparitron
                             {
                                 output.WriteLine(@"<li>");
                                 output.WriteLine(item.Text);
+
+                                if ((nextItem != null) && (nextItem.Type == ItemType.Divider) && (nextItem.Text == "header"))
+                                {
+                                    output.WriteLine(@"<hr/>");
+                                }
                                 output.WriteLine(@"</li>");
                             }; break;
                         case ItemType.Image:
@@ -106,36 +130,54 @@ namespace comparitron
                                 output.WriteLine(@"<li>");
 
                                 output.Write(@"<video width='auto' {0}>", item.Text);
-                                output.Write(@"<source src='{0}' type='video/mp4'>",item.Video);
+                                output.Write(@"<source src='{0}' type='video/webm'>",item.Video);
+
                                 //Fallback image
                                 if (!string.IsNullOrEmpty(item.Image))
                                     output.Write(@"<img src='{0}' style='max-width: 100%'>", item.Image);
+
                                 output.Write(@"</video>");
 
                                 output.WriteLine(@"</li>");
                             }; break;
                         case ItemType.Divider:
                             {
-                                output.WriteLine(@"<hr/>");
+                                if(item.Text != "header")
+                                {
+                                    output.WriteLine(@"<hr/>");
+                                }
                             }; break;
                     }
                 }
-                output.WriteLine(@"</ul>");
+                output.WriteLine(@"</ol>");
 
                 //Insert lower template
-
-                //Quick bodge to get things working
+                if ((settings.TemplateFooter == null) || (!File.Exists(settings.TemplateFooter)))
+                {
+                    log += "Template Footer not found, using fallback. \r\n";
+                    //Fallback
                     output.WriteLine(@"<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js'></script>");
                     output.WriteLine(@"<script src='js/jquery.event.move.js'></script>");
-
                     output.WriteLine(@"<script src='js/jquery.twentytwenty.js'></script>");
                     output.WriteLine(@"</body></html>");
+                }
+                else
+                {
+                    //Load from file
+                    foreach (var line in File.ReadLines(settings.TemplateFooter))
+                    {
+                        output.WriteLine(line);
+                    }
+                }
 
                 log += "Done! \r\n";
             }
 
             //Move image files
-            if (Directory.Exists(basePath+@"\old\") && (Directory.Exists(basePath+@"\new\")))
+            string TVPath = basePath + @"\" + settings.TVFolder + @"\";
+            string BDPath = basePath + @"\" + settings.BDFolder + @"\";
+
+            if (Directory.Exists(TVPath) && (Directory.Exists(BDPath)))
             {
                 string imagePath = basePath + @"\output\images\" + comparitron.ProjectID + @"\";
                 log += "Moving image files..." + "\r\n";
@@ -147,18 +189,18 @@ namespace comparitron
                 {
                     if (line.Type == ItemType.Comparison)
                     { 
-                        string tvName = string.Format("tv-{0:D5}.jpg", line.Frame);
-                        string bdName = string.Format("bd-{0:D5}.jpg", line.Frame);
+                        string tvName = string.Format("{0}{1:D5}.{2}", settings.TVPrefix, line.Frame, settings.ImageFormat);
+                        string bdName = string.Format("{0}{1:D5}.{2}", settings.BDPrefix, line.Frame, settings.ImageFormat);
 
-                        log += "Moving " + tvName + " from " + basePath + @"\old to " + imagePath + "\r\n";
-                        if (File.Exists(basePath + @"\old\" + tvName))
+                        log += "Moving " + tvName + " from " + TVPath +" to " + imagePath + "\r\n";
+                        if (File.Exists(TVPath + tvName))
                         { 
-                            File.Copy(basePath + @"\old\" + tvName, imagePath + tvName, true);
+                            File.Copy(TVPath + tvName, imagePath + tvName, true);
                         }
-                        log += "Moving " + bdName + " from " + basePath + @"\new to " + imagePath + "\r\n";
-                        if (File.Exists(basePath + @"\new\" + bdName))
+                        log += "Moving " + tvName + " from " + TVPath + " to " + imagePath + "\r\n";
+                        if (File.Exists(BDPath + bdName))
                         {
-                            File.Copy(basePath + @"\new\" + bdName, imagePath + bdName, true);
+                            File.Copy(BDPath + bdName, imagePath + bdName, true);
                         }
                     }
                 }

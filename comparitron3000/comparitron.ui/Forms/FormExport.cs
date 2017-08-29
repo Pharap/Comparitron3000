@@ -14,10 +14,10 @@ namespace comparitron.ui
     public partial class FormExport : Form
     {
         ComparitronCore comparitron = null;
-        SettingsCore settings = null;
+        Settings settings = null;
         ComparitronExporter exporter = null;
 
-        public FormExport(ComparitronCore comparitron, SettingsCore settings)
+        public FormExport(ComparitronCore comparitron, Settings settings)
         {
             InitializeComponent();
 

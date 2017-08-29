@@ -39,11 +39,11 @@
             this.comparisonViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comparisonViewer.Frame = 1;
             this.comparisonViewer.Location = new System.Drawing.Point(0, 0);
-            this.comparisonViewer.Mode = DisplayType.Split;
             this.comparisonViewer.Name = "comparisonViewer";
             this.comparisonViewer.pathBD = null;
             this.comparisonViewer.pathMX = null;
             this.comparisonViewer.pathTV = null;
+            this.comparisonViewer.settings = null;
             this.comparisonViewer.Size = new System.Drawing.Size(878, 457);
             this.comparisonViewer.Slave = false;
             this.comparisonViewer.TabIndex = 1;
@@ -61,6 +61,7 @@
             this.ShowIcon = false;
             this.Text = "FormViewer";
             this.Load += new System.EventHandler(this.FormViewer_Load);
+            this.ResizeEnd += new System.EventHandler(this.FormViewer_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
             this.ResumeLayout(false);
 

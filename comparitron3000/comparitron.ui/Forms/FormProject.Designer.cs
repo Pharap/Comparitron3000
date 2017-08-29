@@ -33,8 +33,10 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOkay = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblProjectID = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.inputProjectID = new System.Windows.Forms.TextBox();
+            this.inputProjectTitle = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -52,7 +54,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(533, 146);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(401, 152);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -61,7 +63,7 @@
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Controls.Add(this.btnCancel);
             this.flowLayoutPanel1.Controls.Add(this.btnOkay);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(185, 114);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(119, 120);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 29);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -88,35 +90,53 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.lblProjectID);
+            this.flowLayoutPanel2.Controls.Add(this.label1);
             this.flowLayoutPanel2.Controls.Add(this.inputProjectID);
+            this.flowLayoutPanel2.Controls.Add(this.label2);
+            this.flowLayoutPanel2.Controls.Add(this.inputProjectTitle);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(527, 105);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(395, 111);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
-            // lblProjectID
+            // label1
             // 
-            this.lblProjectID.AutoSize = true;
-            this.lblProjectID.Location = new System.Drawing.Point(3, 0);
-            this.lblProjectID.Name = "lblProjectID";
-            this.lblProjectID.Size = new System.Drawing.Size(51, 13);
-            this.lblProjectID.TabIndex = 1;
-            this.lblProjectID.Text = "ProjectID";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ProjectID";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(166, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "ProjectTitle";
             // 
             // inputProjectID
             // 
             this.inputProjectID.Location = new System.Drawing.Point(60, 3);
             this.inputProjectID.Name = "inputProjectID";
             this.inputProjectID.Size = new System.Drawing.Size(100, 20);
-            this.inputProjectID.TabIndex = 0;
+            this.inputProjectID.TabIndex = 2;
+            // 
+            // inputProjectTitle
+            // 
+            this.inputProjectTitle.Location = new System.Drawing.Point(232, 3);
+            this.inputProjectTitle.Name = "inputProjectTitle";
+            this.inputProjectTitle.Size = new System.Drawing.Size(100, 20);
+            this.inputProjectTitle.TabIndex = 3;
             // 
             // FormProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 146);
+            this.ClientSize = new System.Drawing.Size(401, 152);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormProject";
@@ -138,7 +158,9 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOkay;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Label lblProjectID;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox inputProjectID;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox inputProjectTitle;
     }
 }

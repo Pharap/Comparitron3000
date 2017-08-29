@@ -13,6 +13,8 @@ namespace comparitron.ui
 {
     class ComparisonViewer : PictureBox
     {
+        public Settings settings { get; set;  } = null;
+
         public Image imageTV;
         public Image imageBD;
         public Image imageMX;
@@ -79,10 +81,18 @@ namespace comparitron.ui
         }
 
         private void Reload()
-        { 
-            //Unmagick all these things at some point;
+        {
+            //Sometimes settings goes null and I haven't figured out why. Since it's kinda integral to this working, just abort until it's fixed.
+            if (settings == null)
+                return;
+
+            // Paths!
             var digits = 5;
             string frameIndex = Frame.ToString("D" + digits);
+
+            pathTV = BasePath + @"\" + settings.TVFolder + @"\" + settings.TVPrefix + frameIndex + @"." + settings.ImageFormat;
+            pathBD = BasePath + @"\" + settings.BDFolder + @"\" + settings.BDPrefix + frameIndex + @"." + settings.ImageFormat;
+            pathMX = BasePath + @"\" + settings.MXFolder + @"\" + settings.MXPrefix + frameIndex + @"." + settings.ImageFormat;
 
             //Only load needed images
             if (mode == DisplayType.Difference)
@@ -90,7 +100,6 @@ namespace comparitron.ui
                 if ((imageMX != null) && (!Slave))
                     imageMX.Dispose();
 
-                pathMX = BasePath + @"\mix\MX-" + frameIndex + ".jpg";
                 if (File.Exists(pathMX))
                 {
                     imageMX = Image.FromFile(pathMX);
@@ -100,8 +109,7 @@ namespace comparitron.ui
             {
                 if ((imageTV != null) && (!Slave))
                     imageTV.Dispose();
-
-                pathTV = BasePath + @"\old\TV-" + frameIndex + ".jpg";
+                
                 if (File.Exists(pathTV))
                 {
                     imageTV = Image.FromFile(pathTV);
@@ -109,8 +117,7 @@ namespace comparitron.ui
 
                 if ((imageBD != null) && (!Slave))
                     imageBD.Dispose();
-
-                pathBD = BasePath + @"\new\BD-" + frameIndex + ".jpg";
+                
                 if (File.Exists(pathBD))
                 {
                     imageBD = Image.FromFile(pathBD);
@@ -123,18 +130,24 @@ namespace comparitron.ui
         {
             Graphics graphics = pe.Graphics;
 
+            Point ImageSize = new Point();
+            ImageSize.X = this.Size.Width;
+            ImageSize.Y = this.Size.Height;
+
+            PointF ImageScale = new PointF(1.0f,1.0f);
+            if (imageMX != null)
+            {
+                ImageScale.X = this.Size.Width / 1280.0f;
+                ImageScale.Y = this.Size.Height / 720.0f;
+            }
+
             switch (mode)
             {
                 case DisplayType.Difference:
                     {
                         if (imageMX != null)
                         {
-                            try { graphics.DrawImage(imageMX, 0, 0); }
-                            catch (ArgumentException e)
-                            {
-                                Console.WriteLine("Exception information: {0}", e);
-                            }
-                            
+                            graphics.DrawImage(imageMX, 0, 0);
                         }
 
                     };break;
@@ -154,7 +167,10 @@ namespace comparitron.ui
                         int mid = 0;
                         if (imageTV != null)
                         {
-                            graphics.DrawImage(imageTV, 0, 0);
+                            graphics.DrawImage(imageTV,
+                                new Rectangle(0, 0, ImageSize.X , ImageSize.Y),
+                                new Rectangle(0, 0, imageBD.Width , imageBD.Height),
+                                GraphicsUnit.Pixel);
                         }
                         
                         if (imageBD != null)
@@ -162,11 +178,11 @@ namespace comparitron.ui
                             mid = (int)(imageBD.Width * (transition / 100));
 
                             graphics.DrawImage(imageBD,
-                                new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
+                                new Rectangle((int)(mid * ImageScale.X), 0, (int)((imageBD.Width - mid) * ImageScale.X), ImageSize.Y),
                                 new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
                                 GraphicsUnit.Pixel);
 
-                            graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(mid - 3, 0, 6, imageBD.Height)); //grab bar thing
+                            graphics.DrawRectangle(new Pen(Color.Black), new Rectangle((int)(mid * ImageScale.X) - 3, 0, 6, ImageSize.Y)); //grab bar thing
                         }
 
 
@@ -175,6 +191,17 @@ namespace comparitron.ui
 
             if(Slave)
                 graphics.DrawRectangle(new Pen(Color.Black), 0, 0, 16, 16);
+            else
+            {
+                //Bleh.
+                using (System.Drawing.Font font = new System.Drawing.Font("Arial", 16))
+                {
+                    using (System.Drawing.SolidBrush brush = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
+                    {
+                        graphics.DrawString(pathTV + "\r\n" + pathBD + "\r\n" + pathMX, font, brush, new Point(0, 0));
+                    }
+                }
+            }
 
             base.OnPaint(pe);
         }

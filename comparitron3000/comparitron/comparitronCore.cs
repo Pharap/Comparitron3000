@@ -12,12 +12,13 @@ namespace comparitron
 {
     public class ComparitronCore
     {
-        private SettingsCore settings = null;
+        private Settings settings = null;
 
         //Directories & Paths
         public string BasePath { get; set; } = null;
         public string ProjectPath { get; set; } = null;
         public string ProjectID { get; set; } = null;       // "SW209" "BW01" and such
+        public string ProjectTitle { get; set; } = null;    
 
         //List of things;
         public BindingList<ComparitronItem> itemList = new BindingList<ComparitronItem>();
@@ -32,7 +33,7 @@ namespace comparitron
             set { this.currentFrame = Math.Min(Math.Max(value,1), LastFrame); }
         }
 
-        public ComparitronCore(SettingsCore settings)
+        public ComparitronCore(Settings settings)
         {
             this.settings = settings;
         }
@@ -54,15 +55,15 @@ namespace comparitron
             }
 
             //Debug 
-            Console.WriteLine(ProjectPath);
-            Console.WriteLine(itemList == null);
-            Console.WriteLine(itemList.Count);
+            Console.WriteLine("Loading " + ProjectPath);
+            Console.WriteLine(itemList.Count.ToString() + " items found");
 
             //Count frames
             string mixDir = BasePath + @"\mix";
             try
             {
                 LastFrame = Directory.GetFiles(mixDir, "*.jpg", SearchOption.TopDirectoryOnly).Length;
+                Console.WriteLine(LastFrame + " frames discovered");
             }
             catch
             {
@@ -72,16 +73,18 @@ namespace comparitron
 
         public void SaveProject()
         {
-            SaveProject(BasePath);
+            if(BasePath != null)
+                SaveProject(BasePath);
         }
         public void SaveProject(string Path)
-        { 
+        {
             //this just assumes the path is valid, because that's definately safe.
             //ProjectPath = BasePath + @"\Project.xml";
             XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
-            TextWriter writer = new StreamWriter(ProjectPath);
-            //Header stuff
-            serializer.Serialize(writer, itemList);
+            using (TextWriter writer = new StreamWriter(ProjectPath))
+            {
+                serializer.Serialize(writer, itemList);
+            }
         }
 
         //Thing list
