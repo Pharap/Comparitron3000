@@ -53,5 +53,10 @@ namespace comparitron.ui
                 this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             }
         }
+
+        private void FormViewer_ResizeEnd(object sender, EventArgs e)
+        {
+            comparisonViewer.Size = this.Size;
+        }
     }
 }

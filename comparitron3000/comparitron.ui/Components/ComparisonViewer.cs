@@ -81,7 +81,11 @@ namespace comparitron.ui
         }
 
         private void Reload()
-        { 
+        {
+            //Sometimes settings goes null and I haven't figured out why. Since it's kinda integral to this working, just abort until it's fixed.
+            if (settings == null)
+                return;
+
             // Paths!
             var digits = 5;
             string frameIndex = Frame.ToString("D" + digits);
@@ -126,18 +130,21 @@ namespace comparitron.ui
         {
             Graphics graphics = pe.Graphics;
 
+            Point ImageSize = new Point();
+            ImageSize.X = this.Size.Width;
+            ImageSize.Y = this.Size.Height;
+
+            PointF ImageScale = new PointF();
+            ImageScale.X = this.Size.Width / 1280.0f;
+            ImageScale.Y = this.Size.Height / 720.0f;
+
             switch (mode)
             {
                 case DisplayType.Difference:
                     {
                         if (imageMX != null)
                         {
-                            try { graphics.DrawImage(imageMX, 0, 0); }
-                            catch (ArgumentException e)
-                            {
-                                Console.WriteLine("Exception information: {0}", e);
-                            }
-                            
+                            graphics.DrawImage(imageMX, 0, 0);
                         }
 
                     };break;
@@ -157,7 +164,10 @@ namespace comparitron.ui
                         int mid = 0;
                         if (imageTV != null)
                         {
-                            graphics.DrawImage(imageTV, 0, 0);
+                            graphics.DrawImage(imageTV,
+                                new Rectangle(0, 0, ImageSize.X , ImageSize.Y),
+                                new Rectangle(0, 0, imageBD.Width , imageBD.Height),
+                                GraphicsUnit.Pixel);
                         }
                         
                         if (imageBD != null)
@@ -165,11 +175,11 @@ namespace comparitron.ui
                             mid = (int)(imageBD.Width * (transition / 100));
 
                             graphics.DrawImage(imageBD,
-                                new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
+                                new Rectangle((int)(mid * ImageScale.X), 0, (int)((imageBD.Width - mid) * ImageScale.X), ImageSize.Y),
                                 new Rectangle(mid, 0, imageBD.Width - mid, imageBD.Height),
                                 GraphicsUnit.Pixel);
 
-                            graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(mid - 3, 0, 6, imageBD.Height)); //grab bar thing
+                            graphics.DrawRectangle(new Pen(Color.Black), new Rectangle((int)(mid * ImageScale.X) - 3, 0, 6, ImageSize.Y)); //grab bar thing
                         }
 
 

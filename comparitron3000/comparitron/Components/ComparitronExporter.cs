@@ -89,8 +89,8 @@ namespace comparitron
                                     output.WriteLine(item.Text);
                                 }
 
-                                string tvline = @"<img src='/images/" + comparitron.ProjectID + "/" + settings.TVPrefix + item.Frame.ToString("D5") + "." + settings.ImageFormat;
-                                string bdline = @"<img src='/images/" + comparitron.ProjectID + "/" + settings.BDPrefix + item.Frame.ToString("D5") + "." + settings.ImageFormat;
+                                string tvline = @"<img src='/images/" + comparitron.ProjectID + "/" + settings.TVPrefix + item.Frame.ToString("D5") + "." + settings.ImageFormat + @"'/>";
+                                string bdline = @"<img src='/images/" + comparitron.ProjectID + "/" + settings.BDPrefix + item.Frame.ToString("D5") + "." + settings.ImageFormat + @"'/>";
 
                                 output.WriteLine("<div class=\"twentytwenty-container\">");
                                 output.WriteLine(tvline);
@@ -181,7 +181,7 @@ namespace comparitron
                 {
                     if (line.Type == ItemType.Comparison)
                     { 
-                        string tvName = string.Format("{0}{:D5}.{2}", settings.TVPrefix, line.Frame, settings.ImageFormat);
+                        string tvName = string.Format("{0}{1:D5}.{2}", settings.TVPrefix, line.Frame, settings.ImageFormat);
                         string bdName = string.Format("{0}{1:D5}.{2}", settings.BDPrefix, line.Frame, settings.ImageFormat);
 
                         log += "Moving " + tvName + " from " + TVPath +" to " + imagePath + "\r\n";
