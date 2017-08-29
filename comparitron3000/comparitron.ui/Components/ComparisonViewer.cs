@@ -134,9 +134,12 @@ namespace comparitron.ui
             ImageSize.X = this.Size.Width;
             ImageSize.Y = this.Size.Height;
 
-            PointF ImageScale = new PointF();
-            ImageScale.X = this.Size.Width / 1280.0f;
-            ImageScale.Y = this.Size.Height / 720.0f;
+            PointF ImageScale = new PointF(1.0f,1.0f);
+            if (imageMX != null)
+            {
+                ImageScale.X = this.Size.Width / 1280.0f;
+                ImageScale.Y = this.Size.Height / 720.0f;
+            }
 
             switch (mode)
             {
