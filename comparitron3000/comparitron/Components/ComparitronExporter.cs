@@ -40,6 +40,7 @@ namespace comparitron
             {
                 log += "Starting write..." + "\r\n";
 
+                output.WriteLine(@"<!-- Generated with Comparitron3000 page builder -->");
                 //Insert upper template
                 if ((settings.TemplateHeader == null) || (!File.Exists(settings.TemplateHeader)))
                 {
@@ -62,7 +63,7 @@ namespace comparitron
                 }
                 
                 //Page elements from list
-                output.WriteLine(@"<ul>");
+                output.WriteLine(@"<ol>");
 
                 log += "Items : " + comparitron.itemList.Count + "\r\n";
                 for (var i=0; i<comparitron.itemList.Count; ++i)
@@ -111,6 +112,11 @@ namespace comparitron
                             {
                                 output.WriteLine(@"<li>");
                                 output.WriteLine(item.Text);
+
+                                if ((nextItem != null) && (nextItem.Type == ItemType.Divider) && (nextItem.Text == "header"))
+                                {
+                                    output.WriteLine(@"<hr/>");
+                                }
                                 output.WriteLine(@"</li>");
                             }; break;
                         case ItemType.Image:
@@ -124,7 +130,7 @@ namespace comparitron
                                 output.WriteLine(@"<li>");
 
                                 output.Write(@"<video width='auto' {0}>", item.Text);
-                                output.Write(@"<source src='{0}' type='video/mp4'>",item.Video);
+                                output.Write(@"<source src='{0}' type='video/webm'>",item.Video);
 
                                 //Fallback image
                                 if (!string.IsNullOrEmpty(item.Image))
@@ -136,11 +142,14 @@ namespace comparitron
                             }; break;
                         case ItemType.Divider:
                             {
-                                output.WriteLine(@"<hr/>");
+                                if(item.Text != "header")
+                                {
+                                    output.WriteLine(@"<hr/>");
+                                }
                             }; break;
                     }
                 }
-                output.WriteLine(@"</ul>");
+                output.WriteLine(@"</ol>");
 
                 //Insert lower template
                 if ((settings.TemplateFooter == null) || (!File.Exists(settings.TemplateFooter)))
@@ -149,7 +158,6 @@ namespace comparitron
                     //Fallback
                     output.WriteLine(@"<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js'></script>");
                     output.WriteLine(@"<script src='js/jquery.event.move.js'></script>");
-
                     output.WriteLine(@"<script src='js/jquery.twentytwenty.js'></script>");
                     output.WriteLine(@"</body></html>");
                 }
