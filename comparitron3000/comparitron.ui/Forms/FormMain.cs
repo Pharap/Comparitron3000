@@ -48,9 +48,10 @@ namespace comparitron.ui
             comparisonViewer.Frame = comparitron.CurrentFrame;
 
             var digits = comparitron.LastFrame.ToString().Length;
-            statusLabel.Text = "Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
-            statusLabel.Text += " | " + comparitron.ProjectID;
-            statusLabel.Text += " | " + comparitron.BasePath;
+            statusLabel1.Text = "Frame " + comparitron.CurrentFrame.ToString("D"+digits) + " : " + comparitron.LastFrame;
+            statusLabel2.Text = comparitron.ProjectID;
+            statusLabel3.Text = comparitron.ProjectTitle;
+            statusLabel4.Text = comparitron.BasePath;
 
             updatePopout();
         }
@@ -267,6 +268,12 @@ namespace comparitron.ui
             Enum.TryParse<DisplayType>(comboBoxViewMode.SelectedValue.ToString(), out mode);
             comparisonViewer.Mode = mode;
             updatePopout();
+        }
+
+        // Statusbar.
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            projectToolStripMenuItem_Click(this, new EventArgs());
         }
     }
 }

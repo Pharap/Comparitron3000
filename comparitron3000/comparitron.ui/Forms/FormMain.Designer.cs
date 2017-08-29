@@ -39,7 +39,7 @@
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.engageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.tableLayoutLeft = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxViewMode = new System.Windows.Forms.ComboBox();
@@ -67,9 +67,12 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.textBoxInput = new System.Windows.Forms.TextBox();
             this.openProjectBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.comparisonViewer = new comparitron.ui.ComparisonViewer();
-            this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reloadFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comparitronCoreBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.statusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.comparisonViewer = new comparitron.ui.ComparisonViewer();
             this.menuStripMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
@@ -84,8 +87,8 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -97,7 +100,7 @@
             this.engageToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStripMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.menuStripMain.Size = new System.Drawing.Size(1362, 24);
             this.menuStripMain.TabIndex = 0;
             this.menuStripMain.Text = "menuStrip1";
@@ -117,28 +120,28 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -165,19 +168,25 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.AllowMerge = false;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel});
+            this.statusLabel1,
+            this.statusLabel2,
+            this.statusLabel3,
+            this.statusLabel4});
             this.statusStrip1.Location = new System.Drawing.Point(0, 719);
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.statusStrip1.Size = new System.Drawing.Size(1362, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
-            // statusLabel
+            // statusLabel1
             // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(118, 17);
-            this.statusLabel.Text = "toolStripStatusLabel1";
+            this.statusLabel1.Name = "statusLabel1";
+            this.statusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.statusLabel1.Text = "toolStripStatusLabel1";
             // 
             // splitContainerMain
             // 
@@ -487,6 +496,35 @@
             this.textBoxInput.Size = new System.Drawing.Size(533, 20);
             this.textBoxInput.TabIndex = 4;
             // 
+            // reloadFolderToolStripMenuItem
+            // 
+            this.reloadFolderToolStripMenuItem.Name = "reloadFolderToolStripMenuItem";
+            this.reloadFolderToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.reloadFolderToolStripMenuItem.Text = "Reload Folder";
+            this.reloadFolderToolStripMenuItem.Click += new System.EventHandler(this.reloadFolderToolStripMenuItem_Click);
+            // 
+            // comparitronCoreBindingSource
+            // 
+            this.comparitronCoreBindingSource.DataSource = typeof(comparitron.ComparitronCore);
+            // 
+            // statusLabel2
+            // 
+            this.statusLabel2.Name = "statusLabel2";
+            this.statusLabel2.Size = new System.Drawing.Size(118, 17);
+            this.statusLabel2.Text = "toolStripStatusLabel1";
+            // 
+            // statusLabel3
+            // 
+            this.statusLabel3.Name = "statusLabel3";
+            this.statusLabel3.Size = new System.Drawing.Size(118, 17);
+            this.statusLabel3.Text = "toolStripStatusLabel2";
+            // 
+            // statusLabel4
+            // 
+            this.statusLabel4.Name = "statusLabel4";
+            this.statusLabel4.Size = new System.Drawing.Size(72, 17);
+            this.statusLabel4.Text = "statusLabel4";
+            // 
             // comparisonViewer
             // 
             this.comparisonViewer.BasePath = "";
@@ -506,17 +544,6 @@
             this.comparisonViewer.TabStop = false;
             this.comparisonViewer.Transition = 50F;
             this.comparisonViewer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.comparisonViewer_MouseDoubleClick);
-            // 
-            // comparitronCoreBindingSource
-            // 
-            this.comparitronCoreBindingSource.DataSource = typeof(comparitron.ComparitronCore);
-            // 
-            // reloadFolderToolStripMenuItem
-            // 
-            this.reloadFolderToolStripMenuItem.Name = "reloadFolderToolStripMenuItem";
-            this.reloadFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.reloadFolderToolStripMenuItem.Text = "Reload Folder";
-            this.reloadFolderToolStripMenuItem.Click += new System.EventHandler(this.reloadFolderToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -550,8 +577,8 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comparitronCoreBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comparisonViewer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -596,10 +623,13 @@
         private System.Windows.Forms.Button btnGoto;
         private System.Windows.Forms.Button btnSetFrame;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel1;
         private System.Windows.Forms.FolderBrowserDialog openProjectBrowserDialog;
         private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel4;
     }
 }
 
