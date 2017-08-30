@@ -80,7 +80,7 @@ namespace comparitron.ui
             {
                 MessageBox.Show("Check project settings! \r\n Unusable ID!");
             }
-            else if (string.IsNullOrEmpty(comparitron.BasePath) || (Directory.Exists(comparitron.BasePath)))
+            else if (string.IsNullOrEmpty(comparitron.BasePath) || (!Directory.Exists(comparitron.BasePath)))
             {
                 MessageBox.Show("Bad Project Path!");
             }

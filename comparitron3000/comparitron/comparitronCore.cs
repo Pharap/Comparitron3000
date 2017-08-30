@@ -37,13 +37,17 @@ namespace comparitron
         {
             this.settings = settings;
         }
-        
+
         // IO
         public void ScanForFiles(string Path)
         {
+            LastFrame = 0;
             //Count frames
-            LastFrame = Directory.GetFiles(Path, "*.jpg", SearchOption.TopDirectoryOnly).Length;
-            Console.WriteLine(LastFrame + " frames discovered");
+            if (Directory.Exists(Path))
+            { 
+                LastFrame = Directory.GetFiles(Path, "*.jpg", SearchOption.TopDirectoryOnly).Length;
+                Console.WriteLine(LastFrame + " frames discovered");
+            }
 
             if(LastFrame == 0)
             { 
@@ -70,7 +74,7 @@ namespace comparitron
             Console.WriteLine("Loading " + ProjectPath);
             Console.WriteLine(itemList.Count.ToString() + " items found");
 
-            ScanForFiles(BasePath + settings.MXFolder);
+            ScanForFiles(BasePath + @"\"+ settings.MXFolder);
         }
 
         public void SaveProject()
