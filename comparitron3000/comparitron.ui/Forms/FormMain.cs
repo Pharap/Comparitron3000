@@ -44,7 +44,7 @@ namespace comparitron.ui
         private void updateUI()
         {
             //For small changes (changing frame, viewmode)
-            trackbarFrame.Value = comparitron.CurrentFrame;
+            //trackbarFrame.Value = comparitron.CurrentFrame;
             comparisonViewer.Frame = comparitron.CurrentFrame;
 
             var digits = comparitron.LastFrame.ToString().Length;

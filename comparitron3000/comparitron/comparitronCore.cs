@@ -63,11 +63,17 @@ namespace comparitron
             //Load item list
             if (File.Exists(ProjectPath))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
+
+                ComparitronSaveFormat loadData = new ComparitronSaveFormat();
+                XmlSerializer serializer = new XmlSerializer(typeof(ComparitronSaveFormat));
                 using (var myFileStream = new FileStream(ProjectPath, FileMode.Open))
                 {
-                    itemList = (BindingList<ComparitronItem>)serializer.Deserialize(myFileStream);
+                    loadData = (ComparitronSaveFormat)serializer.Deserialize(myFileStream);
                 }
+
+                itemList = loadData.itemList;
+                ProjectID = loadData.projectID;
+                ProjectTitle = loadData.projectTitle;
             }
 
             //Debug 
@@ -86,10 +92,12 @@ namespace comparitron
         {
             //this just assumes the path is valid, because that's definately safe.
             //ProjectPath = BasePath + @"\Project.xml";
-            XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
+            ComparitronSaveFormat saveData = new ComparitronSaveFormat(itemList, ProjectID, ProjectTitle);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ComparitronSaveFormat));
             using (TextWriter writer = new StreamWriter(ProjectPath))
             {
-                serializer.Serialize(writer, itemList);
+                serializer.Serialize(writer, saveData);
             }
         }
 
