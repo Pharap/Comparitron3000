@@ -70,6 +70,7 @@ namespace comparitron
                 {
                     ComparitronItem item = comparitron.itemList[i];
                     ComparitronItem nextItem = null;
+                    ComparitronItem prevItem = null;
 
                     log += i.ToString() + " : " + item.Type.ToString() + "\r\n";
 
@@ -78,17 +79,25 @@ namespace comparitron
                     {
                         nextItem = comparitron.itemList[i + 1];
                     }
+                    //Find previous item (oooh)
+                    if(i > 0)
+                    {
+                        prevItem = comparitron.itemList[i - 1];
+                    }
 
                     switch (item.Type)
                     {
                         case ItemType.Comparison:
                             {
-                                //If there's no caption, append to previous thing, unless this is the first thing
-                                if((!string.IsNullOrEmpty(item.Text)) || (i == 0))
+                                /*
+                                 If this has no text and was was preceded by a comparison frame, append to the previous
+                                 otherwise, don't.
+                                */
+                                if (!((prevItem != null) && (prevItem.Type == ItemType.Comparison) && (item.Text == "")))
                                 {
                                     output.Write(@"<li>");
-                                    output.Write(item.Text);
                                 }
+                                output.Write(item.Text);
 
                                 string tvline = @"<img src='/images/" + comparitron.ProjectID + "/" + settings.TVPrefix + item.Frame.ToString("D5") + "." + settings.ImageFormat + @"'/>";
                                 string bdline = @"<img src='/images/" + comparitron.ProjectID + "/" + settings.BDPrefix + item.Frame.ToString("D5") + "." + settings.ImageFormat + @"'/>";
@@ -141,7 +150,7 @@ namespace comparitron
                             }; break;
                         case ItemType.Divider:
                             {
-                                output.WriteLine(@"<li><hr/></li");
+                                output.WriteLine(@"<li><hr/></li>");
                             }; break;
                     }
                 }
