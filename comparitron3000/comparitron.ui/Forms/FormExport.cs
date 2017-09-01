@@ -55,13 +55,21 @@ namespace comparitron.ui
             {
                 btnRun.Enabled = true;
                 btnBack.Enabled = true;
+                timerUpdate.Enabled = false;
             }
             textboxLog.Text = exporter.log;
+            textboxLog.Select(textboxLog.Text.Length - 1, 0);
+            textboxLog.ScrollToCaret();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textboxLog_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

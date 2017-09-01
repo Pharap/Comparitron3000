@@ -43,8 +43,10 @@
             this.textboxLog.Multiline = true;
             this.textboxLog.Name = "textboxLog";
             this.textboxLog.ReadOnly = true;
+            this.textboxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textboxLog.Size = new System.Drawing.Size(599, 381);
             this.textboxLog.TabIndex = 0;
+            this.textboxLog.TextChanged += new System.EventHandler(this.textboxLog_TextChanged);
             // 
             // flowLayoutPanel1
             // 
