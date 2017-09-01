@@ -37,8 +37,24 @@ namespace comparitron
         {
             this.settings = settings;
         }
-        
+
         // IO
+        public void ScanForFiles(string Path)
+        {
+            LastFrame = 0;
+            //Count frames
+            if (Directory.Exists(Path))
+            { 
+                LastFrame = Directory.GetFiles(Path, "*.jpg", SearchOption.TopDirectoryOnly).Length;
+                Console.WriteLine(LastFrame + " frames discovered");
+            }
+
+            if(LastFrame == 0)
+            { 
+                Console.WriteLine("No images!");
+            }
+        }
+         
         public void LoadProject(string Path)
         {
             BasePath = Path;
@@ -47,28 +63,24 @@ namespace comparitron
             //Load item list
             if (File.Exists(ProjectPath))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
+
+                ComparitronSaveFormat loadData = new ComparitronSaveFormat();
+                XmlSerializer serializer = new XmlSerializer(typeof(ComparitronSaveFormat));
                 using (var myFileStream = new FileStream(ProjectPath, FileMode.Open))
                 {
-                    itemList = (BindingList<ComparitronItem>)serializer.Deserialize(myFileStream);
+                    loadData = (ComparitronSaveFormat)serializer.Deserialize(myFileStream);
                 }
+
+                itemList = loadData.itemList;
+                ProjectID = loadData.projectID;
+                ProjectTitle = loadData.projectTitle;
             }
 
             //Debug 
             Console.WriteLine("Loading " + ProjectPath);
             Console.WriteLine(itemList.Count.ToString() + " items found");
 
-            //Count frames
-            string mixDir = BasePath + @"\mix";
-            try
-            {
-                LastFrame = Directory.GetFiles(mixDir, "*.jpg", SearchOption.TopDirectoryOnly).Length;
-                Console.WriteLine(LastFrame + " frames discovered");
-            }
-            catch
-            {
-                Console.WriteLine("No images!");
-            }
+            ScanForFiles(BasePath + @"\"+ settings.MXFolder);
         }
 
         public void SaveProject()
@@ -80,10 +92,12 @@ namespace comparitron
         {
             //this just assumes the path is valid, because that's definately safe.
             //ProjectPath = BasePath + @"\Project.xml";
-            XmlSerializer serializer = new XmlSerializer(typeof(BindingList<ComparitronItem>));
+            ComparitronSaveFormat saveData = new ComparitronSaveFormat(itemList, ProjectID, ProjectTitle);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ComparitronSaveFormat));
             using (TextWriter writer = new StreamWriter(ProjectPath))
             {
-                serializer.Serialize(writer, itemList);
+                serializer.Serialize(writer, saveData);
             }
         }
 

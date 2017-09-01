@@ -353,6 +353,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormSettings";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Comparitron Configurator";
             this.Load += new System.EventHandler(this.FormSettings_Load);

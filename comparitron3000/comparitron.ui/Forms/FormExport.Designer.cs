@@ -91,8 +91,10 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.textboxLog);
             this.Name = "FormExport";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FormExport";
+            this.Text = "Exporter";
             this.Load += new System.EventHandler(this.FormExport_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
