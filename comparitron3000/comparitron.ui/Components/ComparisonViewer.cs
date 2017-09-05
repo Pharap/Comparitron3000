@@ -58,7 +58,7 @@ namespace comparitron.ui
             set
             {
                 this.mode = value;
-                this.Reload();
+                if (!Slave) { this.Reload(); }
                 this.Invalidate();
             }
         }
@@ -83,8 +83,10 @@ namespace comparitron.ui
         private void Reload()
         {
             //Sometimes settings goes null and I haven't figured out why. Since it's kinda integral to this working, just abort until it's fixed.
+            /*
             if (settings == null)
                 return;
+            */
 
             // Paths!
             var digits = 5;
