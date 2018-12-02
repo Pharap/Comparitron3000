@@ -31,6 +31,7 @@ namespace comparitron.ui
             textBDPrefix.Text = settings.BDPrefix;
             textMXFolder.Text = settings.MXFolder;
             textMXPrefix.Text = settings.MXPrefix;
+            checkDebug.Checked = settings.DebugShow;
 
             comboImageFormat.Text = settings.ImageFormat;
         }
@@ -47,6 +48,7 @@ namespace comparitron.ui
             settings.BDPrefix = textBDPrefix.Text;
             settings.MXFolder = textMXFolder.Text;
             settings.MXPrefix = textMXPrefix.Text;
+            settings.DebugShow = checkDebug.Checked;
 
             settings.ImageFormat = comboImageFormat.Text;
 
@@ -83,6 +85,11 @@ namespace comparitron.ui
             {
                 textFooterFile.Text = openFileDialog.FileName;
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
