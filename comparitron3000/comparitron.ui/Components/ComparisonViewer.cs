@@ -190,17 +190,17 @@ namespace comparitron.ui
 
                     }; break;
             }
-
-            if(Slave)
-                graphics.DrawRectangle(new Pen(Color.Black), 0, 0, 16, 16);
-            else
+            
+            // draw debug info ontop of frame
+            if((settings != null) && (settings.DebugShow))
             {
-                //Bleh.
                 using (System.Drawing.Font font = new System.Drawing.Font("Arial", 16))
                 {
+
                     using (System.Drawing.SolidBrush brush = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
                     {
-                        graphics.DrawString(pathTV + "\r\n" + pathBD + "\r\n" + pathMX, font, brush, new Point(0, 0));
+                        graphics.DrawString(Slave ? "Slave" : "Master", font, brush, new Point(0, 0));
+                        graphics.DrawString(pathTV + "\r\n" + pathBD + "\r\n" + pathMX, font, brush, new Point(0, (int)font.GetHeight()));
                     }
                 }
             }
