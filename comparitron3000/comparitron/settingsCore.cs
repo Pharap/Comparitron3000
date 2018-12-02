@@ -26,6 +26,8 @@ namespace comparitron
         public string MXPrefix { get; set; } = @"mx-";
 
         public string ImageFormat { get; set; } = @"jpg";
+
+        public bool DebugShow { get; set; } = false;
         
         //Unsettings
         public static Settings Load(string path)
