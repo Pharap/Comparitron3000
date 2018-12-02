@@ -56,8 +56,8 @@ namespace comparitron
                     foreach (var line in File.ReadLines(settings.TemplateHeader))
                     {
                         string outLine = line;
-                        outLine = line.Replace(@"PAGECODE", comparitron.ProjectID);
-                        outLine = line.Replace(@"PAGENAME", comparitron.ProjectTitle);
+                        outLine = outLine.Replace(@"PAGECODE", comparitron.ProjectID);
+                        outLine = outLine.Replace(@"PAGENAME", comparitron.ProjectTitle);
                         output.WriteLine(outLine);
                     }
                 }
