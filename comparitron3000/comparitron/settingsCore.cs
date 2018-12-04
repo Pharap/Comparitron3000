@@ -14,8 +14,10 @@ namespace comparitron
         const string SettingsFile = "settings.xml";
 
         //Settings
-        public string TemplateHeader { get; set; } = null;
-        public string TemplateFooter { get; set; } = null;
+        public string AuthorName { get; set; } = "";
+
+        public string PathHeader { get; set; } = "bits/headermain.php";
+        public string PathFooter { get; set; } = "bits/footermain.php";
 
         public string TVFolder { get; set; } = @"old";
         public string BDFolder { get; set; } = @"new";

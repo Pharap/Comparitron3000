@@ -21,12 +21,18 @@ namespace comparitron.ui
 
             inputProjectID.Text = comparitron.ProjectID;
             inputProjectTitle.Text = comparitron.ProjectTitle;
+
+            textPreviousURL.Text = comparitron.PathPrevious;
+            textNextURL.Text = comparitron.PathNext;
         }
 
         private void btnOkay_Click(object sender, EventArgs e)
         {
             comparitron.ProjectID = inputProjectID.Text;
             comparitron.ProjectTitle = inputProjectTitle.Text;
+            comparitron.PathPrevious = textPreviousURL.Text;
+            comparitron.PathNext = textNextURL.Text;
+
             this.Close();
         }
 
@@ -36,6 +42,11 @@ namespace comparitron.ui
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

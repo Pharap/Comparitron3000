@@ -22,8 +22,9 @@ namespace comparitron.ui
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
-            textHeaderFile.Text = settings.TemplateHeader;
-            textFooterFile.Text = settings.TemplateFooter;
+            textHeaderPath.Text = settings.PathHeader;
+            textFooterPath.Text = settings.PathFooter;
+            textAuthorName.Text = settings.AuthorName;
 
             textTVFolder.Text = settings.TVFolder;
             textTVPrefix.Text = settings.TVPrefix;
@@ -39,8 +40,9 @@ namespace comparitron.ui
 
         private void btnOkay_Click(object sender, EventArgs e)
         {
-            settings.TemplateHeader = textHeaderFile.Text;
-            settings.TemplateFooter = textFooterFile.Text;
+            settings.PathHeader = textHeaderPath.Text;
+            settings.PathFooter = textFooterPath.Text;
+            settings.AuthorName = textAuthorName.Text;
 
             settings.TVFolder = textTVFolder.Text;
             settings.TVPrefix = textTVPrefix.Text;
@@ -75,7 +77,7 @@ namespace comparitron.ui
         {
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                textHeaderFile.Text = openFileDialog.FileName;
+                textHeaderPath.Text = openFileDialog.FileName;
             }
         }
 
@@ -83,7 +85,7 @@ namespace comparitron.ui
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                textFooterFile.Text = openFileDialog.FileName;
+                textFooterPath.Text = openFileDialog.FileName;
             }
         }
 

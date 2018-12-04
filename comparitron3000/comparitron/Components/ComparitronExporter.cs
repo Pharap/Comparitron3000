@@ -41,26 +41,20 @@ namespace comparitron
                 log += "Starting write..." + "\r\n";
 
                 output.WriteLine(@"<!-- Generated with Comparitron3000 page builder -->");
-                //Insert upper template
-                if ((settings.TemplateHeader == null) || (!File.Exists(settings.TemplateHeader)))
-                {
-                    log += "Template Header not found, using fallback. \r\n";
 
-                    //Fallback
-                    output.WriteLine(@"<html><head>");
-                    output.WriteLine(@"<link href='css/twentytwenty.css' rel='stylesheet' type='text/css'/>");
-                    output.WriteLine(@"</head><body>");
-                }
-                else
-                {
-                    foreach (var line in File.ReadLines(settings.TemplateHeader))
-                    {
-                        string outLine = line;
-                        outLine = outLine.Replace(@"PAGECODE", comparitron.ProjectID);
-                        outLine = outLine.Replace(@"PAGENAME", comparitron.ProjectTitle);
-                        output.WriteLine(outLine);
-                    }
-                }
+                //Write header and page parameters
+                output.WriteLine(@"<?php");
+                output.WriteLine(@"$publishyear = '" + DateTime.Now.Year + @"';");
+                output.WriteLine(@"$author = '" + settings.AuthorName + @"';");
+                output.WriteLine("$contentname = \"" + comparitron.ProjectTitle + "\";");
+                output.WriteLine(@"$pagename = $contentname;");
+                output.WriteLine(@"$pagetype = 'comparison';");
+                output.WriteLine(@"$contentpath = '';");
+                output.WriteLine(@"$thumbpath = '/images/thumbs/" + comparitron.ProjectID + @".jpg';");
+                output.WriteLine(@"$lastpage = '" + comparitron.PathPrevious + "';");   //fix
+                output.WriteLine(@"$nextpage= '" + comparitron.PathNext + "';");    //fix
+                output.WriteLine(@"?>");
+                output.WriteLine(@"<?php include '" + settings.PathHeader + "';?>");
                 
                 //Page elements from list
                 output.WriteLine(@"<ol>");
@@ -157,23 +151,7 @@ namespace comparitron
                 output.WriteLine(@"</ol>");
 
                 //Insert lower template
-                if ((settings.TemplateFooter == null) || (!File.Exists(settings.TemplateFooter)))
-                {
-                    log += "Template Footer not found, using fallback. \r\n";
-                    //Fallback
-                    output.WriteLine(@"<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js'></script>");
-                    output.WriteLine(@"<script src='js/jquery.event.move.js'></script>");
-                    output.WriteLine(@"<script src='js/jquery.twentytwenty.js'></script>");
-                    output.WriteLine(@"</body></html>");
-                }
-                else
-                {
-                    //Load from file
-                    foreach (var line in File.ReadLines(settings.TemplateFooter))
-                    {
-                        output.WriteLine(line);
-                    }
-                }
+                output.WriteLine(@"<?php include '" + settings.PathFooter + "';?>");
 
                 log += "Done! \r\n";
             }

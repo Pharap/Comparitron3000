@@ -33,11 +33,15 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOkay = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.inputProjectTitle = new System.Windows.Forms.TextBox();
+            this.inputProjectID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.inputProjectID = new System.Windows.Forms.TextBox();
-            this.inputProjectTitle = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textPreviousURL = new System.Windows.Forms.TextBox();
+            this.textNextURL = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -56,7 +60,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(335, 109);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(335, 174);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -65,7 +69,7 @@
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Controls.Add(this.btnCancel);
             this.flowLayoutPanel1.Controls.Add(this.btnOkay);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(86, 77);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(86, 142);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 29);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -96,8 +100,40 @@
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(329, 68);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(329, 133);
             this.flowLayoutPanel2.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textNextURL);
+            this.groupBox1.Controls.Add(this.textPreviousURL);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.inputProjectTitle);
+            this.groupBox1.Controls.Add(this.inputProjectID);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(322, 130);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // inputProjectTitle
+            // 
+            this.inputProjectTitle.Location = new System.Drawing.Point(72, 36);
+            this.inputProjectTitle.Name = "inputProjectTitle";
+            this.inputProjectTitle.Size = new System.Drawing.Size(244, 20);
+            this.inputProjectTitle.TabIndex = 3;
+            // 
+            // inputProjectID
+            // 
+            this.inputProjectID.Location = new System.Drawing.Point(72, 13);
+            this.inputProjectID.Name = "inputProjectID";
+            this.inputProjectID.Size = new System.Drawing.Size(244, 20);
+            this.inputProjectID.TabIndex = 2;
             // 
             // label1
             // 
@@ -118,38 +154,43 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "ProjectTitle";
             // 
-            // inputProjectID
+            // label3
             // 
-            this.inputProjectID.Location = new System.Drawing.Point(72, 13);
-            this.inputProjectID.Name = "inputProjectID";
-            this.inputProjectID.Size = new System.Drawing.Size(244, 20);
-            this.inputProjectID.TabIndex = 2;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 70);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Previous URL";
             // 
-            // inputProjectTitle
+            // label4
             // 
-            this.inputProjectTitle.Location = new System.Drawing.Point(72, 36);
-            this.inputProjectTitle.Name = "inputProjectTitle";
-            this.inputProjectTitle.Size = new System.Drawing.Size(244, 20);
-            this.inputProjectTitle.TabIndex = 3;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 92);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Next URL";
             // 
-            // groupBox1
+            // textPreviousURL
             // 
-            this.groupBox1.Controls.Add(this.inputProjectTitle);
-            this.groupBox1.Controls.Add(this.inputProjectID);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(322, 65);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
+            this.textPreviousURL.Location = new System.Drawing.Point(83, 67);
+            this.textPreviousURL.Name = "textPreviousURL";
+            this.textPreviousURL.Size = new System.Drawing.Size(100, 20);
+            this.textPreviousURL.TabIndex = 6;
+            // 
+            // textNextURL
+            // 
+            this.textNextURL.Location = new System.Drawing.Point(83, 89);
+            this.textNextURL.Name = "textNextURL";
+            this.textNextURL.Size = new System.Drawing.Size(100, 20);
+            this.textNextURL.TabIndex = 7;
             // 
             // FormProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 109);
+            this.ClientSize = new System.Drawing.Size(335, 174);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormProject";
@@ -179,5 +220,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox inputProjectTitle;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textNextURL;
+        private System.Windows.Forms.TextBox textPreviousURL;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
     }
 }
