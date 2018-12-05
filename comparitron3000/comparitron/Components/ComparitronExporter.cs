@@ -51,8 +51,8 @@ namespace comparitron
                 output.WriteLine(@"$pagetype = 'comparison';");
                 output.WriteLine(@"$contentpath = '';");
                 output.WriteLine(@"$thumbpath = '/images/thumbs/" + comparitron.ProjectID + @".jpg';");
-                output.WriteLine(@"$lastpage = '" + comparitron.PathPrevious + "';");   //fix
-                output.WriteLine(@"$nextpage= '" + comparitron.PathNext + "';");    //fix
+                output.WriteLine(@"$lastpage = '" + comparitron.PathPrevious + "';"); 
+                output.WriteLine(@"$nextpage= '" + comparitron.PathNext + "';");
                 output.WriteLine(@"?>");
                 output.WriteLine(@"<?php include '" + settings.PathHeader + "';?>");
                 
