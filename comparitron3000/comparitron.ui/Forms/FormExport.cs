@@ -57,7 +57,7 @@ namespace comparitron.ui
                 btnBack.Enabled = true;
                 timerUpdate.Enabled = false;
             }
-            textboxLog.Text = exporter.log;
+            textboxLog.Text = exporter.log.ToString();
             textboxLog.Select(textboxLog.Text.Length - 1, 0);
             textboxLog.ScrollToCaret();
         }
