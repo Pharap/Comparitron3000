@@ -12,7 +12,7 @@ namespace comparitron
         ComparitronCore comparitron = null;
         Settings settings = null;
         public bool Running { get; private set; } = false;
-        public string log { get; private set; } = "";
+        public StringBuilder log { get; private set; } = new StringBuilder();
 
         public ComparitronExporter(ComparitronCore comparitron, Settings settings)
         {
@@ -22,7 +22,7 @@ namespace comparitron
 
         public void Run()
         {
-            log = "";
+            log.Clear();
             Running = true;
 
             //Create directory and file 
@@ -38,7 +38,7 @@ namespace comparitron
             //Start writing to it
             using (var output = new StreamWriter(outFile))
             {
-                log += "Starting write..." + "\r\n";
+                log.AppendLine("Starting write...");
 
                 output.WriteLine(@"<!-- Generated with Comparitron3000 page builder -->");
 
@@ -59,20 +59,25 @@ namespace comparitron
                 //Page elements from list
                 output.WriteLine(@"<ol>");
 
-                log += "Items : " + comparitron.itemList.Count + "\r\n";
+                log.Append("Items : ");
+                log.Append(comparitron.itemList.Count);
+                log.AppendLine();
+
                 for (var i=0; i<comparitron.itemList.Count; ++i)
                 {
                     ComparitronItem item = comparitron.itemList[i];
                     ComparitronItem nextItem = null;
                     ComparitronItem prevItem = null;
 
-                    log += i.ToString() + " : " + item.Type.ToString() + "\r\n";
+                    log.AppendFormat("{0} : {1}", i, item.Type);
+                    log.AppendLine();
 
                     //Find next item
                     if(i < comparitron.itemList.Count- 1)
                     {
                         nextItem = comparitron.itemList[i + 1];
                     }
+
                     //Find previous item (oooh)
                     if(i > 0)
                     {
@@ -153,7 +158,7 @@ namespace comparitron
                 //Insert lower template
                 output.WriteLine(@"<?php include '" + settings.PathFooter + "';?>");
 
-                log += "Done! \r\n";
+                log.AppendLine("Done!");
             }
 
             //Move image files
@@ -163,7 +168,8 @@ namespace comparitron
             if (Directory.Exists(TVPath) && (Directory.Exists(BDPath)))
             {
                 string imagePath = basePath + @"\output\images\" + comparitron.ProjectID + @"\";
-                log += "Moving image files..." + "\r\n";
+
+                log.AppendLine("Moving image files...");
 
                 if (!Directory.Exists(imagePath))
                     Directory.CreateDirectory(imagePath);
@@ -175,22 +181,28 @@ namespace comparitron
                         string tvName = string.Format("{0}{1:D5}.{2}", settings.TVPrefix, line.Frame, settings.ImageFormat);
                         string bdName = string.Format("{0}{1:D5}.{2}", settings.BDPrefix, line.Frame, settings.ImageFormat);
 
-                        log += "Moving " + tvName + " from " + TVPath +" to " + imagePath + "\r\n";
+                        log.AppendFormat("Moving {0} from {1} to {2}", tvName, TVPath, imagePath);
+                        log.AppendLine();
+
                         if (File.Exists(TVPath + tvName))
                         { 
                             File.Copy(TVPath + tvName, imagePath + tvName, true);
                         }
-                        log += "Moving " + tvName + " from " + TVPath + " to " + imagePath + "\r\n";
+
+                        log.AppendFormat("Moving {0} from {1} to {2}", bdName, BDPath, imagePath);
+                        log.AppendLine();
+                        
                         if (File.Exists(BDPath + bdName))
                         {
                             File.Copy(BDPath + bdName, imagePath + bdName, true);
                         }
                     }
                 }
-                log += "Done! \r\n";
+
+                log.AppendLine("Done!");
             }
 
-            log += "Export complete, go home \r\n";
+            log.AppendLine("Export complete, go home!");
 
             Running = false;
         }
