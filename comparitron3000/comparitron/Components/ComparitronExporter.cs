@@ -12,7 +12,7 @@ namespace comparitron
         ComparitronCore comparitron = null;
         Settings settings = null;
         public bool Running { get; private set; } = false;
-        public StringBuilder log { get; private set; } = new StringBuilder();
+        public StringBuilder Logger { get; private set; } = new StringBuilder();
 
         public ComparitronExporter(ComparitronCore comparitron, Settings settings)
         {
@@ -22,7 +22,7 @@ namespace comparitron
 
         public void Run()
         {
-            log.Clear();
+            Logger.Clear();
             Running = true;
 
             //Create directory and file 
@@ -38,7 +38,7 @@ namespace comparitron
             //Start writing to it
             using (var output = new StreamWriter(outFile))
             {
-                log.AppendLine("Starting write...");
+                Logger.AppendLine("Starting write...");
 
                 output.WriteLine(@"<!-- Generated with Comparitron3000 page builder -->");
 
@@ -59,9 +59,9 @@ namespace comparitron
                 //Page elements from list
                 output.WriteLine(@"<ol>");
 
-                log.Append("Items : ");
-                log.Append(comparitron.itemList.Count);
-                log.AppendLine();
+                Logger.Append("Items : ");
+                Logger.Append(comparitron.itemList.Count);
+                Logger.AppendLine();
 
                 for (var i=0; i<comparitron.itemList.Count; ++i)
                 {
@@ -69,8 +69,8 @@ namespace comparitron
                     ComparitronItem nextItem = null;
                     ComparitronItem prevItem = null;
 
-                    log.AppendFormat("{0} : {1}", i, item.Type);
-                    log.AppendLine();
+                    Logger.AppendFormat("{0} : {1}", i, item.Type);
+                    Logger.AppendLine();
 
                     //Find next item
                     if(i < comparitron.itemList.Count- 1)
@@ -158,7 +158,7 @@ namespace comparitron
                 //Insert lower template
                 output.WriteLine(@"<?php include '" + settings.PathFooter + "';?>");
 
-                log.AppendLine("Done!");
+                Logger.AppendLine("Done!");
             }
 
             //Move image files
@@ -169,7 +169,7 @@ namespace comparitron
             {
                 string imagePath = basePath + @"\output\images\" + comparitron.ProjectID + @"\";
 
-                log.AppendLine("Moving image files...");
+                Logger.AppendLine("Moving image files...");
 
                 if (!Directory.Exists(imagePath))
                     Directory.CreateDirectory(imagePath);
@@ -181,16 +181,16 @@ namespace comparitron
                         string tvName = string.Format("{0}{1:D5}.{2}", settings.TVPrefix, line.Frame, settings.ImageFormat);
                         string bdName = string.Format("{0}{1:D5}.{2}", settings.BDPrefix, line.Frame, settings.ImageFormat);
 
-                        log.AppendFormat("Moving {0} from {1} to {2}", tvName, TVPath, imagePath);
-                        log.AppendLine();
+                        Logger.AppendFormat("Moving {0} from {1} to {2}", tvName, TVPath, imagePath);
+                        Logger.AppendLine();
 
                         if (File.Exists(TVPath + tvName))
                         { 
                             File.Copy(TVPath + tvName, imagePath + tvName, true);
                         }
 
-                        log.AppendFormat("Moving {0} from {1} to {2}", bdName, BDPath, imagePath);
-                        log.AppendLine();
+                        Logger.AppendFormat("Moving {0} from {1} to {2}", bdName, BDPath, imagePath);
+                        Logger.AppendLine();
                         
                         if (File.Exists(BDPath + bdName))
                         {
@@ -199,10 +199,10 @@ namespace comparitron
                     }
                 }
 
-                log.AppendLine("Done!");
+                Logger.AppendLine("Done!");
             }
 
-            log.AppendLine("Export complete, go home!");
+            Logger.AppendLine("Export complete, go home!");
 
             Running = false;
         }
